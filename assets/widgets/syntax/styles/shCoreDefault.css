@@ -53,8 +53,7 @@
 }
 
 .syntaxhighlighter {
-  height: 400px;
-
+  height: 100%;
   width: 100% !important;
   margin: 1em 0 1em 0 !important;
   position: relative !important;

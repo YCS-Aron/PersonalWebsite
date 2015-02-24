@@ -3,11 +3,95 @@
 
 body {
 	overflow: hidden;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-a:hover {
-	color: #fff;
+.option:hover {
+	cursor: pointer;
 }
+
+/************************** Univeral style */
+.mgbm20p {
+	margin-bottom: 20px;
+}
+
+/* bagdes */
+.bs-badge.badge-absolute {
+	position: absolute;
+	top: -10px;
+	right: -10px;
+}
+
+/************************** Blog Items */
+
+ul.blog-item-list {
+	list-style: none;
+	padding-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+ul.blog-item-list li.blog-item {
+	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	padding: 3px;
+	width: 100%;
+	font-size: 14px;
+	background: #EFF5FA;
+	margin-bottom: 4px;
+	border-left: 3px solid;
+	border-radius: 3px; 
+	padding: 10px 0 10px 0;
+}
+
+ul.blog-item-list li.blog-item span.blog-item-index {
+	margin: 0 20px 0 20px;
+	text-align: left;
+}
+
+ul.blog-item-list li.blog-item span.blog-item-label {
+	width: 30px;
+	text-align: left;
+	margin-right: 10px;
+}
+
+span.blog-item-timelabel {
+	font-size: 100%;
+	position: absolute;
+	right: 10px;
+	top: 8px;
+	width: 87px;
+}
+
+span.blog-item-tips {
+	font-size: 85%;
+	position: absolute;
+	top: 10px;
+}
+
+.blog-item-list .blog-item {
+	position: relative;
+}
+
+.list-group-separator a.list-group-item:after {
+	visibility: hidden;
+}
+
+.blog-page .example-box-wrapper .tab-content {
+	border: 1px solid;
+	border-radius: 3px;
+	border-color: #dfe8f1;
+}
+
+.blog-page .blog-list-header {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px
+}
+
+.blog-list-content {
+	border: 1px solid;
+	border-color: #dfe8f1;
+}
+
 
 /************************** loading spinner of home page */
 
@@ -135,8 +219,3 @@ a:hover {
 	-webkit-animation-delay: .3s;
 	animation-delay: .3s;
 }
-
-
-
-
-

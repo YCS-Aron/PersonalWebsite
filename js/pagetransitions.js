@@ -2,7 +2,9 @@ var PageTransitions = (function() {
 
 	var $main = $( '.pt-main' ),
 		$pages = $main.children( 'div.pt-page' ),
-		$buttons = $('li a#option-button'),
+		$sidebarOptions = $('li.sidebar-option'),
+		$albumOptions = $('.blog-masonry .blog-box a.album-option'),
+		$blogOptions = $('.blog-item-list .blog-option'),
 		animcursor = 1,
 		pagesCount = $pages.length,
 		current = 0,
@@ -30,9 +32,9 @@ var PageTransitions = (function() {
 
 		$pages.eq( current ).addClass( 'pt-page-current' );			//pt-page-current define the css of current view
 
-		$buttons.each(function(index, el) {
-			el.parentElement.onclick = function() {				//parentElement
-				var nextPageIndex = (el.getAttribute('index')[0] - '0');
+		$sidebarOptions.each(function(index, el) {
+			el.onclick = function() {				//parentElement and onclick are attributes of DOM
+				var nextPageIndex = (el.getAttribute('option-index')[0] - '0');
 				if(isAnimating) {
 					return false;
 				}
@@ -42,6 +44,29 @@ var PageTransitions = (function() {
 			};
 		});	
 
+		$albumOptions.each(function(index, el) {
+			el.onclick = function() {				
+				var nextPageIndex = (el.getAttribute('option-index')[0] - '0');
+				if(isAnimating) {
+					return false;
+				}
+				if(current !== nextPageIndex) {	
+					nextPage(nextPageIndex);
+				}
+			};
+		});	
+
+		$blogOptions.each(function(index, el) {
+			el.onclick = function() {				
+				var nextPageIndex = (el.getAttribute('option-index')[0] - '0');
+				if(isAnimating) {
+					return false;
+				}
+				if(current !== nextPageIndex) {	
+					nextPage(nextPageIndex);
+				}
+			};
+		});	
 	}
 
 	function nextPage(targetPageIndex) {

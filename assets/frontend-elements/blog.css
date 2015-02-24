@@ -1,5 +1,9 @@
 /* Blog specific elements */
 
+a.blog-option:hover {
+    cursor: pointer;
+}
+
 .blog-box {
     margin: 0 0 50px;
     padding: 0 0 50px;
