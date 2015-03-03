@@ -4,11 +4,16 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-		<title>Sidebar Transitions</title>
+		<title>YCS website</title>
 		<meta name="description" content="Sidebar Transitions: Transition effects for off-canvas views" />
 		<meta name="keywords" content="transition, off-canvas, navigation, effect, 3d, css3, smooth" />
 		<meta name="author" content="Codrops" />
+		<!-- ^^ this is the icon in browser label -->
 		<link rel="shortcut icon" href="../favicon.ico">
+
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="css/layout.css" />
+		<link rel="stylesheet" type="text/css" href="css/universal.css" />
 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="css/demo.css" />
 		<link rel="stylesheet" type="text/css" href="css/icons.css" />
@@ -18,27 +23,19 @@
 		<link rel="stylesheet" type="text/css" href="css/component-page-transition.css" />
 		<link rel="stylesheet" type="text/css" href="css/component-timeline.css" />
 		<link rel="stylesheet" type="text/css" href="css/gallery/component.css" />
-		<!-- <link rel="stylesheet" type="text/css" href="css/gallery/demo.css" /> -->
 		<link rel="stylesheet" type="text/css" href="css/gallery/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="css/tooltip/tooltip-curved.css" />
 	</head>
 	<body>
-		<div id="st-container" class="st-container">
-			<!-- this is the top float button -->
-			<div id="st-trigger-effects" class="column"  style="position:absolute;top:50px;right:20px;z-index:10000;">
-				<!-- <button data-effect="st-effect-7">Open menu</button> -->
-					<div class="tooltip tooltip-east top-right">
-						<div class="tooltip-item">
-							<button data-effect="st-effect-7" class="open-aside-button">Open menu</button>
-						</div>
-						<span class="tooltip-content">click here to open menu</span>
-					</div>
-				<!-- <button id="iterateEffects" >Next page</button> -->
+		<div class="st-container" id="st-container">
+			<!-- Toggle menu button -->
+			<div id="st-trigger-effects" class="top-right layer-four">
+				<button class="open-aside-button">Open menu</button>
 			</div>
 			<!-- content push wrapper -->
 			<div class="st-pusher">
-				<!-- this is the sidebar -->
-				<nav class="st-menu st-effect-7" id="menu-7">
+				<!-- Sidebar menu-->
+				<nav class="st-menu st-effect-7">
 					<div class="profile">
 						<img src="img/profile1.jpg"/>
 						<h2 class="name">YCS</h2>
@@ -129,6 +126,7 @@
 				</div><!-- /st-content -->
 			</div><!-- /st-pusher -->
 		</div><!-- /st-container -->
+		
 		<script src="js/classie.js"></script>
 		<script src="js/jquery-1.11.2.js"></script>
 		<script src="js/modernizr.custom.js"></script>

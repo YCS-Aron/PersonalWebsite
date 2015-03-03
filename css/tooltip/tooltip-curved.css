@@ -33,12 +33,6 @@
 	border-color: #fff;
 }
 
-.top-right {
-	position: absolute;
-	right: 20px;
-	/*top: 14px;*/
-}
-
 /*
 .tooltip:first-child {
 	top: 20%;
