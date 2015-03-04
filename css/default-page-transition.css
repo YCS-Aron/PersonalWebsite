@@ -26,11 +26,6 @@ body {
 	overflow: hidden;
 }
 
-a {
-	color: #ddd;
-	text-decoration: none;
-}
-
 a:hover {
 	color: #fff;
 }
