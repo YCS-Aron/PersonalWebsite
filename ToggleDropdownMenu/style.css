@@ -1,0 +1,87 @@
+
+/* Toggle menu list */
+.drop-menu .drop-menu-button {
+	/*height: 52px;*/
+	/*width: 300px;*/
+	display: block;
+	position: relative;
+	/*background: #373a47;*/
+}
+
+.drop-menu .drop-menu-button .toggle-icon {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 30px;
+    height: 30px;
+    -webkit-transition: -webkit-transform 0.5s;		/* seperated by ','  ,  */
+}
+
+.drop-menu .options-list {
+	width: 300px;
+	display: none;
+	overflow: hidden;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+} 
+
+
+.drop-menu .options-list .option {
+	height: 40px;
+	width: 300px;
+	line-height: 40px;
+	padding-left: 24px;
+	background: #64697d;
+}
+
+.drop-menu .options-list .option:hover {
+	cursor: pointer;
+	color: #c94e50;
+}
+
+.toggle-show {
+	animation: menutoggle 0.5s;			/* bind animation with element */
+	-moz-animation: menutoggle 0.5s; 		/* Firefox */  /* compatiblity */
+	-webkit-animation: menutoggle 0.5s; 	/* Safari and Chrome */
+}
+
+.toggle-hidden {
+	animation: menutogglehidden 0.5s;			/* bind animation with element */
+	-moz-animation: menutogglehidden 0.5s; 		/* Firefox */  /* compatiblity */
+	-webkit-animation: menutogglehidden 0.5s; 	/* Safari and Chrome */
+}
+
+.toggle-show-icon {
+	transform:rotate(90deg);		/* this statement can not be ignored */
+	-webkit-transform:rotate(90deg);
+}
+
+.toggle-hidden-icon {
+	transform:rotate(0deg);		/* this statement can not be ignored */
+	-webkit-transform:rotate(0deg);
+}
+
+@keyframes menutoggle 			/*@keyframes define a animation/-webkit-animation*/
+{
+0%   {height: 0px;}
+100%  {height: 240px;}
+}
+
+@-webkit-keyframes menutoggle /* Safari and Chrome */
+{
+0%   {height: 0px;}
+100%  {height: 240px;}
+}
+
+@keyframes menutogglehidden
+{
+0%   {height: 240px;}
+100% {height: 0px;}
+}
+
+@-webkit-keyframes menutogglehidden /* Safari and Chrome */
+{
+0%   {height: 240px;}
+100% {height: 0px;}
+}
+

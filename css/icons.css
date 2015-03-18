@@ -169,6 +169,7 @@
 }
 .icon-tag:before {
 	content: "\e025";
+	margin-bottom: 11px;
 }
 .icon-note:before {
 	content: "\e026";
