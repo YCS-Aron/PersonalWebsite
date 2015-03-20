@@ -1,12 +1,13 @@
 
 .pt-page {						/* define the page contains the content */
-	width: 100%;
+	width: 70%;		 /*absolute : consider margin*/
 	height: 100%;
 	position: absolute;
 	top: 0;
 	left: 0;
 	visibility: hidden;
-	overflow-y: scroll;
+	margin-left: 15%;
+	margin-right: 15%;
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	backface-visibility: hidden;
