@@ -16,6 +16,8 @@
 		<link rel="stylesheet" type="text/css" href="css/menu_topside.css" />
 		<link rel="stylesheet" type="text/css" href="css/icons.css" />
 		<link rel="stylesheet" type="text/css" href="ToggleDropdownMenu/style.css" />
+		<link rel="stylesheet" type="text/css" href="PageTransition/animation.css" />
+		<link rel="stylesheet" type="text/css" href="PageTransition/component.css" />
 	</head>
 	<body>
 		<div class="container">
@@ -30,18 +32,19 @@
 						<a><i class="fa fa-fw fa-comment-o"></i></a>
 					</div>
 				</nav>
-				<!-- LEFT MENU -->
+				<!-- Profile -->
 				<div class="profile">
 					<img src="img/user1.png" alt="Matthew Greenberg"/>
 					<span class="name">YCS</span>
 				</div>
+				<!-- LEFT MENU -->
 				<nav class="menu-side drop-menu">
 					<div class="drop-menu-option">
 						<div class="drop-menu-button">
 							<a index="0" class="icon icon-pen">Tech Blog</a>
 						</div>
 						<div class="options-list">
-							<div class="option icon icon-tag">Javascript</div>
+							<div class="option icon icon-tag transitionbutton">Javascript</div>
 							<div class="option icon icon-tag">CSS</div>
 							<div class="option icon icon-tag">NodeJS</div>
 							<div class="option icon icon-tag">Java</div>
@@ -57,11 +60,12 @@
 			<button class="menu-button" id="open-button">Open Menu</button>
 			<div class="content-wrap">
 				<div class="content">
-					<header class="codrops-header">
-					</header>
-					<!-- Related demos -->
-					<section class="related">
-					</section>
+					<div class="pt-page">
+						<span style="font-size: 100px;font-weight: 500;color: black;">超级大坏蛋<span>
+					</div>
+					<div class="pt-page">
+						<span style="font-size: 100px;font-weight: 500;color: black;">中国科学技术大学<span>
+					</div>
 				</div>
 			</div><!-- /content-wrap -->
 		</div><!-- /container -->
@@ -69,5 +73,7 @@
 		<script src="js/classie.js"></script>
 		<script src="js/main.js"></script>
 		<script src="ToggleDropdownMenu/js.js"></script>
+		<script src="PageTransition/modernizr.custom.js"></script>
+		<script src="PageTransition/pagetransitions.js"></script>
 	</body>
 </html>
