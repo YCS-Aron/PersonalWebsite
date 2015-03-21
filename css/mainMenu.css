@@ -107,7 +107,12 @@
 	transform: translate3d(300px,60px,0);
 }
 
-.show-menu .content::before {
+.show-menu .content {
+	/*  disable scroll event */
+	overflow-y: hidden;
+}
+
+.show-menu .content::before { 
 	opacity: 1;
 	-webkit-transition: opacity 0.3s;
 	transition: opacity 0.3s;

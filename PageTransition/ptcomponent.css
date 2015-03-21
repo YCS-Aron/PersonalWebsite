@@ -1,6 +1,6 @@
 
 .pt-page {						/* define the page contains the content */
-	width: 70%;		 /*absolute : consider margin*/
+	width: 70%;		 /* absolute consider margin */
 	height: 100%;
 	position: absolute;
 	top: 0;

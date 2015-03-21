@@ -35,7 +35,7 @@
 		} );
 	}
 
-	function toggleMenu() {
+	function toggleMenu() {				//very cool !!!!!! *****
 		if( isOpen ) {
 			classie.remove( bodyEl, 'show-menu' );
 		}
