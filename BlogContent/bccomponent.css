@@ -20,7 +20,7 @@ html, body, .container, .header {
 	padding-right: 10px;
 }
 
-/* Header */
+/* *************************** Header *************************** */
 .header {
 	position: relative;
 	height: 300px;
@@ -29,7 +29,6 @@ html, body, .container, .header {
 
 .title {
 	z-index: 1000;
-	margin: 0 auto;
 	padding: 0 1.25em;
 	width: 100%;
 	text-align: center;
@@ -42,6 +41,18 @@ html, body, .container, .header {
 	font-weight: 800;
 	font-size: 3.25em;
 	margin: 0 auto;
+	color: #69606b;
+	line-height: 1;
+}
+
+/*.title h1,				****
+.title p.subline {
+	line-height: 1;
+}*/
+
+.title p.subline {
+	font-size: 1.75em;
+	line-height: 1;
 }
 
 .title p {
@@ -49,38 +60,38 @@ html, body, .container, .header {
 	font-weight: 300;
 	font-size: 0.85em;
 	margin: 0 auto;
+	color: #69606b;
 }
 
-.title h1,
-.title p.subline {
-	line-height: 1;
-}
-
-.title p.subline {
-	font-size: 1.75em;
-}
-
-/* Conent */
-.content {
-	margin: 0 auto;
+/* ***************************Conent *************************** */
+.article-content {
+	margin-top: 50px;
+	margin-bottom: 100px; 
 	padding: 0 0 3em;
 }
 
-.content > div:not(.title) p:first-child {
+/*.article-content > div:not(.title) p:first-child {			******
 	font-size: 1.35em;
+	color: #69606b;
 }
-
-.content h3 {
-	margin: 0;
+*/
+.article-content h3 {
 	font-size: 1.4em;
+	color: #69606b;
 }
 
-.content blockquote {
+.article-content p {
+	font-size: 1.35em;
+	color: #69606b;
+}
+
+.article-content blockquote {
 	padding: 0.25em;
 	font-style: italic;
 	font-size: 1.65em;
 	font-family: 'Lora', serif;
 	line-height: 1.4;
+	color: #69606b;	
 }
 
 .content blockquote::before {
@@ -89,4 +100,5 @@ html, body, .container, .header {
 
 .content blockquote::after {
 	content: '\201D';
+	color: #69606b;	
 }
