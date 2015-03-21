@@ -1,0 +1,50 @@
+@font-face {
+	font-weight: normal;
+	font-style: normal;
+	font-family: 'Monaco';
+	src:url('font/Monaco.ttf') format('truetype'),
+}
+
+.code-block {
+	position: relative;
+	border: 1px solid;
+	border-color: #BDBDBD;
+	border-radius: 3px;
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 100%;
+}
+
+.code-block .num-section{
+	width: 35px;
+	background: #EBE7E7;
+}
+
+.code-block .num-section div{
+	width: 35px;
+	text-align: right;
+	height: 25px;
+}
+
+.code-block .num-section div span{
+	font-weight: 600;
+	padding-right: 5px;
+	font-size: 17px;
+	color: #7A6D6D;
+	line-height: 25px;
+}
+
+.code-block .code-section{
+	position: absolute;
+	width: 951px;
+	left: 35px;
+	top: 0px;
+	background: white;
+	padding-left: 10px;
+	font-family: 'Monaco';
+}
+
+.code-block .code-section .code-line {
+	height: 25px;
+	line-height: 25px;
+}
