@@ -66,22 +66,84 @@
 						<div class="blog-body">
 							<header class="header">
 								<div class="title">
-									<h1>On Killing Animals and Other Misdemeanors</h1>
-									<p class="subline">Inspiration for Article Intro Effects</p>
-									<p>by <strong>Eric Heathway</strong> &#8212; Posted in <strong>Ethics</strong> on <strong>May 18, 2014</strong></p>
+									<h1>Javascript认知</h1>
+									<p class="subline">对Javascript语言特性的认识</p>
+									<p><strong>姚川松</strong> &#8212; 写于 <strong>2015/3/21</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
 								<div>
-									<p>We may define a food to be any substance which will repair the functional waste of the body, increase its growth, or maintain the heat, muscular, and nervous energy. </p>
-									<p>In its most comprehensive sense, the oxygen of the air is a food; as although it is admitted by the lungs, it passes into the blood, and there re-acts upon the other food which has passed through the stomach. It is usual, however, to restrict the term food to such nutriment as enters the body by the intestinal canal. Water is often spoken of as being distinct from food, but for this there is no sufficient reason.</p>
-									<p>Many popular writers have divided foods into flesh-formers, heat-givers, and bone-formers. Although attractive from its simplicity, this classification will not bear criticism. Flesh-formers are also heat-givers. Only a portion of the mineral matter goes to form bone.</p>
-									<h3>Flesh-formers, heat-givers, and bone-formers</h3>
-									<p>Mineral matter is quite as necessary for plant as for animal life, and is therefore present in all food, except in the case of some highly-prepared ones, such as sugar, starch and oil. Children require a good proportion of calcium phosphate for the growth of their bones, whilst adults require less. </p>
-									<p>When haricots are cooked, the liquid is often thrown away, and the beans served nearly dry, or with parsley or other sauce. Not only is the food less tasty but important saline constituents are lost. </p>
-									<h3>Soaking in cold water</h3>
-									<blockquote>A comparatively small quantity of proteid matter, such as is easily obtained from vegetable food, is ample for the general needs of the body.</blockquote>
-									<p>Highly manufactured foods, from which as much as possible of the non-nutritious matter has been removed is often advocated, generally by those interested in its sale. Such food would be advantageous only if it were possible to remove or modify a great part of our digestive canal (we are omitting from consideration certain diseased conditions, when such foods may be useful). </p>
+									<p>Javascript是运行在浏览器中的Javascript引擎上的脚本语言，它是一种基于原型的面向对象的语言。浏览器厂商都采用Javascript实现了各自浏览器的DOM和BOM，也就是说浏览器中面向程序员最重要的那一部分是用Javascript写的。</p>
+									<p>Javascript的语言特性主要是：宽松数据类型；单线程的程序执行方式；基于原型</p>
+									<h3>宽松类型</h3>
+									<p>也就是官方说的动态类型，在Javascript中定义一个变量是不需要指定其具体类型的，统一使用关键字var。这和C++，Java这样的语言有很大的不同。</p>
+									<div class="code-block">
+										<div class="num-section">
+											<div><span>1</span></div>
+											<div><span>2</span></div>
+											<div><span>3</span></div>
+											<div><span>4</span></div>
+											<div><span>5</span></div>
+										</div>
+										<div class="code-section">
+											<div class="code-line">
+												<span>var a = {a: "nihao", b = "zuihao"};</span>
+											</div>
+											<div class="code-line">
+												<span>var b = a.a;</span>
+											</div>
+											<div class="code-line">
+												<span>var c = function(){ </span>
+											</div>
+											<div class="code-line">
+												<span>&nbsp;&nbsp;&nbsp;&nbsp;console.log('hello world'); </span>
+											</div>
+											<div class="code-line">
+												<span>};</span>
+											</div>
+										</div>
+									</div>
+									<p>宽松数据类型的确给程序员带来了很大的方便，同时也因为变量的具体数据类型不确定，使得程序变得不那么可靠了。比如下面的代码：</p>
+									<div class="code-block">
+										<div class="num-section">
+											<div><span>1</span></div>
+											<div><span>2</span></div>
+											<div><span>3</span></div>
+											<div><span>4</span></div>
+											<div><span>5</span></div>
+											<div><span>6</span></div>
+											<div><span>7</span></div>
+										</div>
+										<div class="code-section">
+											<div class="code-line">
+												<span>//定义一个函数，两个参数的类型不确定。</span>
+											</div>
+											<div class="code-line">
+												<span>var fun = function (a, b) {</span>
+											</div>
+											<div class="code-line">
+												<span>&nbsp;&nbsp;&nbsp;&nbsp;return a + b;</span>
+											</div>
+											<div class="code-line">
+												<span>};</span>
+											</div>
+											<div class="code-line">
+												<span>fun(1,2);     //应该这么调用</span>
+											</div>
+											<div class="code-line">
+												<span>fun(‘hello world’,2);     //还可以这么调用</span>
+											</div>
+											<div class="code-line">
+												<span>fun();     //甚至这么调用，两个参数是undefined</span>
+											</div>
+										</div>
+									</div>
+									<p>现在都不搞不清楚这个函数到底是要实现什么功能了。</p>
+									<h3>单线程的执行方式</h3>
+									<p>单线程是Javascript的一个重要特性。单线程又使得代码执行分为异步执行和同步执行两种方式。同步执行方式是指代码总是去等待当前任务执行结束，当前任务结束了之后才会去执行下一个任务。异步执行方式是指。这两种执行方式在Javascript代码中体现为不同的Promise模式的实现。</p>
+									<p>在对Javascript代码进行自动化测试时，经常会用到setTimeout函数来完成测试过程。因为要等待某些代码执行结束。比如，在显示一个页面之前去请求该页面上的数据，如果采用异步执行方式，那么就需要</p>
+									<h3>基于原型的面向对象</h3>
+									<p>Javascript任然是面向对象的语言，虽然在使用过程中并没有像C++和Java那样通过类去创建然后使用对象。Javascript通过Prototype实现面向对象的封装和继承。</p>
 									<p><strong>Excerpt from: <a href="http://www.gutenberg.org/ebooks/15237">The Chemistry of Food and Nutrition</a> by A. W. Duncan</strong></p>
 								</div>
 							</article>
