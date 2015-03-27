@@ -58,8 +58,8 @@
 					<a index="2" class="icon icon-photo">Photo</a>
 					<a index="3" class="icon icon-paperplane">Plan</a>
 				</nav>
-			</div>
-			<button class="menu-button" id="open-button">Open Menu</button>
+			</div> <!-- menu-wrap -->
+			<button class="menu-button" id="open-button"></button>
 			<div class="content-wrap">
 				<div class="content">
 					<div class="pt-page">
@@ -73,10 +73,10 @@
 							</header>
 							<article class="article-content">
 								<div>
-									<p>Javascript是运行在浏览器中的Javascript引擎上的脚本语言，它是一种基于原型的面向对象的语言。浏览器厂商都采用Javascript实现了各自浏览器的DOM和BOM，也就是说浏览器中面向程序员最重要的那一部分是用Javascript写的。</p>
-									<p>Javascript的语言特性主要是：宽松数据类型；单线程的程序执行方式；基于原型</p>
+									<p>Javascript是运行在浏览器中的Javascript引擎上的脚本语言，它是一种基于原型的面向对象的语言。浏览器厂商都采用Javascript实现了各自浏览器的DOM和BOM，也就是说浏览器中面向程序员最重要的一部分是用Javascript写的。</p>
+									<p>Javascript的语言特性主要是：宽松数据类型，单线程的程序执行方式，基于原型，闭包</p>
 									<h3>宽松类型</h3>
-									<p>也就是官方说的动态类型，在Javascript中定义一个变量是不需要指定其具体类型的，统一使用关键字var。这和C++，Java这样的语言有很大的不同。</p>
+									<p>在Javascript中定义一个变量是不需要指定其具体类型的，统一使用关键字<span class="key-word">var</span>。这和C++，Java这样的规范严格的语言有很大的不同。下面是一段Javascript代码：</p>
 									<div class="code-block">
 										<div class="num-section">
 											<div><span>1</span></div>
@@ -87,13 +87,13 @@
 										</div>
 										<div class="code-section">
 											<div class="code-line">
-												<span>var a = {a: "nihao", b = "zuihao"};</span>
+												<span>var a = {a: "nihao", b = "zuihao"};	<span class="comment">//a是一个类型是json对象的变量</span></span>
 											</div>
 											<div class="code-line">
-												<span>var b = a.a;</span>
+												<span>var b = a.a;		<span class="comment">//b是一个字符串变量</span></span>
 											</div>
 											<div class="code-line">
-												<span>var c = function(){ </span>
+												<span>var c = function(){ 	<span class="comment">//c是一个函数对象变量</span></span>
 											</div>
 											<div class="code-line">
 												<span>&nbsp;&nbsp;&nbsp;&nbsp;console.log('hello world'); </span>
@@ -103,7 +103,7 @@
 											</div>
 										</div>
 									</div>
-									<p>宽松数据类型的确给程序员带来了很大的方便，同时也因为变量的具体数据类型不确定，使得程序变得不那么可靠了。比如下面的代码：</p>
+									<p>宽松数据类型因为检查不严格让程序员可以“偷懒”，同时也因为变量的具体数据类型不确定，导致在程序执行前根本没办法检查出类型错误，这就使得程序变得不那么可靠了，让程序有很多的漏洞，比如下面的代码：</p>
 									<div class="code-block">
 										<div class="num-section">
 											<div><span>1</span></div>
@@ -116,7 +116,7 @@
 										</div>
 										<div class="code-section">
 											<div class="code-line">
-												<span>//定义一个函数，两个参数的类型不确定。</span>
+												<span class="comment">//定义一个函数，两个参数的类型不确定，那么函数的功能也就变得模糊了。</span>
 											</div>
 											<div class="code-line">
 												<span>var fun = function (a, b) {</span>
@@ -128,22 +128,59 @@
 												<span>};</span>
 											</div>
 											<div class="code-line">
-												<span>fun(1,2);     //应该这么调用</span>
+												<span>fun(1,2);     <span class="comment">//应该这么调用，返回值是3</span></span>
 											</div>
 											<div class="code-line">
-												<span>fun(‘hello world’,2);     //还可以这么调用</span>
+												<span>fun(‘hello world’,2);     <span class="comment">//如果不小心传入了一个字符串，函数能正常执行，返回值是"hello world2"，在C++中也是同样的结果，两者没有什么差别</span></span>
 											</div>
 											<div class="code-line">
-												<span>fun();     //甚至这么调用，两个参数是undefined</span>
+												<span>fun();     <span class="comment">//又一个不小心，传入了两个undefined，它竟然奇迹般的不报错，还给你正经返回一个NaN，</span></span>
 											</div>
 										</div>
 									</div>
-									<p>现在都不搞不清楚这个函数到底是要实现什么功能了。</p>
+									<p>总之，Javascript它就是不报错，等你最终程序的结果出错了，你连错都不知道错在哪。就是因为它定义的变量可以是任何类型，方便了程序员，却牺牲了代码可靠性。</p>
 									<h3>单线程的执行方式</h3>
-									<p>单线程是Javascript的一个重要特性。单线程又使得代码执行分为异步执行和同步执行两种方式。同步执行方式是指代码总是去等待当前任务执行结束，当前任务结束了之后才会去执行下一个任务。异步执行方式是指。这两种执行方式在Javascript代码中体现为不同的Promise模式的实现。</p>
-									<p>在对Javascript代码进行自动化测试时，经常会用到setTimeout函数来完成测试过程。因为要等待某些代码执行结束。比如，在显示一个页面之前去请求该页面上的数据，如果采用异步执行方式，那么就需要</p>
+									<p>单线程是Javascript的一个重要特性。因为单线程的特性，使得Javascript代码分为异步执行和同步执行两种执行方式。同步执行方式是指代码总是去等待当前任务执行结束，当前任务结束了之后才会去执行下一个任务，类似于一般C，C++的代码。异步执行方式是指当一个任务遇到I/O阻塞之类的操作时，它会优先执行下一个任务，等到之前的I/O操作完成之后再回来继续执行未完成的任务（当然并不是I/O完成了就会立刻回来继续执行未完成的任务，具体什么时候执行还需要了解Javascript的<span class="key-word">事件轮询</span>）。</p>
+									<p>在对Javascript代码进行自动化测试时，经常会用到setTimeout函数来完成测试过程。因为要等待某些代码执行结束，也就是等待阻塞操作的完成。比如，在显示一个页面之前去请求该页面上要显示的数据，</p>
 									<h3>基于原型的面向对象</h3>
-									<p>Javascript任然是面向对象的语言，虽然在使用过程中并没有像C++和Java那样通过类去创建然后使用对象。Javascript通过Prototype实现面向对象的封装和继承。</p>
+									<p>Javascript依然是面向对象的语言，虽然在使用过程中并没有像C++和Java那样通过创建类，然后实例化使用对象。Javascript通过Prototype实现面向对象的封装和继承，称作<span class="key-word">Prototype链</span>.</p>
+									<h3>闭包</h3>
+									<p>Javascript支持闭包，闭包挑战了域的概念，挑战了垃圾回收机制，实际上是指内部类</p>
+									<div class=" code-block">
+										<div class=" num-section">
+											<div><span>0</span></div>
+											<div><span>1</span></div>
+											<div><span>2</span></div>
+											<div><span>3</span></div>
+											<div><span>4</span></div>
+											<div><span>5</span></div>
+											<div><span>6</span></div>
+										</div>
+										<div class="code-section">
+											<div class="code-line">
+												<span>$(document).ready(function() {</span>
+											</div>
+											<div class="code-line">
+												<span>var spans = $("#divTest span");</span>
+											</div>
+											<div class="code-line">
+												<span>for (var i = 0; i < spans.length; i++) {<span>
+											</div>
+											<div class="code-line">
+												<span>&nbsp;&nbsp;&nbsp;&nbsp;spans[i].onclick = function() {<span>
+											</div>
+											<div class="code-line">
+												<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert(i);<span>
+											</div>
+											<div class="code-line">
+												<span>&nbsp;&nbsp;&nbsp;&nbsp;}<span>
+											</div>
+											<div class="code-line">
+												<span>}<span>
+											</div>
+										</div>
+									</div>
+									<p>每次点击显示的都是4，为什么？</p>
 									<p><strong>Excerpt from: <a href="http://www.gutenberg.org/ebooks/15237">The Chemistry of Food and Nutrition</a> by A. W. Duncan</strong></p>
 								</div>
 							</article>
@@ -164,30 +201,6 @@
 									<p>Many popular writers have divided foods into flesh-formers, heat-givers, and bone-formers. Although attractive from its simplicity, this classification will not bear criticism. Flesh-formers are also heat-givers. Only a portion of the mineral matter goes to form bone.</p>
 									<h3>Flesh-formers, heat-givers, and bone-formers</h3>
 									<p>Highly manufactured foods, from which as much as possible of the non-nutritious matter has been removed is often advocated, generally by those interested in its sale. Such food would be advantageous only if it were possible to remove or modify a great part of our digestive canal (we are omitting from consideration certain diseased conditions, when such foods may be useful). </p>
-								</div>
-								<div class="code-block">
-									<div class="num-section">
-										<div>
-											<span>1</span>
-										</div>
-										<div>
-											<span>2</span>
-										</div>
-										<div>
-											<span>3</span>
-										</div>
-									</div>
-									<div class="code-section">
-										<div class="code-line">
-											<span>var a = {a: "nihao", b = "zuihao"};</span>
-										</div>
-										<div class="code-line">
-											<span>var b = a.a;</span>
-										</div>
-										<div class="code-line">
-											<span>var c = function(){};</span>
-										</div>
-									</div>
 								</div>
 							</article>
 						</div> <!-- blog-body -->
