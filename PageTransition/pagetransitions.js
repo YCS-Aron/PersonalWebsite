@@ -4,7 +4,7 @@ var PageTransitions = (function() {
 		pagesCount = $pages.length,
 		$iterate = $( '.transitionbutton' ),
 		animcursor = 1,
-		current = 0,
+		current = 1,
 		isAnimating = false,
 		endCurrPage = false,
 		endNextPage = false,
@@ -31,14 +31,15 @@ var PageTransitions = (function() {
 		$pages.eq( current ).addClass( 'pt-page-current' );
 
 		//click event on "Next page" button
-		$iterate.on( 'click', function() {
-			if( isAnimating ) {
-				return false;
-			}
-			// nextPage(nextPageIndex);
-			nextPage();
-		} );
-
+		var transitionButtons = $('.transitionbutton');
+		for(var i = 0;i < transitionButtons.length; i++) {
+			$(transitionButtons[i]).on('click', function(){
+				var nextPageIndex = parseInt($(this).attr('targetIndex'));
+				if(current !== nextPageIndex) {
+					nextPage(nextPageIndex);
+				}
+			});
+		}
 	}
 
 	function nextPage(nextPageIndex) {

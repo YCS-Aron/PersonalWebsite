@@ -71,6 +71,10 @@ html, body, .container, .header {
 	padding: 0 0 3em;
 }
 
+.article-content a{
+	color: #cf4a5c;
+}
+
 /*.article-content > div:not(.title) p:first-child {			******
 	font-size: 1.35em;
 	color: #69606b;

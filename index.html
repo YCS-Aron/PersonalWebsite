@@ -20,6 +20,7 @@
 		<link rel="stylesheet" type="text/css" href="PageTransition/ptcomponent.css" />
 		<link rel="stylesheet" type="text/css" href="BlogContent/bccomponent.css" />
 		<link rel="stylesheet" type="text/css" href="Code/code.css" />
+		<link rel="stylesheet" type="text/css" href="Plan/style.css" />
 	</head>
 	<body>
 		<div class="container">
@@ -46,7 +47,7 @@
 							<a index="0" class="icon icon-pen">Tech Blog</a>
 						</div>
 						<div class="options-list">
-							<div class="option icon icon-tag transitionbutton">Javascript</div>
+							<div class="option icon icon-tag transitionbutton" targetIndex="0">Javascript</div>
 							<div class="option icon icon-tag">CSS</div>
 							<div class="option icon icon-tag">NodeJS</div>
 							<div class="option icon icon-tag">Java</div>
@@ -56,13 +57,13 @@
 					</div>
 					<a index="1" class="icon icon-star">Timeline</a>
 					<a index="2" class="icon icon-photo">Photo</a>
-					<a index="3" class="icon icon-paperplane">Plan</a>
+					<a index="3" class="icon icon-paperplane transitionbutton" targetIndex="1">Plan</a>
 				</nav>
 			</div> <!-- menu-wrap -->
 			<button class="menu-button" id="open-button"></button>
 			<div class="content-wrap">
 				<div class="content">
-					<div class="pt-page">
+					<div class="pt-page" index="0">
 						<div class="blog-body">
 							<header class="header">
 								<div class="title">
@@ -186,21 +187,38 @@
 							</article>
 						</div> <!-- blog-body -->
 					</div> <!-- pt-page -->
-					<div class="pt-page">
+					<div class="pt-page" index="1">
 						<div class="blog-body">
 							<header class="header">
 								<div class="title">
-									<h1>Javascript Overview</h1>
+									<h1>2015 Plan</h1>
 									<p class="subline">Inspiration for Article Intro Effects</p>
-									<p>by <strong>Eric Heathway</strong> &#8212; Posted in <strong>Ethics</strong> on <strong>May 18, 2014</strong></p>
+									<p><strong>姚川松</strong> 写于 <strong>2015/3/29</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
 								<div>
-									<p>We may define a food to be any substance which will repair the functional waste of the body, increase its growth, or maintain the heat, muscular, and nervous energy. </p>
-									<p>Many popular writers have divided foods into flesh-formers, heat-givers, and bone-formers. Although attractive from its simplicity, this classification will not bear criticism. Flesh-formers are also heat-givers. Only a portion of the mineral matter goes to form bone.</p>
-									<h3>Flesh-formers, heat-givers, and bone-formers</h3>
-									<p>Highly manufactured foods, from which as much as possible of the non-nutritious matter has been removed is often advocated, generally by those interested in its sale. Such food would be advantageous only if it were possible to remove or modify a great part of our digestive canal (we are omitting from consideration certain diseased conditions, when such foods may be useful). </p>
+									<blockquote>2015将决定我未来的90%，希望这一年我能让我自己满意。</blockquote>
+									<p>今天是3月29日，距离我在Tradeshift实习结束还有整整四个月，公司拥有很多新技术，Backbone,Angular,Grunt,Less,Spiritual等，这些都是我值得学习的东西，也是我应该学习的东西。</p>
+									<h3>秋招之前的准备</h3>
+									<form class="me-select">
+										<ul id="me-select-list">
+											<li class=""><input id="cb1" name="cb1" type="checkbox" checked="checked"><label for="cb1"><span>原生Javascript</span><span>Javascript单线程</span><span>09:32 pm</span></label></li>
+											<li class=""><input id="cb2" name="cb2" type="checkbox"><label for="cb2"><span>原生Javascript</span><span>闭包</span><span>08:16 pm</span></label></li>
+											<li class=""><input id="cb3" name="cb3" type="checkbox"><label for="cb3"><span>原生Javascript</span><span>变量声明提升</span><span>08:11 pm</span></label></li>
+											<li class=""><input id="cb4" name="cb4" type="checkbox"><label for="cb4"><span>原生Javascript</span><span>原型链</span><span>07:55 pm</span></label></li>
+											<li class=""><input id="cb5" name="cb5" type="checkbox"><label for="cb5"><span>jQuery</span><span>Ajax</span><span>07:38 pm</span></label></li>
+											<li class=""><input id="cb6" name="cb6" type="checkbox"><label for="cb6"><span>jQuery</span><span>框架组成部分</span><span>06:24 pm</span></label></li>
+											<li class=""><input id="cb7" name="cb7" type="checkbox"><label for="cb7"><span>RequireJS</span><span>AMD</span><span>06:45 pm</span></label></li>
+											<li class=""><input id="cb8" name="cb8" type="checkbox"><label for="cb8"><span>Grunt</span><span>Build的过程和原理</span><span>05:38 pm</span></label></li>
+											<li class=""><input id="cb9" name="cb9" type="checkbox"><label for="cb9"><span>LESS</span><span>语法和Build工具</span><span>04:32 pm</span></label></li>
+											<li class=""><input id="cb10" name="cb10" type="checkbox"><label for="cb9"><span>Backbone</span><span>框架组成部分</span><span>04:32 pm</span></label></li>
+											<li class=""><input id="cb11" name="cb11" type="checkbox"><label for="cb10"><span>Backbone</span><span>与AngularJS比较</span><span>03:49 pm</span></label></li>
+											<li class=""><input id="cb12" name="cb12" type="checkbox"><label for="cb11"><span>AngularJS</span><span>?</span><span>03:23 pm</span></label></li>
+											<li class=""><input id="cb13" name="cb13" type="checkbox"><label for="cb12"><span>Becky Turner</span><span>I have your tickets</span><span>02:55 pm</span></label></li>
+											<li class=""><input id="cb14" name="cb14" type="checkbox"><label for="cb13"><span>Bookmeister</span><span>Your booking at Loft 523</span><span>01:46 pm</span></label></li>
+										</ul>
+									</form>
 								</div>
 							</article>
 						</div> <!-- blog-body -->
@@ -214,5 +232,6 @@
 		<script src="ToggleDropdownMenu/js.js"></script>
 		<script src="PageTransition/modernizr.custom.js"></script>
 		<script src="PageTransition/pagetransitions.js"></script>
+		<script src="Plan/js.js"></script>
 	</body>
 </html>
