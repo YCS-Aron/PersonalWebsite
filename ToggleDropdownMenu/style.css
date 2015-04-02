@@ -32,6 +32,11 @@
 	line-height: 40px;
 	padding-left: 24px;
 	background: #64697d;
+	padding-left: 54px;
+}
+
+.drop-menu .options-list .option .count {
+	margin-left: 20px;
 }
 
 .drop-menu .options-list .option:hover {

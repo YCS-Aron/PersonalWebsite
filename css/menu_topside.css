@@ -7,11 +7,6 @@ body,
 	height: 100%;
 }
 
-.menu-wrap a:hover,
-.menu-wrap a:focus {
-	color: #c94e50;
-}
-
 .content-wrap {
 	-webkit-overflow-scrolling: touch;
 	-webkit-transition: -webkit-transform 0.3s;

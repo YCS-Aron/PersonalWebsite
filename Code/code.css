@@ -43,7 +43,7 @@
 	background: white;
 	padding-left: 10px;
 	font-family: 'Monaco';
-	overflow-x: scroll; 
+	overflow-x: auto; 
 }
 
 .show-menu .code-block .code-section{
