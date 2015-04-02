@@ -1,62 +1,48 @@
 <div class=" code-block">
 <div class=" num-section">
-<div>
-<span>0</span>
-</div>
-<div>
-<span>1</span>
-</div>
-<div>
-<span>2</span>
-</div>
-<div>
-<span>3</span>
-</div>
-<div>
-<span>4</span>
-</div>
-<div>
-<span>5</span>
-</div>
-<div>
-<span>6</span>
-</div>
+<div><span>0</span></div>
+<div><span>1</span></div>
+<div><span>2</span></div>
+<div><span>3</span></div>
+<div><span>4</span></div>
+<div><span>5</span></div>
+<div><span>6</span></div>
 </div>
 <div class="code-section">
 <div class="code-line">
 <span>
-$(document).ready(function() {
-<span>
+function obj(){
+</span>
 </div>
 <div class="code-line">
 <span>
-var spans = $("#divTest span");
-<span>
+	var attr = 10;	//私有成员
+</span>
 </div>
 <div class="code-line">
 <span>
-for (var i = 0; i < spans.length; i++) {
-<span>
+	this.attr2 = 100;	//共有成员
+</span>
 </div>
 <div class="code-line">
 <span>
-spans[i].onclick = function() {
-<span>
+	this.getAttr = function() {	
+</span>
 </div>
 <div class="code-line">
 <span>
-alert(i);
+		return attr;
+</span>
+</div>
+<div class="code-line">
 <span>
+	}
+</span>
 </div>
 <div class="code-line">
 <span>
 }
-<span>
-</div>
-<div class="code-line">
-<span>
-}
-<span>
+</span>
 </div>
 </div>
 </div>

@@ -1,8 +1,8 @@
-$(document).ready(function() {
-    var spans = $("#divTest span");
-    for (var i = 0; i < spans.length; i++) {
-        spans[i].onclick = function() {
-            alert(i);
-        }
-    }
-});
+function obj(){
+	var attr = 10;	//私有成员
+	this.attr2 = 100;	//共有成员
+	this.getAttr = function() {	
+		return attr;
+	}
+}
+var o = new obj();
