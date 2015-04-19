@@ -31,12 +31,18 @@
 	width: 300px;
 	line-height: 40px;
 	padding-left: 24px;
-	background: #64697d;
+	background: #88877C;
 	padding-left: 54px;
 }
 
+.drop-menu .options-list .option > span{
+	color: #b8b7ad;
+}
+
 .drop-menu .options-list .option .count {
-	margin-left: 20px;
+	float: right;
+	padding-right: 92px;
+	color: #4A48D2;
 }
 
 .drop-menu .options-list .option:hover {

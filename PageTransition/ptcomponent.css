@@ -1,13 +1,13 @@
 
 .pt-page {						/* define the page contains the content */
-	width: 70%;		 /* absolute consider margin */
+	width: 60%;		 /* absolute consider margin */
 	height: 100%;
 	position: absolute;
 	top: 0;
 	left: 0;
 	display: none;
-	margin-left: 15%;
-	margin-right: 15%;
+	margin-left: 20%;
+	margin-right: 20%;
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	backface-visibility: hidden;
@@ -23,6 +23,49 @@
 .pt-page-current {
 	display: block;
 	z-index: 1;
+}
+
+/*Home Page*/
+.homepage {
+	background: #ddd url(../img/homepage-bg.jpg) repeat top left;
+	z-index: 2;
+  	width: 100%;
+  	margin: 0;
+}
+
+.homepage .hp-profile {
+	position: absolute;
+	top: 30%;
+	left: 42%;
+	width: 15%;
+	height: 40%;
+	text-align: center;
+}
+
+.homepage .hp-profile .hg-portrait {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	margin-bottom: 15px;
+}
+
+.homepage .hp-profile .hg-name {
+	border-bottom: 2px black solid;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.homepage .hp-profile .hg-name>span {
+	font-size: 35px;
+
+}
+
+.homepage .hp-profile .hg-icons {
+	padding-left: 24px;
+}
+
+.homepage .hp-profile .hg-icons>a {
+	font-size: 20px;
 }
 
 @media screen and (max-width: 47.4375em) {
