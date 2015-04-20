@@ -68,6 +68,21 @@
 	font-size: 20px;
 }
 
+.follow-bt {
+	border: 1px #fac552 solid;
+	height: 28px;
+	width: 70%;
+	margin-left: 15%;
+	line-height: 28px;
+	margin-bottom: 10px;
+}
+
+.follow-bt>a {
+	color: #fac552;
+	font-weight: 700;
+	text-decoration: none;
+}
+
 @media screen and (max-width: 47.4375em) {
 	.pt-page h1 {
 		font-size: 3em;
