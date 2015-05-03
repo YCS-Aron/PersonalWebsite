@@ -75,24 +75,24 @@
 @keyframes menutoggle 			/*@keyframes define a animation/-webkit-animation*/
 {
 0%   {height: 0px;}
-100%  {height: 240px;}
+100%  {height: 280px;}
 }
 
 @-webkit-keyframes menutoggle /* Safari and Chrome */
 {
 0%   {height: 0px;}
-100%  {height: 240px;}
+100%  {height: 280px;}
 }
 
 @keyframes menutogglehidden
 {
-0%   {height: 240px;}
+0%   {height: 280px;}
 100% {height: 0px;}
 }
 
 @-webkit-keyframes menutogglehidden /* Safari and Chrome */
 {
-0%   {height: 240px;}
+0%   {height: 280px;}
 100% {height: 0px;}
 }
 

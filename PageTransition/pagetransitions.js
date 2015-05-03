@@ -47,13 +47,7 @@ var PageTransitions = (function() {
 		
 		var $currPage = $pages.eq( current );
 
-		//These code only useful for demo
-		if( current < pagesCount - 1 ) {
-			++current;
-		}
-		else {
-			current = 0;
-		}
+		current = nextPageIndex;
 
 		// var $nextPage = $pages.eq( nextPageIndex ).addClass( 'pt-page-current' );
 		var $nextPage = $pages.eq( current ).addClass( 'pt-page-current' );

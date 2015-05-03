@@ -9,6 +9,7 @@
 		<meta name="keywords" content="sidebar, off-canvas, menu, navigation, effect, inspiration, css transition, SVG, morphing, animation" />
 		<meta name="author" content="Codrops" />
 		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="css/demo.css" />
 		<link rel="stylesheet" type="text/css" href="css/mainMenu.css" />
@@ -47,7 +48,7 @@
 							<a index="0" class="icon icon-pen">Tech Blog</a>
 						</div>
 						<div class="options-list">
-							<div class="option transitionbutton" targetIndex="1">
+							<div class="option transitionbutton" targetIndex="4">
 								<span>Javascript</span>
 								<span class="count">10</span>
 							</div>
@@ -71,6 +72,10 @@
 								<span>Algorithm</span>
 								<span class="count">10</span>
 							</div>
+							<div class="option">
+								<span>Git</span>
+								<span class="count">7</span>
+							</div>
 						</div>
 					</div>
 					<a index="1" class="icon icon-star transitionbutton" targetIndex="3">Timeline</a>
@@ -81,6 +86,7 @@
 			<button class="menu-button" id="open-button"></button>
 			<div class="content-wrap">
 				<div class="content">
+					<!-- 主页 -->
 					<div class="pt-page homepage" index="0">
 						<div class="hp-profile">
 							<img class="hg-portrait" src="img/user1.png">
@@ -94,6 +100,7 @@
 							</div>
 						</div>
 					</div>
+					<!-- Javascript 印象 -->
 					<div class="pt-page" index="1">
 						<div class="blog-body">
 							<header class="header">
@@ -197,6 +204,7 @@
 							</article>
 						</div> <!-- blog-body -->
 					</div> <!-- pt-page -->
+					<!-- 2015 计划 -->
 					<div class="pt-page" index="2">
 						<div class="blog-body">
 							<header class="header">
@@ -233,8 +241,23 @@
 							</article>
 						</div> <!-- blog-body -->
 					</div> <!-- pt-page -->
+					<!-- 时间线 -->
 					<div class="pt-page" index="3">
 						<h3>Timeline</h3>
+					</div>
+					<!-- javascript 博客列表 -->
+					<div class="pt-page" index="4">
+						<div class="block-height-one-unit"></div>
+						<form class="items-list">
+							<ul id="me-select-list blog-list">
+								<li class="transitionbutton" targetIndex="1"><span class="blog-num">1.</span><label for="cb1"><span>Javascript单线程</span><span class="blog-item-time">09:32 pm</span></label></li>
+								<li class=""><span class="blog-num">2.</span><label for="cb2"><span>闭包</span><span class="blog-item-time">08:16 pm</span></label></li>
+								<li class=""><span class="blog-num">3.</span><label for="cb3"><span>变量声明提升</span><span class="blog-item-time">08:11 pm</span></label></li>
+								<li class=""><span class="blog-num">4.</span><label for="cb4"><span>原型链</span><span class="blog-item-time">07:55 pm</span></label></li>
+								<li class=""><span class="blog-num">5.</span><label for="cb5"><span>Ajax</span><span class="blog-item-time">07:38 pm</span></label></li>
+								<li class=""><span class="blog-num">6.</span><label for="cb6"><span>框架组成部分</span><span class="blog-item-time">06:24 pm</span></label></li>
+							</ul>
+						</form>	
 					</div>
 				</div>
 			</div><!-- /content-wrap -->
