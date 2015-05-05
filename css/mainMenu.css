@@ -41,6 +41,7 @@
 .menu-wrap .profile .name {
 	margin-left: 150px;
 	font-size: 1.5em;
+	color: #b8b7ad;
 }
 
 .menu-wrap .icon-list {
@@ -52,6 +53,14 @@
 .icon-list {
 	display: inline-block;
 	font-size: 1.25em;
+}
+
+.icon-list a i {
+	color: #b8b7ad;
+}
+
+.icon-list a i:hover {
+	color: #c94e50;
 }
 
 .icon-list a {
