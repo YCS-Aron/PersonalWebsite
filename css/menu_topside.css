@@ -66,3 +66,7 @@ body,
 .menu-button:hover {
 	opacity: 0.6;
 }
+
+body.show-menu div.content-wrap {
+	disabled: disable;
+}

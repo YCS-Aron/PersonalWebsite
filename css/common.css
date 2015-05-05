@@ -119,3 +119,12 @@ div.block-height-one-unit {
 		font-size: 80%;
 	}
 }
+
+/*COVER*/
+.cover {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	display: none;
+}

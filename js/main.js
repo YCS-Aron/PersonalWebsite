@@ -38,9 +38,11 @@
 	function toggleMenu() {				//very cool !!!!!! *****
 		if( isOpen ) {
 			classie.remove( bodyEl, 'show-menu' );
+			$('.content-wrap>.cover').toggle();
 		}
 		else {
 			classie.add( bodyEl, 'show-menu' );
+			$('.content-wrap>.cover').toggle();
 		}
 		isOpen = !isOpen;
 	}
