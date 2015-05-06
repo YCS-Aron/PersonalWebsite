@@ -15,9 +15,6 @@
 .clearfix:after { clear: both; }
 
 body {
-	/*color: #fffce1;*/
-	/*font-weight: 400;*/
-	/*font-size: 1em;*/
 	font-family: 'Raleway', Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
@@ -43,6 +40,5 @@ section {
 	/*background: #f7f8f1;*/
 	background: #fff;
 	height: 100%;
-	overflow-y: scroll;
   	overflow-x: hidden;
 }

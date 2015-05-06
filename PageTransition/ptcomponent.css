@@ -1,13 +1,14 @@
 
 .pt-page {						/* define the page contains the content */
-	width: 60%;		 /* absolute consider margin */
+	width: 100%;		 /* absolute consider margin */
 	height: 100%;
 	position: absolute;
 	top: 0;
 	left: 0;
 	display: none;
-	margin-left: 20%;
-	margin-right: 20%;
+	background-image: url(../img/bg-pattern.png);
+	background-repeat: repeat;
+	overflow-y: auto;   /*if not add this attr, background-repeat will only work for current page*/ 
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	backface-visibility: hidden;
@@ -27,7 +28,7 @@
 
 /*Home Page*/
 .homepage {
-	background: #ddd url(../img/homepage-bg.jpg) repeat top left;
+	background: #ddd url(../img/homepage-bg.jpg) repeat top left !important;
 	z-index: 2;
   	width: 100%;
   	margin: 0;

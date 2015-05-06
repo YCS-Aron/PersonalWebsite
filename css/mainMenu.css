@@ -114,6 +114,7 @@
 .show-menu .menu-button {
 	-webkit-transform: translate3d(300px,60px,0);
 	transform: translate3d(300px,60px,0);
+	overflow: hidden;
 }
 
 .show-menu .content {

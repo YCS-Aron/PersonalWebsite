@@ -16,46 +16,36 @@
 	margin-bottom: 18px;
 }
 
-.code-block .num-section{
-	width: 35px;
-	background: #EBE7E7;
-}
-
-.code-block .num-section div{
-	width: 35px;
-	text-align: right;
-	height: 25px;
-}
-
-.code-block .num-section div span{
-	font-weight: 600;
-	padding-right: 5px;
-	font-size: 17px;
-	color: #7A6D6D;
-	line-height: 25px;
-}
-
-.code-block .code-section{
-	position: absolute;
-	width: 786px;
-	left: 35px;
-	top: 0px;
-	background: white;
-	padding-left: 10px;
-	font-family: 'Monaco';
-	overflow-x: auto; 
-}
-
-.show-menu .code-block .code-section{
-	overflow-x: hidden; 
-}
-
 .code-block .code-section .code-line {
 	height: 25px;
 	line-height: 25px;
 	white-space:nowrap;
+	width: 743px;
 }
 
 .code-block .code-section .comment {
 	opacity: 0.5;
+}
+
+.code-block>pre {
+	color: #14141E;
+	background: #F9F7F3 !important;
+	top: 0;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	width: 813px;
+	padding-left: 10px;
+}
+
+.code-result>pre {
+	background: red;
+}
+
+.code-block>pre>pre {
+	margin: 0px;
+}
+
+.code-block>pre>pre span{
+	line-height: 25px;
+	height: 25px;
 }

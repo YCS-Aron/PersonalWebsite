@@ -118,42 +118,16 @@
 									<h3>宽松类型</h3>
 									<p>在Javascript中定义一个变量是不需要指定其具体类型的，统一使用关键字<span class="key-word">var</span>。这和C++，Java这样的规范严格的语言有很大的不同。宽松数据类型的特性一方面让程序员可以“偷懒”，在定义时不用受到类型的约束。另一方面也给程序带来一定的隐患（比如在运行时可能会出现从一个值为undefined的变量中读它的一个属性的情况），这就使得程序变得不那么可靠，或者你需要在操作变量之前先检查变量类型是否正确和是否具有操作性，比如下面的代码：</p>
 									<div class="code-block">
-										<div class="num-section">
-											<div><span>1</span></div>
-											<div><span>2</span></div>
-											<div><span>3</span></div>
-											<div><span>4</span></div>
-											<div><span>5</span></div>
-											<div><span>6</span></div>
-											<div><span>7</span></div>
-											<div><span>8</span></div>
-										</div>
-										<div class="code-section">
-											<div class="code-line">
-												<span class="comment">//定义一个函数，两个参数的类型不确定，那么函数的功能也就变得模糊了。</span>
-											</div>
-											<div class="code-line">
-												<span>var fun = function (a, b) {</span>
-											</div>
-											<div class="code-line">
-												<span>&nbsp;&nbsp;&nbsp;&nbsp;return a + b;</span>
-											</div>
-											<div class="code-line">
-												<span>};</span>
-											</div>
-											<div class="code-line">
-												<span>fun(1,2);     <span class="comment">//应该这么调用，返回值是3</span></span>
-											</div>
-											<div class="code-line">
-												<span>fun('hello world',2);     <span class="comment">//如果不小心传入了一个字符串，函数能正常执行，返回值是"hello world2"，在C++中也是同样的结果，两者没有什么差别</span></span>
-											</div>
-											<div class="code-line">
-												<span>fun();     <span class="comment">//又一个不小心，传入了两个undefined，它竟然奇迹般的不报错，还给你正经的返回一个NaN，</span></span>
-											</div>
-											<div class="code-line">
-												<span>fun({attr: 'nihao'}, 1);     <span class="comment">//传入了一个JSON对象，结果为1</span></span>
-											</div>
-										</div>
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#3f7f59; '>//定义一个函数，两个参数的类型不确定，那么函数的功能也就变得模糊了。</span>
+<span style='color:#7f0055; font-weight:bold; '>var</span> fun = <span style='color:#7f0055; font-weight:bold; '>function</span> (a, b) {
+    <span style='color:#7f0055; font-weight:bold; '>return</span> a + b;
+};
+fun(1,2); <span style='color:#3f7f59; '>//应该这么调用，返回值是3</span>
+fun(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>hello world</span><span style='color:#2a00ff; '>'</span>,2); <span style='color:#3f7f59; '>//如果不小心传入了一个字符串，函数能正常执行，返回值是"hello world2"，在C++中也由同样的结果，两者没有什么差别</span>
+fun(); <span style='color:#3f7f59; '>//又一个不小心，传入了两个undefined，它竟然奇迹般的不报错，还给你正经的返回一个NaN，</span>
+fun({attr: <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>nihao</span><span style='color:#2a00ff; '>'</span>}, 1); <span style='color:#3f7f59; '>//传入了一个JSON对象，结果为1</span>
+</pre>
 									</div>
 									<p>也正因为类型的灵活性，让Javascript有了很大的自由性。</p>
 									<h3>单线程的执行方式</h3>
@@ -162,38 +136,29 @@
 									<h3>基于原型的面向对象</h3>
 									<p>Javascript依然是面向对象的语言，虽然在使用过程中并没有像C++和Java那样通过创建类，然后实例化使用对象。在Javascript中，任务东西都可以成为对象，包括函数，实际上很多时候我们都是通过定义函数的方法来定义一个对象的，通过函数定义的对象的成员依旧有私有公有之分，能定义私有变量，便实现了封装</p>
 									<div class=" code-block">
-										<div class=" num-section">
-											<div><span>0</span></div>
-											<div><span>1</span></div>
-											<div><span>2</span></div>
-											<div><span>3</span></div>
-											<div><span>4</span></div>
-											<div><span>5</span></div>
-											<div><span>6</span></div>
-										</div>
-										<div class="code-section">
-											<div class="code-line">
-												<span>function obj(){</span>
-											</div>
-											<div class="code-line">
-												<span>&nbsp;&nbsp;&nbsp;&nbsp;var attr = 10;	<span class="comment">//私有成员</span></span>
-											</div>
-											<div class="code-line">
-												<span>&nbsp;&nbsp;&nbsp;&nbsp;this.attr2 = 100;	<span class="comment">//公有成员</span></span>
-											</div>
-											<div class="code-line">
-												<span>&nbsp;&nbsp;&nbsp;&nbsp;this.getAttr = function() {	</span>
-											</div>
-											<div class="code-line">
-												<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return attr;</span>
-											</div>
-											<div class="code-line">
-												<span>&nbsp;&nbsp;&nbsp;&nbsp;}</span>
-											</div>
-											<div class="code-line">
-												<span>}</span>
-											</div>
-										</div>
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+module.exports = {
+	getValue: <span style='color:#7f0055; font-weight:bold; '>function</span>(key) {
+		<span style='color:#7f0055; font-weight:bold; '>if</span> (<span style='color:#7f0055; font-weight:bold; '>this</span>.isDefaultSkipReasonTag(key)) {
+			<span style='color:#7f0055; font-weight:bold; '>return</span> REASONS[key];
+		}
+		<span style='color:#7f0055; font-weight:bold; '>if</span> (<span style='color:#7f0055; font-weight:bold; '>this</span>.isManualSkipReasonTag(key)) {
+			<span style='color:#7f0055; font-weight:bold; '>return</span> key.<span style='color:#7f0055; font-weight:bold; '>slice</span>(MANUAL_REASON_PREFIX.<span style='color:#7f0055; font-weight:bold; '>length</span>);
+		}
+		<span style='color:#7f0055; font-weight:bold; '>return</span> key;
+	},
+
+	getDefaultSkipReasonKeys: <span style='color:#7f0055; font-weight:bold; '>function</span>() {
+		<span style='color:#7f0055; font-weight:bold; '>var</span> indexes = [];
+		<span style='color:#7f0055; font-weight:bold; '>for</span> (<span style='color:#7f0055; font-weight:bold; '>var</span> prop <span style='color:#7f0055; font-weight:bold; '>in</span> REASONS) {
+			<span style='color:#7f0055; font-weight:bold; '>if</span> (REASONS.<span style='color:#7f0055; font-weight:bold; '>hasOwnProperty</span>(prop)) {
+				indexes.push(prop);
+			}
+		}
+		<span style='color:#7f0055; font-weight:bold; '>return</span> indexes;
+	}
+};
+</pre>
 									</div>
 									<p>Javascript实现继承的方式很特别，主要有两种方式：<span class="key-word">对象冒充</span>，<span class="key-word">原型方法</span>。其中对象冒充主要细分为三种：<span class="key-word">this绑定</span>，<span class="key-word">call方法</span>，<span class="key-word">apply方法</span>。这些方法都会涉及到Javascript的<span class="key-word">域</span>的概念。</p>
 									<p></p>
@@ -244,59 +209,114 @@
 					</div> <!-- pt-page -->
 					<!-- 时间线 -->
 					<div class="pt-page" index="3">
-						<h3>Timeline</h3>
+						<div class="blog-body">
+							<h3>Timeline</h3>
+						</div>
 					</div>
 					<!-- javascript 博客列表 -->
 					<div class="pt-page" index="4">
-						<div class="block-height-one-unit"></div>
-						<form class="items-list">
-							<ul id="me-select-list blog-list">
-								<li class="transitionbutton" targetIndex="1"><span class="blog-num">1.</span><label for="cb1"><span>Javascript认知</span><span>对Javascript的语言特性的认识</span><span class="blog-item-time">2015/5/4</span></label></li>
-								<li class=""><span class="blog-num">2.</span><label for="cb2"><span>闭包</span><span>对Javascript中闭包的理解</span><span class="blog-item-time">2015/5/4</span></label></li>
-								<li class=""><span class="blog-num">3.</span><label for="cb3"><span>变量声明提升</span><span>Javascript的变量提升特性</span><span class="blog-item-time">2015/5/4</span></label></li>
-								<li class=""><span class="blog-num">4.</span><label for="cb4"><span>原型链</span><span>Javascript的面向对象机制</span><span class="blog-item-time">2015/5/4</span></label></li>
-								<li class=""><span class="blog-num">5.</span><label for="cb5"><span>Ajax</span><span>Ajax详细介绍</span><span class="blog-item-time">2015/5/4</span></label></li>
-								<li class=""><span class="blog-num">6.</span><label for="cb6"><span>框架组成部分</span><span>。。。</span><span class="blog-item-time">2015/5/4</span></label></li>
-							</ul>
-						</form>	
+						<div class="blog-body">
+							<div class="block-height-one-unit"></div>
+							<form class="items-list">
+								<ul id="me-select-list blog-list">
+									<li class="transitionbutton" targetIndex="1"><span class="blog-num">1.</span><label for="cb1"><span>Javascript认知</span><span>对Javascript的语言特性的认识</span><span class="blog-item-time">2015/5/4</span></label></li>
+									<li class=""><span class="blog-num">2.</span><label for="cb2"><span>闭包</span><span>对Javascript中闭包的理解</span><span class="blog-item-time">2015/5/4</span></label></li>
+									<li class="transitionbutton" targetIndex="9"><span class="blog-num">3.</span><label for="cb3"><span>变量声明提升</span><span>Javascript的变量提升特性</span><span class="blog-item-time">2015/5/4</span></label></li>
+									<li class=""><span class="blog-num">4.</span><label for="cb4"><span>原型链</span><span>Javascript的面向对象机制</span><span class="blog-item-time">2015/5/4</span></label></li>
+									<li class=""><span class="blog-num">5.</span><label for="cb5"><span>Ajax</span><span>Ajax详细介绍</span><span class="blog-item-time">2015/5/4</span></label></li>
+									<li class=""><span class="blog-num">6.</span><label for="cb6"><span>框架组成部分</span><span>。。。</span><span class="blog-item-time">2015/5/4</span></label></li>
+								</ul>
+							</form>	
+						</div>
 					</div>
 					<!-- Git 博客列表 -->
 					<div class="pt-page" index="5">
-						<div class="block-height-one-unit"></div>
-						<form class="items-list">
-							<ul id="me-select-list blog-list">
-								<li class="transitionbutton" targetIndex="1"><span class="blog-num">1.</span><label for="cb1"><span>Git简介</span><span>对Github代码管理工具的了解</span><span class="blog-item-time">2015/5/4</span></label></li>
-								<li class=""><span class="blog-num">2.</span><label for="cb2"><span>Git常用命令</span><span>列举说明Git中常用的一些命令</span><span class="blog-item-time">2015/5/4</span></label></li>
-							</ul>
-						</form>	
+						<div class="blog-body">
+							<div class="block-height-one-unit"></div>
+							<form class="items-list">
+								<ul id="me-select-list blog-list">
+									<li class="transitionbutton" targetIndex="1"><span class="blog-num">1.</span><label for="cb1"><span>Git简介</span><span>对Github代码管理工具的了解</span><span class="blog-item-time">2015/5/4</span></label></li>
+									<li class=""><span class="blog-num">2.</span><label for="cb2"><span>Git常用命令</span><span>列举说明Git中常用的一些命令</span><span class="blog-item-time">2015/5/4</span></label></li>
+								</ul>
+							</form>	
+						</div>
 					</div>
 					<!-- NodeJS 博客列表 -->
 					<div class="pt-page" index="6">
-						<div class="block-height-one-unit"></div>
-						<form class="items-list">
-							<ul id="me-select-list blog-list">
-								<li class="transitionbutton" targetIndex="1"><span class="blog-num">1.</span><label for="cb1"><span>NodeJS认知</span><span>对NodeJS的特性的理解</span><span class="blog-item-time">2015/5/4</span></label></li>
-							</ul>
-						</form>	
+						<div class="blog-body">
+							<div class="block-height-one-unit"></div>
+							<form class="items-list">
+								<ul id="me-select-list blog-list">
+									<li class="transitionbutton" targetIndex="1"><span class="blog-num">1.</span><label for="cb1"><span>NodeJS认知</span><span>对NodeJS的特性的理解</span><span class="blog-item-time">2015/5/4</span></label></li>
+								</ul>
+							</form>	
+						</div>
 					</div>
 					<!-- Java 博客列表 -->
 					<div class="pt-page" index="7">
-						<div class="block-height-one-unit"></div>
-						<form class="items-list">
-							<ul id="me-select-list blog-list">
-								<li class="transitionbutton" targetIndex="1"><span class="blog-num">1.</span><label for="cb1"><span>Java认知</span><span>对Java的特性的理解</span><span class="blog-item-time">2015/5/4</span></label></li>
-							</ul>
-						</form>	
+						<div class="blog-body">
+							<div class="block-height-one-unit"></div>
+							<form class="items-list">
+								<ul id="me-select-list blog-list">
+									<li class="transitionbutton" targetIndex="1"><span class="blog-num">1.</span><label for="cb1"><span>Java认知</span><span>对Java的特性的理解</span><span class="blog-item-time">2015/5/4</span></label></li>
+								</ul>
+							</form>	
+						</div>
 					</div>
 					<!-- Spring 博客列表 -->
 					<div class="pt-page" index="8">
-						<div class="block-height-one-unit"></div>
-						<form class="items-list">
-							<ul id="me-select-list blog-list">
-								<li class="transitionbutton" targetIndex="1"><span class="blog-num">1.</span><label for="cb1"><span>Spring框架理解</span><span>对Spring的理解</span><span class="blog-item-time">2015/5/4</span></label></li>
-							</ul>
-						</form>	
+						<div class="blog-body">
+							<div class="block-height-one-unit"></div>
+							<form class="items-list">
+								<ul id="me-select-list blog-list">
+									<li class="transitionbutton" targetIndex="1"><span class="blog-num">1.</span><label for="cb1"><span>Spring框架理解</span><span>对Spring的理解</span><span class="blog-item-time">2015/5/4</span></label></li>
+								</ul>
+							</form>	
+						</div>
 					</div>
+					<div class="pt-page" index="9">
+						<div class="blog-body">
+							<header class="header">
+								<div class="title">
+									<h1>Javascript变量提升</h1>
+									<p class="subline">关于Javascript中变量提升和域的一些理解</p>
+									<p><strong>姚川松</strong> 写于 <strong>2015/5/6</strong></p>
+								</div>
+							</header>
+							<article class="article-content">
+								<div>
+									<p>目前绝大多数浏览器厂商都采用Javascript实现了各自浏览器的DOM和BOM，因此Javascript是前端开发必需掌握的一门语言。Javascript是运行在浏览器中的Javascript引擎上的脚本语言，它是一种基于原型的面向对象的语言，它拥有很多独特的语言特性，这些特性使得Javascript这门语言变得非常的有趣。</p>
+									<p>Javascript的语言特性主要有：宽松数据类型，单线程执行，基于原型的面向对象，支持闭包</p>
+									<h3>宽松类型</h3>
+									<p>在Javascript中定义一个变量是不需要指定其具体类型的，统一使用关键字<span class="key-word">var</span>。这和C++，Java这样的规范严格的语言有很大的不同。宽松数据类型的特性一方面让程序员可以“偷懒”，在定义时不用受到类型的约束。另一方面也给程序带来一定的隐患（比如在运行时可能会出现从一个值为undefined的变量中读它的一个属性的情况），这就使得程序变得不那么可靠，或者你需要在操作变量之前先检查变量类型是否正确和是否具有操作性，比如下面的代码：</p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#7f0055; font-weight:bold; '>var</span> testvar = 111;
+<span style='color:#7f0055; font-weight:bold; '>function</span> myfun() {
+	console.<span style='color:#7f0055; font-weight:bold; '>log</span>(testvar);
+	<span style='color:#7f0055; font-weight:bold; '>if</span>(!testvar) {
+		<span style='color:#7f0055; font-weight:bold; '>var</span> testvar = 222;
+	}
+	console.<span style='color:#7f0055; font-weight:bold; '>log</span>(testvar);	
+}
+myfun();
+
+<span style='color:#7f0055; font-weight:bold; '>var</span> testvar2 = 333;
+<span style='color:#7f0055; font-weight:bold; '>var</span> myfun2 = <span style='color:#7f0055; font-weight:bold; '>function</span>() {
+	console.<span style='color:#7f0055; font-weight:bold; '>log</span>(testvar2);
+}
+myfun2();
+</pre>
+									</div>
+									<div class="code-block code-result">
+										<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+111 222
+</pre>
+									</div>
+								</div>
+							</article>
+						</div> <!-- blog-body -->
+					</div> <!-- pt-page -->
 				</div>
 			</div><!-- /content-wrap -->
 		</div><!-- /container -->
