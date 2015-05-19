@@ -4,7 +4,7 @@ var PageTransitions = (function() {
 		pagesCount = $pages.length,
 		$iterate = $( '.transitionbutton' ),
 		animcursor = 1,
-		current = 9,
+		current = 13,   //TO DO:this is not index attribute
 		isAnimating = false,
 		endCurrPage = false,
 		endNextPage = false,
@@ -17,7 +17,8 @@ var PageTransitions = (function() {
 		// animation end event name
 		animEndEventName = animEndEventNames[ Modernizr.prefixed( 'animation' ) ],
 		// support css animations
-		support = Modernizr.cssanimations;
+		support = Modernizr.cssanimations,
+		pageStack = [];
 	
 	function init() {
 
@@ -40,10 +41,29 @@ var PageTransitions = (function() {
 				}
 			});
 		}
+
+		var escHandler = function(k) {
+			var keyCode = k.keyCode;
+			if(keyCode === 8) {
+				if(pageStack.length !== 0) {
+					$(document.body).off('keyup', escHandler);
+					setTimeout(function() {
+						$(document.body).on('keyup', escHandler);
+					}, 2000);
+					nextPage(pageStack.pop(), true);
+				}
+			}
+		};
+
+		$(document.body).on('keyup', escHandler);
 	}
 
-	function nextPage(nextPageIndex) {
+	function nextPage(nextPageIndex, isRollback) {
 		isAnimating = true;
+
+		if(!isRollback) {
+			pageStack.push(current);
+		}
 		
 		var $currPage = $pages.eq( current );
 

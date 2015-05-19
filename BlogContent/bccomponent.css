@@ -24,10 +24,6 @@ html, body, .container, .header {
   	position: absolute;
 }
 
-.show-menu .blog-body{
-	overflow-y: hidden; 
-}
-
 /* *************************** Header *************************** */
 .header {
 	position: relative;
@@ -90,7 +86,12 @@ html, body, .container, .header {
 */
 .article-content h3 {
 	font-size: 1.4em;
-	color: #69606b;
+	color: #8C6196;
+}
+
+.article-content h4 {
+	font-size: 1.3em;
+  	color: #69606b;
 }
 
 .article-content p {
