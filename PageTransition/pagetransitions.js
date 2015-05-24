@@ -4,7 +4,7 @@ var PageTransitions = (function() {
 		pagesCount = $pages.length,
 		$iterate = $( '.transitionbutton' ),
 		animcursor = 1,
-		current = 13,   //TO DO:this is not index attribute
+		current = 16,   //TO DO:this is not index attribute
 		isAnimating = false,
 		endCurrPage = false,
 		endNextPage = false,
@@ -29,7 +29,7 @@ var PageTransitions = (function() {
 		} );
 
 		//Make init page show
-		$pages.eq( current ).addClass( 'pt-page-current' );
+		$pages.filter('[index=' + current + ']').addClass( 'pt-page-current' );
 
 		//click event on "Next page" button
 		var transitionButtons = $('.transitionbutton');
@@ -65,12 +65,12 @@ var PageTransitions = (function() {
 			pageStack.push(current);
 		}
 		
-		var $currPage = $pages.eq( current );
+		var $currPage = $pages.filter('[index=' + current + ']');
 
 		current = nextPageIndex;
 
 		// var $nextPage = $pages.eq( nextPageIndex ).addClass( 'pt-page-current' );
-		var $nextPage = $pages.eq( current ).addClass( 'pt-page-current' );
+		var $nextPage = $pages.filter('[index=' + current + ']').addClass( 'pt-page-current' );
 		var outClass = '', inClass = '';
 
 
