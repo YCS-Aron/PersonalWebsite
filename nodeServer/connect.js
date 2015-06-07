@@ -4,3 +4,4 @@ var connect = require('connect'),
 var app = connect();
 app.use(serveStatic("../../PersonalWebsite"));
 app.listen(80);
+console.log('started server,listening at port 80');
