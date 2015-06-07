@@ -4,14 +4,14 @@ var PageTransitions = (function() {
 		pagesCount = $pages.length,
 		$iterate = $( '.transitionbutton' ),
 		animcursor = 1,
-		current = 16,   //TO DO:this is not index attribute
+		current = 25,   //TO DO:this is not index attribute
 		isAnimating = false,
 		endCurrPage = false,
 		endNextPage = false,
 		animEndEventNames = {
 			'WebkitAnimation' : 'webkitAnimationEnd',
 			'OAnimation' : 'oAnimationEnd',
-			'msAnimation' : 'MSAnimationEnd',
+			'msAnimation' : 'MSAnimationEnd17',
 			'animation' : 'animationend'
 		},
 		// animation end event name

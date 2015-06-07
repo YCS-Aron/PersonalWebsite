@@ -52,7 +52,7 @@
 								<span>Javascript</span>
 								<span class="count">10</span>
 							</div>
-							<div class="option">
+							<div class="option transitionbutton" targetIndex="21">
 								<span>CSS</span>
 								<span class="count">4</span>
 							</div>
@@ -69,7 +69,7 @@
 								<span class="count">10</span>
 							</div>
 							<div class="option">
-								<span>Algorithm</span>
+								<span>Rest</span>
 								<span class="count">10</span>
 							</div>
 							<div class="option transitionbutton" targetIndex="5">
@@ -252,6 +252,12 @@ module.exports = {
 									<li class=""><span class="blog-num">10.</span><label for="cb10"><span>框架组成部分</span><span>。。。</span><span class="blog-item-time">2015/5/4</span></label></li>
 									<li class="transitionbutton" targetIndex="10"><span class="blog-num">11.</span><label for="cb11"><span>Web前端设计要点</span><span>。。。</span><span class="blog-item-time">2015/5/11</span></label></li>
 									<li class="transitionbutton" targetIndex="19"><span class="blog-num">12.</span><label for="cb12"><span>页面性能优化</span><span>。。。</span><span class="blog-item-time">2015/5/22</span></label></li>
+									<li class="transitionbutton" targetIndex="23"><span class="blog-num">13.</span><label for="cb13"><span>DOM和BOM的兼容</span><span>。。。</span><span class="blog-item-time">2015/5/22</span></label></li>
+									<li class="transitionbutton" targetIndex="24"><span class="blog-num">14.</span><label for="cb13"><span>Backbone框架介绍</span><span>。。。</span><span class="blog-item-time">2015/5/22</span></label></li>
+									<li class="transitionbutton" targetIndex="25"><span class="blog-num">15.</span><label for="cb13"><span>Backbone的Model</span><span>。。。</span><span class="blog-item-time">2015/5/22</span></label></li>
+									<li class="transitionbutton" targetIndex="26"><span class="blog-num">16.</span><label for="cb13"><span>Backbone的View</span><span>。。。</span><span class="blog-item-time">2015/5/22</span></label></li>
+									<li class="transitionbutton" targetIndex="27"><span class="blog-num">17.</span><label for="cb13"><span>Backbone的Controller</span><span>。。。</span><span class="blog-item-time">2015/5/22</span></label></li>
+									<li class="transitionbutton" targetIndex="28"><span class="blog-num">18.</span><label for="cb13"><span>Backbone的Router</span><span>。。。</span><span class="blog-item-time">2015/5/22</span></label></li>
 								</ul>
 							</form>	
 						</div>
@@ -606,7 +612,35 @@ console.<span style='color:#7f0055; font-weight:bold; '>log</span>(p.getInfo());
 									</div>
 									<p>当采用new关键字调用函数时，采用的是<span class='key-word'>构造器方法</span>实例化类。在上面的例子中，我们需要弄清楚构造函数，私有成员和公有成员。构造函数可以认为是整个函数体，当采用new关键字实例化类时，默认会从函数中返回this变量，但是，若构造函数中存在return语句，那么该return语句会被执行，返回值由return值决定，非常不建议在构造函数内使用return语句，这样就破坏了构造函数的意义。同时，构造函数可以通过<span class='key-word'>classname.prototype.constructor</span>访问。（会被提升吗？）所以我们实例化类之后得到的对象的this变量。私有成员的定义方式是在函数中用var定义，因为构造函数只会返回this，所以函数体内的通过var定义的变量对外是不可见的，但是对于绑定在this上的方法而言却是可见的。公有成员的定义是通过绑定到this上实现的，可以通过返回的this访问函数内定义的公有数据。</p>
 									<h3>数据封装</h3>
-									<p>在函数体内部用var关键字声明变量可以定义私有成员，从而实现数据封装。数据封装的实现依靠的是闭包的域的概念。不可见的域中的数据就成了私有数据。</p>
+									<p>我们希望Javascript的对象能提供一个接口，该接口会访问该对象内部的数据，而且该数据只能通过接口得到，无法通过对象直接访问。在函数体内部用var关键字声明变量在函数外是无法访问的。这种方法可以"不是很合理"的实现数据封装，比如下面的例子：</p>
+									<div class="code-block">
+<pre><span style='color:#7f0055; font-weight:bold; '>var</span> Person = <span style='color:#7f0055; font-weight:bold; '>function</span>(name) {
+    <span style='color:#7f0055; font-weight:bold; '>this</span>.publicName = <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Public</span><span style='color:#2a00ff; '>'</span> + name;
+    <span style='color:#7f0055; font-weight:bold; '>var</span> privateName = <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Private</span><span style='color:#2a00ff; '>'</span> + name;
+    <span style='color:#7f0055; font-weight:bold; '>return</span> {
+        getName: <span style='color:#7f0055; font-weight:bold; '>function</span>(){
+            <span style='color:#7f0055; font-weight:bold; '>return</span> privateName;
+        }
+    }
+}
+<span style='color:#7f0055; font-weight:bold; '>var</span> person = <span style='color:#7f0055; font-weight:bold; '>new</span> Person(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Aron</span><span style='color:#2a00ff; '>'</span>);
+console.<span style='color:#7f0055; font-weight:bold; '>log</span>(person.privateName);   <span style='color:#3f7f59; '>//undefined</span>
+console.<span style='color:#7f0055; font-weight:bold; '>log</span>(person.getName());     <span style='color:#3f7f59; '>//PrivateAron</span><br>
+</pre>
+									</div>
+									<p>不是很合理的原因是，getName不是定义在Prototype中的，因此，每次用new关键字实例化时都会产生一个不一样的getName函数对象。合理的方式是将其放在Prototype中。比如下面的代码：</p>
+									<div class="code-block">
+<pre><span style='color:#7f0055; font-weight:bold; '>var</span> Person = <span style='color:#7f0055; font-weight:bold; '>function</span>(name) {
+    <span style='color:#7f0055; font-weight:bold; '>var</span> privateName = <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Private</span><span style='color:#2a00ff; '>'</span> + name;
+}
+Person.prototype.getName = <span style='color:#7f0055; font-weight:bold; '>function</span>(){
+    <span style='color:#7f0055; font-weight:bold; '>return</span> privateName; <span style='color:#3f7f59; '>//cast error: privateName is not defined</span>
+}
+<span style='color:#7f0055; font-weight:bold; '>var</span> person = <span style='color:#7f0055; font-weight:bold; '>new</span> Person(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Aron</span><span style='color:#2a00ff; '>'</span>);
+console.<span style='color:#7f0055; font-weight:bold; '>log</span>(person.getName());<br>
+</pre>
+									</div>
+									<p>在Prototype中的方法只能访问到函数域中的局部变量，函数参数和this。而<span class="key-word">this对应着调用该方法的对象</span>，在上面的例子中就是person对象。而person对象中能够直接访问的数据都是共有的，因此，既要满足封装特性，又要考虑Prototype的内存优势，是一个比较困难的问题。</p>
 									<h3>继承</h3>
 									<p>对于继承，首先要说明的是函数的<span class='key-word'>prototype</span>属性。依旧是上面的那个例子。仔细分析会发现这样一个问题，由于getInfo方法是绑定在this上的，所以，每次实例化Person对象时都会产生一个getInfo的函数对象，这是不合理的，实际上我们只需要一个getInfo函数的备份即可，当实例化很多个对象时，会大大占用内存。prototype属性就是为了解决这一问题而产生的。即prototype是依赖于类的，而不是具体的对象实例。可以通过类名即函数名直接访问prototype。每个实例对象都有一份prototype中所有属性的引用。</p>
 									<p>继承的实现依赖的是prototype链，即<span class='key-word'>原型链</span>。而且，当在对象中访问一个数据时，解释器会顺着prototype去寻找该数据，直到找到为止，因此，可以通过指定子类的prototype的值为基类的实例，从而实现子类共享基类的数据和方法。下面是一个通过prototype实现继承的例子：</p>
@@ -632,9 +666,9 @@ obj.fun();            <span style='color:#3f7f59; '>//output baseTim</span>
 obj.childfun();       <span style='color:#3f7f59; '>//output childTim</span>
 </pre>
 									</div>
-									<p></p>
-									<h3>实现扩展接口</h3>
-									<p>如何通过</p>
+									<div class="warning">
+										<span>child.prototype=new base()写成child.prototype=base.prototype是不可以的，因为这里的base.prototype是引用，child对prototype进行扩展时会同时修改base.prototype，从而影响所用的基类对象。</span>
+									</div>
 									<h3>多态</h3>
 									<p>多态是指一个接口，多种动作。下面是一个通过重载实现多态的例子：</p>
 									<div class="code-block">
@@ -698,7 +732,7 @@ console.<span style='color:#7f0055; font-weight:bold; '>log</span>(myclass.stati
 <span style='color:#3f7f59; '>//console.log(obj.staticData);    //Error: obj没有staticData属性</span>
 </pre>
 									</div>
-									<p>静态数据绑定在函数对象上，而非实例对象上。</p>
+									<p>静态数据绑定在函数对象上，而非实例对象上。因为用new关键字返回的是构造函数返回的this值，因此通过new关键字创建的实例无法获取静态数据。只能通过函数对象，即通过函数名访问。</p>
 								</div>
 							</article>
 						</div>
@@ -715,6 +749,9 @@ console.<span style='color:#7f0055; font-weight:bold; '>log</span>(myclass.stati
 							<article class="article-content">
 								<div class="content-img-container">
 									<img src="img/1.jpg"></img>
+								</div>
+								<div class="warning">
+									<span>Warning: You will be lose if you do not focus.</span>
 								</div>
 								<div class="code-block">
 <pre><html><body style='color:#000000; background:#ffffff; '><pre>
@@ -778,7 +815,32 @@ console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='
 console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#7f0055; font-weight:bold; '>typeof</span>(<span style='color:#7f0055; font-weight:bold; '>undefined</span>));     <span style='color:#3f7f59; '>//undefined</span>
 </pre>
 									</div>
-									<p></p>
+									<h3>getElementById</h3>
+									<p>W3C标准希望文档的ID是唯一的，所以getElementById得到的结果只会有一个，当有多个元素拥有同样ID时，得到的结果是第一个元素。</p>
+									<h3>引用</h3>
+									<p>Javascript中的对象都是采用的引用传值。。。。。。</p>
+									<h3>数据的存储</h3>
+									<h3>修改字符串</h3>
+									<p>Javascript中的字符串都是字符串常量，所以如果你希望能够改变字符串变量，可能会比较麻烦。</p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#7f0055; font-weight:bold; '>var</span> str = <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Tradeshift home</span><span style='color:#2a00ff; '>'</span>;
+str[0] = <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>M</span><span style='color:#2a00ff; '>'</span>;       <span style='color:#3f7f59; '>//想修改第一个字符为M</span>
+console.<span style='color:#7f0055; font-weight:bold; '>log</span>(str);   <span style='color:#3f7f59; '>//输出 Tradeshift home</span>
+<span style='color:#7f0055; font-weight:bold; '>var</span> newstr = <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>M</span><span style='color:#2a00ff; '>'</span> + str.<span style='color:#7f0055; font-weight:bold; '>slice</span>(1);    <span style='color:#3f7f59; '>//Mradeshift home</span>
+<span style='color:#7f0055; font-weight:bold; '>var</span> newstr = <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>M</span><span style='color:#2a00ff; '>'</span> + str.<span style='color:#7f0055; font-weight:bold; '>substring</span>(1);<span style='color:#3f7f59; '>//Mradeshift home</span><br>
+</pre>
+									</div>
+									<h3>new关键字</h3>
+									<p>用new关键字获得对象时，当函数没有参数时，括号也可以省略。</p>
+									<div class="code-block">
+<pre><span style='color:#7f0055; font-weight:bold; '>var</span> myclass = <span style='color:#7f0055; font-weight:bold; '>function</span>(a){
+    <span style='color:#7f0055; font-weight:bold; '>this</span>.a = a;
+}
+<span style='color:#7f0055; font-weight:bold; '>var</span> mc1 = <span style='color:#7f0055; font-weight:bold; '>new</span> myclass();
+<span style='color:#7f0055; font-weight:bold; '>var</span> mc2 = <span style='color:#7f0055; font-weight:bold; '>new</span> myclass;
+</pre>
+									</div>
 								</div>
 							</article>
 						</div>
@@ -894,15 +956,129 @@ jQuery.fn.extend({
 							<header class="header">
 								<div class="title">
 									<h1>jQuery框架结构</h1>
-									<p class="subline">jQuery框架分析</p>
+									<p class="subline">jQuery的模块划分</p>
 									<p><strong>姚川松</strong> 写于 <strong>2015/5/23</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
 								<div>
-									<p>jQuery可以说是Web前端用得最多的Javascript库之一</p>
+									<p>jQuery是Web前端用得最多的Javascript库之一。它提供了很多的方便开发的库和API。主要是：元素选择器selector，DOM操作，对ajax的封装，对事件绑定和动画的封装。</p>
+									<h3>元素选择器selector</h3>
+									<p>jQuery的选择器又分为层次选择器，过滤选择器两类。先给出一个页面结构，后面的选择器例子均可用于该页面结构：</p>
 									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#7f0055; '>&lt;</span><span style='color:#7f0055; font-weight:bold; '>div</span><span style='color:#7f0055; '>></span>
+	<span style='color:#7f0055; '>&lt;</span><span style='color:#7f0055; font-weight:bold; '>div</span> class=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>buttons</span><span style='color:#2a00ff; '>"</span><span style='color:#7f0055; '>></span>
+		<span style='color:#7f0055; '>&lt;</span><span style='color:#7f0055; font-weight:bold; '>button</span> id=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>button1</span><span style='color:#2a00ff; '>"</span> class=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>super-button button1</span><span style='color:#2a00ff; '>"</span><span style='color:#7f0055; '>></span>nihao<span style='color:#7f0055; '>&lt;/</span><span style='color:#7f0055; font-weight:bold; '>button</span><span style='color:#7f0055; '>></span>
+		<span style='color:#7f0055; '>&lt;</span><span style='color:#7f0055; font-weight:bold; '>button</span> id=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>button2</span><span style='color:#2a00ff; '>"</span> class=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>small-button</span><span style='color:#2a00ff; '>"</span><span style='color:#7f0055; '>></span><span style='color:#7f0055; '>&lt;/</span><span style='color:#7f0055; font-weight:bold; '>button</span><span style='color:#7f0055; '>></span>
+		<span style='color:#7f0055; '>&lt;</span><span style='color:#7f0055; font-weight:bold; '>button</span> id=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>button3</span><span style='color:#2a00ff; '>"</span> class=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>super-button</span><span style='color:#2a00ff; '>"</span><span style='color:#7f0055; '>></span><span style='color:#7f0055; '>&lt;/</span><span style='color:#7f0055; font-weight:bold; '>button</span><span style='color:#7f0055; '>></span>
+		<span style='color:#7f0055; '>&lt;</span><span style='color:#7f0055; font-weight:bold; '>input</span> class=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>my-input</span><span style='color:#2a00ff; '>"</span> type=<span style='color:#2a00ff; '>"</span><span style='color:#7f0055; font-weight:bold; '>checkbox</span><span style='color:#2a00ff; '>"</span> checked=<span style='color:#2a00ff; '>"</span><span style='color:#7f0055; font-weight:bold; '>checked</span><span style='color:#2a00ff; '>"</span> id=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>input1</span><span style='color:#2a00ff; '>"</span><span style='color:#7f0055; '>></span><span style='color:#7f0055; '>&lt;/</span><span style='color:#7f0055; font-weight:bold; '>input</span><span style='color:#7f0055; '>></span>
+	<span style='color:#7f0055; '>&lt;/</span><span style='color:#7f0055; font-weight:bold; '>div</span><span style='color:#7f0055; '>></span>
+	<span style='color:#7f0055; '>&lt;</span><span style='color:#7f0055; font-weight:bold; '>div</span> class=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>buttons</span><span style='color:#2a00ff; '>"</span><span style='color:#7f0055; '>></span>
+		<span style='color:#7f0055; '>&lt;</span><span style='color:#7f0055; font-weight:bold; '>button</span> class=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>super-button</span><span style='color:#2a00ff; '>"</span><span style='color:#7f0055; '>></span><span style='color:#7f0055; '>&lt;/</span><span style='color:#7f0055; font-weight:bold; '>button</span><span style='color:#7f0055; '>></span>
+	<span style='color:#7f0055; '>&lt;/</span><span style='color:#7f0055; font-weight:bold; '>div</span><span style='color:#7f0055; '>></span>
+	<span style='color:#7f0055; '>&lt;</span><span style='color:#7f0055; font-weight:bold; '>input</span> class=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>my-input</span><span style='color:#2a00ff; '>"</span> id=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>input2</span><span style='color:#2a00ff; '>"</span><span style='color:#7f0055; '>></span><span style='color:#7f0055; '>&lt;/</span><span style='color:#7f0055; font-weight:bold; '>input</span><span style='color:#7f0055; '>></span>
+<span style='color:#7f0055; '>&lt;/</span><span style='color:#7f0055; font-weight:bold; '>div</span><span style='color:#7f0055; '>></span>
+</pre>
 									</div>
+									<p>jQuery的selector是使用了开源的Javascript框架Sizzle.</p>
+									<p><strong>Reference: <a href="http://blog.bigbinary.com/2010/02/15/how-jquery-selects-elements-using-sizzle.html">How jquery selects elements using sizzle</a></strong></p>
+									<h4>层次选择器</h4>
+									<p>主要是针对元素的相对父子关系为条件的元素选择，主要是子元素选择器<span class="key-word">' '(空格)</span>，直接子元素选择器<span class="key-word">'>'</span>，同级元素选择器<span class="key-word">'~'</span>，直接同级元素选择器<span class="key-word">'+'</span></p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>#button1</span><span style='color:#2a00ff; '>'</span>);			<span style='color:#3f7f59; '>//id选择器</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.small-button</span><span style='color:#2a00ff; '>'</span>);		<span style='color:#3f7f59; '>//class选择器</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>button</span><span style='color:#2a00ff; '>'</span>);			<span style='color:#3f7f59; '>//tagname选择器</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>button, #button1</span><span style='color:#2a00ff; '>'</span>)		<span style='color:#3f7f59; '>//并行选择器，满足每个条件的元素的并集</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons #button1</span><span style='color:#2a00ff; '>'</span>)		<span style='color:#3f7f59; '>//子元素选择器，class属性包含buttons的元素的子元素中查找id为button1的元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons</span><span style='color:#2a00ff; '>'</span>).find(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>#button1</span><span style='color:#2a00ff; '>'</span>) <span style='color:#3f7f59; '>//等价于上一行代码</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons#button1</span><span style='color:#2a00ff; '>'</span>)		<span style='color:#3f7f59; '>//class属性包含buttons并且id为button1的元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons>button</span><span style='color:#2a00ff; '>'</span>)		<span style='color:#3f7f59; '>//直接子元素选择器，button必须为.buttons的第一个子元素，即紧邻的子元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons</span><span style='color:#2a00ff; '>'</span>).next(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>button</span><span style='color:#2a00ff; '>'</span>)	<span style='color:#3f7f59; '>//等价于上一行代码</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons>.small-button</span><span style='color:#2a00ff; '>'</span>)	<span style='color:#3f7f59; '>//结果为[]</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons+div</span><span style='color:#2a00ff; '>'</span>)		<span style='color:#3f7f59; '>//直接同级元素选择器，即同级元素中最靠近.buttons的元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons</span><span style='color:#2a00ff; '>'</span>).next(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>div</span><span style='color:#2a00ff; '>'</span>);	<span style='color:#3f7f59; '>//等价于上一行代码</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons~div</span><span style='color:#2a00ff; '>'</span>)		<span style='color:#3f7f59; '>//同级元素选择器，与.buttons同级的标签为div的元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons</span><span style='color:#2a00ff; '>'</span>).siblings(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>div</span><span style='color:#2a00ff; '>'</span>);<span style='color:#3f7f59; '>//等价于上一行代码</span>
+</pre>
+									</div>
+									<div class="warning">
+										<span>Warning: 注意有空格和没有空格的区别</span>
+									</div>	
+									<h4>过滤选择器</h4>
+									<p>选择过滤器又分为根据索引，状态，内容，属性等。</p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#3f7f59; '>//基于索引</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons:not(.small-button)</span><span style='color:#2a00ff; '>'</span>);<span style='color:#3f7f59; '>//选择$('.buttons')结果中排除class为small-button的元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons:first</span><span style='color:#2a00ff; '>'</span>);		<span style='color:#3f7f59; '>//选择$('.buttons')结果中第一个元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons:first-child</span><span style='color:#2a00ff; '>'</span>);	<span style='color:#3f7f59; '>//选择$('.buttons')结果中的元素的第一个子元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons:last</span><span style='color:#2a00ff; '>'</span>);		<span style='color:#3f7f59; '>//选择$('.buttons')结果中第一个元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.small-button:parent</span><span style='color:#2a00ff; '>'</span>);	<span style='color:#3f7f59; '>//选择$('.small-button')结果的父元素  ？？？</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons:eq(2)</span><span style='color:#2a00ff; '>'</span>);		<span style='color:#3f7f59; '>//选择$('.buttons')结果中第二个元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons:gt(2)</span><span style='color:#2a00ff; '>'</span>);		<span style='color:#3f7f59; '>//选择$('.buttons')结果中下标大于2的元素，不包含2，索引从0开始</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons:nth-child(3n+1)</span><span style='color:#2a00ff; '>'</span>);	<span style='color:#3f7f59; '>//选择$('.buttons')结果中第4,7...个元素，n从1开始</span>
+<span style='color:#3f7f59; '>//基于状态</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>input:focus</span><span style='color:#2a00ff; '>'</span>);		<span style='color:#3f7f59; '>//过滤拥有焦点的input元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>input:checked</span><span style='color:#2a00ff; '>'</span>);		<span style='color:#3f7f59; '>//过滤状态为选取状态的类型为checkbox的input元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>input:visible</span><span style='color:#2a00ff; '>'</span>);		<span style='color:#3f7f59; '>//过滤隐藏的input元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>:focusable</span><span style='color:#2a00ff; '>'</span>);		<span style='color:#3f7f59; '>//过滤可以设置焦点的元素</span>
+<span style='color:#3f7f59; '>//基于内容</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>button:contains(button1)</span><span style='color:#2a00ff; '>'</span>)<span style='color:#3f7f59; '>//过滤出文本内容包含button1的元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons:has(.super-button)</span><span style='color:#2a00ff; '>'</span>)<span style='color:#3f7f59; '>//过滤出子元素含有.super-button元素的buttons元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>button:empty</span><span style='color:#2a00ff; '>'</span>)		<span style='color:#3f7f59; '>//过滤出不包含子元素和文本的button元素</span>
+<span style='color:#3f7f59; '>//基于属性</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>button[id]</span><span style='color:#2a00ff; '>'</span>)		<span style='color:#3f7f59; '>//过滤出拥有id属性的button元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>button[id=button1]</span><span style='color:#2a00ff; '>'</span>)	<span style='color:#3f7f59; '>//过滤出拥有id属性值为button1的button元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>button[id^=button1]</span><span style='color:#2a00ff; '>'</span>)<span style='color:#3f7f59; '>//过滤出拥有id属性值以button1开始的button元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>button[id$=button1]</span><span style='color:#2a00ff; '>'</span>)<span style='color:#3f7f59; '>//过滤出拥有id属性值以button1结束的button元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>button[id*=button1]</span><span style='color:#2a00ff; '>'</span>)<span style='color:#3f7f59; '>//过滤出拥有id属性值含有button1的button元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>button[class~=button1]</span><span style='color:#2a00ff; '>'</span>)<span style='color:#3f7f59; '>//过滤出拥有class属性值含有button1的button元素，其中class属性必须以空格分隔class名</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>input[id][type=checkbox]</span><span style='color:#2a00ff; '>'</span>)<span style='color:#3f7f59; '>//过滤出拥有id属性，并且type属性值为checkbox的input元素</span>
+</pre>
+									</div>		
+									<h3>DOM操作</h3>
+									<p>DOM全称是Document Object Model(文档对象模型),DOM操作是web前端开发中构造动态页面必不可少的内容。DOM操作主要包括DOM的创建和插入，获取DOM的数据信息两部分。下面是一些简单代码：</p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#3f7f59; '>//DOM的创建和插入</span>
+<span style='color:#7f0055; font-weight:bold; '>var</span> $bt = $(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>&lt;button class="special-button" id="button4">test for DOM operation&lt;/button></span><span style='color:#2a00ff; '>'</span>);
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons:eq(0)</span><span style='color:#2a00ff; '>'</span>).append($bt);	<span style='color:#3f7f59; '>//插入到.buttons的最后</span>
+$bt.appendTo($(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons:eq(0)</span><span style='color:#2a00ff; '>'</span>));	<span style='color:#3f7f59; '>//插入到.buttons的最后</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons:eq(0)</span><span style='color:#2a00ff; '>'</span>).prepend($bt);	<span style='color:#3f7f59; '>//插入到.buttons的最前面</span>
+$bt.prependTo($(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons:eq(0)</span><span style='color:#2a00ff; '>'</span>));	<span style='color:#3f7f59; '>//插入到.buttons的最前面</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons:eq(0)</span><span style='color:#2a00ff; '>'</span>).after($bt);		<span style='color:#3f7f59; '>//插入到.buttons的后面，成为.buttons的直接同级元素</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons:eq(0)</span><span style='color:#2a00ff; '>'</span>).before($bt);	<span style='color:#3f7f59; '>//插入到.buttons的前面，成为.buttons的同级元素，与.buttons紧邻，并在.buttons之前</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons:eq(0)</span><span style='color:#2a00ff; '>'</span>).wrap(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>&lt;div>&lt;/div></span><span style='color:#2a00ff; '>'</span>);<span style='color:#3f7f59; '>//将.buttons包裹在一个div标签中</span>
+<span style='color:#3f7f59; '>//DOM的删除</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons button:last</span><span style='color:#2a00ff; '>'</span>).remove();	<span style='color:#3f7f59; '>//删除这个DOM</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons button:last</span><span style='color:#2a00ff; '>'</span>).detach();	<span style='color:#3f7f59; '>//从DOM树中移除，返回DOM对象</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons button:last</span><span style='color:#2a00ff; '>'</span>).empty();	<span style='color:#3f7f59; '>//将该DOM的内容清空，内容包括子元素和本文</span>
+<span style='color:#3f7f59; '>//DOM属性操作</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons button:last</span><span style='color:#2a00ff; '>'</span>).attr(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>id</span><span style='color:#2a00ff; '>'</span>);		<span style='color:#3f7f59; '>//获取id属性</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons button:last</span><span style='color:#2a00ff; '>'</span>).attr(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>class</span><span style='color:#2a00ff; '>'</span>);	<span style='color:#3f7f59; '>//获取class属性，jQuery没有获取class的方法</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons button:last</span><span style='color:#2a00ff; '>'</span>).attr(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>id</span><span style='color:#2a00ff; '>'</span>, <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>newid</span><span style='color:#2a00ff; '>'</span>);<span style='color:#3f7f59; '>//设置id属性</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons button:last</span><span style='color:#2a00ff; '>'</span>).removeAttr(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>id</span><span style='color:#2a00ff; '>'</span>);	<span style='color:#3f7f59; '>//删除id属性</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons button:last</span><span style='color:#2a00ff; '>'</span>).css(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>height</span><span style='color:#2a00ff; '>'</span>);	<span style='color:#3f7f59; '>//获取style的height值</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons button:last</span><span style='color:#2a00ff; '>'</span>).css(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>height</span><span style='color:#2a00ff; '>'</span>, <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>100px</span><span style='color:#2a00ff; '>'</span>);<span style='color:#3f7f59; '>//设置style的height值</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons button:last</span><span style='color:#2a00ff; '>'</span>).addClass(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>myclass</span><span style='color:#2a00ff; '>'</span>);<span style='color:#3f7f59; '>//添加class</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons button:last</span><span style='color:#2a00ff; '>'</span>).removeClass(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>myclass</span><span style='color:#2a00ff; '>'</span>);<span style='color:#3f7f59; '>//删除class</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons button:last</span><span style='color:#2a00ff; '>'</span>).hasClass(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>myclass</span><span style='color:#2a00ff; '>'</span>);<span style='color:#3f7f59; '>//判断是否含有class</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons button:last</span><span style='color:#2a00ff; '>'</span>).is(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.myclass</span><span style='color:#2a00ff; '>'</span>);	<span style='color:#3f7f59; '>//等同于上一行代码</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.buttons button:last</span><span style='color:#2a00ff; '>'</span>).text();			<span style='color:#3f7f59; '>//获取文本信息</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>input:last</span><span style='color:#2a00ff; '>'</span>).val();	<span style='color:#3f7f59; '>//获取input元素的内容</span>
+</pre>
+									</div>
+									<h3>事件绑定和动画</h3>
+									<h4>事件绑定</h4>
+									<p>jQuery对事件绑定进行了封装，提供了多个不同的API以满足coder在不同环境下的不同需求。jQuery提供了bind, live, delegate, on四种绑定事件的方法，其中on是一个通用接口，其他三种绑定方法适用于不同的需求，主要区别在于动态元素和静态元素的事件绑定上，具体参考<span class="key-word">jQuery事件机制</span>。</p>
+									<h4>动画</h4>
+									<p>jQuery提供了animate函数封装了动画效果的复杂实现，屏蔽了浏览器的兼容性。具体参考<span class="key-word">CSS实现动画</span>中关于用jQuery实现动画的内容。</p>
+									<h3>ajax的封装</h3>
+									<p>ajax不是一个新技术，而是通过采用XML技术和Javascript异步来实现的一种与服务器的交互方式。jQuery为此实现了自己的Javascript异步控制对象：Deferred对象，以支持请求返回后的回调操作。jQuery封装了使用XHR来实现服务器交互的代码，只对coder提供了一个$.ajax接口，大大方便了开发。并且实现了对浏览器的兼容。</p>
+									<h3>jQuery的优势和劣势</h3>
+									<p>jQuery是一个很强大的开源库，提供了非常多有用的API，屏蔽了底层的使用细节，并拥有浏览器兼容性，不用再为绑定事件和处理事件的浏览器兼容费脑经了。但是它只是提供了一套工具，没有提供前端的模块划分，实现高内聚低耦合的代码结构的解决方案，所以它非常适合于作为前端框架的依赖库来使用，而不是仅仅依靠jQuery提供的API来开发应用。</p>
 								</div>
 							</article>
 						</div>
@@ -944,13 +1120,415 @@ jQuery.fn.extend({
 							<header class="header">
 								<div class="title">
 									<h1>Ajax详解</h1>
-									<p class="subline">Ajax的实现方式和分析</p>
+									<p class="subline">Ajax的实现方式和分析,XHR的介绍,同源策略和跨域访问的介绍,以及JSONP的原理</p>
 									<p><strong>姚川松</strong> 写于 <strong>2015/5/22</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
 								<div>
-									<p>Ajax</p>
+									<p>Ajax是实现与服务器交互的新方法。Ajax的全称是Asynchronous Javascript And XML，从命名上可以看出，是采用了Javascript的异步机制和XML这两种技术，其中异步机制实现非阻塞的IO，XML来用表示HTTP请求。</p>
+									<p>通过Ajax可以实现在不刷新整个页面的情况下，对网页进行部分更新。（那以前是与服务器的交互方式是什么？为什么要刷新整个页面？）</p>
+									<p>所以，我们需要了解异步Javascript和XML HTTP请求即XmlHttpRequest两个概念。</p>
+									<h3>异步Javascript</h3>
+									<p>异步是指：程序不会去等待某个费时操作（比如I/O,服务器请求）返回状态，而是继续执行后面的操作，当状态返回时，再转而继续执行定义好的回调函数。Javascript是单线程执行的，它不像Java那样能够支持多线程（为什么Javascript要用单线程？多线程会给Javascript带来什么问题？）和并发操作。</p>
+									<p>作为单线程的Javascript就应该尽量让线程不要停下来，否则，整个程序都会陷入“假死”状态。在处理像I/O这样非常费时的操作时，为了获得良好的用户体验，同时也是Javascript语言特性的原因，决定了只能通过异步方法来处理I/O操作。</p>
+									<p>在异步编程中，应该注意几点。异步往往会调用回调函数，因此与请求数据相关的操作都必须放在回调函数中，因为这些代码必须保证请求数据有效。在回调函数的外部不应该使用请求数据，因为我们无法知道数据什么时候返回。<p>
+									<p>Javascript有很多优秀的开源库，其中就有不少封装了异步机制的库，比如jQuery的Deferred对象，Q.js，bluebird等。他们在实现异步方面的差异请参考<span class="key-word">Javascript单线程</span>。了解他们在执行顺序上的区别对理解异步有很大的帮助。比如，下面一个例子：</p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#3f7f59; '>//用jQuery的Deferred对象</span>
+<span style='color:#7f0055; font-weight:bold; '>var</span> cache = {<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>YCS</span><span style='color:#2a00ff; '>'</span>: <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>YaoChuansong</span><span style='color:#2a00ff; '>'</span>}
+<span style='color:#7f0055; font-weight:bold; '>var</span> getName = <span style='color:#7f0055; font-weight:bold; '>function</span>(nickname) {
+	<span style='color:#7f0055; font-weight:bold; '>if</span>(!cache[nickname]) {
+		<span style='color:#7f0055; font-weight:bold; '>return</span> cache[nickname];
+	} <span style='color:#7f0055; font-weight:bold; '>else</span> {
+		<span style='color:#7f0055; font-weight:bold; '>return</span> $.ajax({
+			url: <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>XXXX</span><span style='color:#2a00ff; '>'</span>,
+			method: <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>GET</span><span style='color:#2a00ff; '>'</span>
+		});
+	}
+};
+getName().then(<span style='color:#7f0055; font-weight:bold; '>function</span>(name) {
+	console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>get his name:</span><span style='color:#2a00ff; '>'</span>, name);
+});
+console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>here is the end of code block</span><span style='color:#2a00ff; '>'</span>);
+<span style='color:#3f7f59; '>/* 	OUTPUT:</span>
+<span style='color:#3f7f59; '>	get his name YaoChuansong</span>
+<span style='color:#3f7f59; '>	here is the end of code block</span>
+<span style='color:#3f7f59; '>*/</span>
+</pre>
+									</div>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#3f7f59; '>//用Q</span>
+<span style='color:#7f0055; font-weight:bold; '>var</span> cache = {<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>YCS</span><span style='color:#2a00ff; '>'</span>: <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>YaoChuansong</span><span style='color:#2a00ff; '>'</span>}
+<span style='color:#7f0055; font-weight:bold; '>var</span> getName = <span style='color:#7f0055; font-weight:bold; '>function</span>(nickname) {
+	<span style='color:#7f0055; font-weight:bold; '>if</span>(!cache[nickname]) {
+		<span style='color:#7f0055; font-weight:bold; '>return</span> cache[nickname];
+	} <span style='color:#7f0055; font-weight:bold; '>else</span> {
+		<span style='color:#7f0055; font-weight:bold; '>return</span> Q($.ajax({
+			url: <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>XXXX</span><span style='color:#2a00ff; '>'</span>,
+			method: <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>GET</span><span style='color:#2a00ff; '>'</span>
+		}));
+	}
+};
+getName().then(<span style='color:#7f0055; font-weight:bold; '>function</span>(name) {
+	console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>get his name:</span><span style='color:#2a00ff; '>'</span>, name);
+});
+console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>here is the end of code block</span><span style='color:#2a00ff; '>'</span>);
+<span style='color:#3f7f59; '>/* 	OUTPUT:</span>
+<span style='color:#3f7f59; '>	here is the end of code block</span>
+<span style='color:#3f7f59; '>	get his name YaoChuansong</span>
+<span style='color:#3f7f59; '>*/</span>
+</pre>
+									</div>
+									<p>jQuery的Deferred对象并不保证执行序列总是异步的，而Q，bluebird则保证所有执行序列总是异步的。</p>
+									<h3>XmlHttpRequest</h3>
+									<p>XMLHttpRequest最早由Microsoft设计并发布。现在已经是W3C标准的一部分。它用XML格式去表示HTTP请求（那以前是用什么表示的HTTP请求？）。之所以用XML，是利用了XML跨平台的特点。</p>
+									<h4>XHR的headers</h4>
+									<p>在利用XHR发送一个请求的过程中，需要设置URL，以及对XHR的各个字段进行设置，这些字段将直接影响XHR的执行结果，这些字段包括附带的数据格式，希望服务器返回的数据格式等，用来描述整个HTTP报文。下面是个例子：</p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#7f0055; font-weight:bold; '>var</span> xhr;
+<span style='color:#7f0055; font-weight:bold; '>if</span> (window.XMLHttpRequest) {
+	xhr = <span style='color:#7f0055; font-weight:bold; '>new</span> XMLHttpRequest();
+} <span style='color:#7f0055; font-weight:bold; '>else</span> <span style='color:#7f0055; font-weight:bold; '>if</span> (window.ActiveXObject) {
+	xhr = <span style='color:#7f0055; font-weight:bold; '>new</span> ActiveXObject(<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>Microsoft.XMLHTTP</span><span style='color:#2a00ff; '>"</span>);
+}
+xhr.open(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>get</span><span style='color:#2a00ff; '>'</span>,	<span style='color:#3f7f59; '>//请求的方法</span>
+	 <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>age</span><span style='color:#2a00ff; '>'</span>,	<span style='color:#3f7f59; '>//url</span>
+	 <span style='color:#7f0055; font-weight:bold; '>true</span>);	<span style='color:#3f7f59; '>//是否使用异步请求</span>
+xhr.setRequestHeader(<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>Content-type</span><span style='color:#2a00ff; '>"</span>,<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>text/plain</span><span style='color:#2a00ff; '>"</span>);	<span style='color:#3f7f59; '>//"Content-type" 描述附加数据的类型</span>
+xhr.setRequestHeader(<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>Accept</span><span style='color:#2a00ff; '>"</span>,<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>text/plain</span><span style='color:#2a00ff; '>"</span>);		<span style='color:#3f7f59; '>//"Accept" 描述希望服务器返回数据的类型</span>
+xhr.onreadystatechange = <span style='color:#7f0055; font-weight:bold; '>function</span>(){			<span style='color:#3f7f59; '>//请求成功以后的回调函数</span>
+	console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>get his name </span><span style='color:#2a00ff; '>'</span>, xhr.responseText);
+};
+<span style='color:#3f7f59; '>//发送请求</span>
+xhr.send(<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>name=aron</span><span style='color:#2a00ff; '>"</span>);
+</pre>
+									</div>
+									<p>HTTP报文的各个header含义如下：</p>
+									<ul>
+										<li>Content-type：附加数据的数据类型</li>
+										<li>Accept：希望服务器返回的数据类型</li>
+									</ul>
+									<h4>XHR请求的状态码</h4>
+									<p>当我们需要了解请求的执行状态时，可以通过XHR的状态码来识别。状态码分为两种，readyState和Status，他们都是XmlHttpRequest对象的两个成员。前者表示XHR的执行情况，如未发送，已发送正在等待服务器答复，服务器已返回等。后者表示服务器的执行状态码，与服务器端的代码执行情况有关。</p>
+									<p>readyState状态码</p>
+									<ul>
+										<li>0：对象未初始化，即没用调用open方法。</li>
+										<li>1：请求未发出，即还没有调用send方法。</li>
+										<li>2：请求已经发送，服务器正在处理中。</li>
+										<li>3：请求已经发送，已经收到了部分返回数据，数据不完整。</li>
+										<li>4：请求已经完成，可以读取完整的返回数据。</li>
+									</ul>
+									<p>Status状态码</p>
+									<ul>
+										<li>1XX：一些信息状态码，不表示请求成功或者失败。</li>
+										<li>2XX：代表正常，其中最常见的200表示一切OK。</li>
+										<li>3XX：请求未发出，即还没有调用send方法。</li>
+										<li>4XX：客户端错误，如404表示请求文件未找到。</li>
+										<li>5XX：服务器端错误。</li>
+									</ul>
+									<p>所以，如果想得到正确的服务器返回数据，代码需要这么写：</p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+xhr.onreadystatechange = <span style='color:#7f0055; font-weight:bold; '>function</span>(){
+	<span style='color:#7f0055; font-weight:bold; '>if</span>(xhr.readyState === 4 &amp;&amp; xhr.status === 400) {
+		console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>It is really succeed.Get </span><span style='color:#2a00ff; '>'</span>, xhr.responseText);
+	}
+};
+</pre>
+									</div>
+									<h4>XHR的数据解析</h4>
+									<p>XHR有不同的发送请求的方法，包括GET,POST,HEAD等。在使用GET或者POST时，我们可以通过给send传递一个参数为请求附加数据，参数的类型是任意的。</p>
+									<p>一般来说，GET请求是用来请求数据的，比如请求用户信息等。GET请求的数据是附加在URL上的，这样就使得附加的数据很透明，不够安全。POST请求通常是用来向服务器上存数据，或者要求服务器进行某个操作，客户端只需要了解操作的状态，比如删除一个文件，客户端只需要知道删除成功或者失败即可。POST请求的数据是放在header中的。（具体是怎么放的？格式？字段？）</p>
+									<p>我们可以从XHR的responseText中获取数据的字符串形式，然后解析成我们需要的数据类型？？？。在使用jQuery发送Ajax请求时，会设置Accept字段，该字段定义了希望服务器返回的数据的类型。jQuery会自动的将responseText转化为对应的Accept字段描述的类型，然后直接通过异步回调函数的参数获取转换后的数据。字符串，JSON很好处理，可以直接操作。XML的解析有点复杂，下面是一段解析的代码：</p>
+									<div class="code-block">
+<pre>xmltext=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>&lt;note></span><span style='color:#2a00ff; '>"</span>;
+xmltext+=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>&lt;to>George&lt;/to></span><span style='color:#2a00ff; '>"</span>;
+xmltext+=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>&lt;from>John&lt;/from></span><span style='color:#2a00ff; '>"</span>;
+xmltext+=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>&lt;heading>Reminder&lt;/heading></span><span style='color:#2a00ff; '>"</span>;
+xmltext+=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>&lt;body>Don't forget the meeting!&lt;/body></span><span style='color:#2a00ff; '>"</span>;
+xmltext+=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>&lt;/note></span><span style='color:#2a00ff; '>"</span>;
+<span style='color:#7f0055; font-weight:bold; '>try</span> <span style='color:#3f7f59; '>//Internet Explorer</span>
+{
+    xmlDoc=<span style='color:#7f0055; font-weight:bold; '>new</span> ActiveXObject(<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>Microsoft.XMLDOM</span><span style='color:#2a00ff; '>"</span>);
+    xmlDoc.async=<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>false</span><span style='color:#2a00ff; '>"</span>;
+    xmlDoc.loadXML(xmltext);
+}
+<span style='color:#7f0055; font-weight:bold; '>catch</span>(e)
+{
+    <span style='color:#7f0055; font-weight:bold; '>try</span> <span style='color:#3f7f59; '>//Firefox, Mozilla, Opera, etc.</span>
+    {
+        parser=<span style='color:#7f0055; font-weight:bold; '>new</span> DOMParser();
+        xmlDoc=parser.parseFromString(xmltext,<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>text/xml</span><span style='color:#2a00ff; '>"</span>);
+    }
+    <span style='color:#7f0055; font-weight:bold; '>catch</span>(e)
+    {
+        <span style='color:#7f0055; font-weight:bold; '>alert</span>(e.message);
+        <span style='color:#7f0055; font-weight:bold; '>return</span>;
+    }
+}
+console.<span style='color:#7f0055; font-weight:bold; '>log</span>( xmlDoc.getElementsByTagName(<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>to</span><span style='color:#2a00ff; '>"</span>)[0].childNodes[0].nodeValue );
+console.<span style='color:#7f0055; font-weight:bold; '>log</span>( xmlDoc.getElementsByTagName(<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>from</span><span style='color:#2a00ff; '>"</span>)[0].childNodes[0].nodeValue );
+console.<span style='color:#7f0055; font-weight:bold; '>log</span>( xmlDoc.getElementsByTagName(<span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>body</span><span style='color:#2a00ff; '>"</span>)[0].childNodes[0].nodeValue );
+<span style='color:#3f7f59; '>//jQuery</span>
+<span style='color:#7f0055; font-weight:bold; '>var</span> xmlDoc = $.parseXML( xmltext );
+<span style='color:#7f0055; font-weight:bold; '>var</span> $xml = $( xmlDoc );
+console.<span style='color:#7f0055; font-weight:bold; '>log</span>($xml.find( <span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>to</span><span style='color:#2a00ff; '>"</span> ));
+console.<span style='color:#7f0055; font-weight:bold; '>log</span>($xml.find( <span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>from</span><span style='color:#2a00ff; '>"</span> ));
+console.<span style='color:#7f0055; font-weight:bold; '>log</span>($xml.find( <span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>body</span><span style='color:#2a00ff; '>"</span> ));<br>
+</pre>
+									</div>
+									<h3>同源策略</h3>
+									<p>每个浏览器都有一个URL，比如www.yaochuansong.com/index.html。其中的www.yaochuansong.com就决定了当前页面的域，Javascript只能访问同一域名下的内容，从而避免了一些错误，也提高了安全性。同源策略就是将页面请求限制在自身页面所在的域内。</p>
+									<h3>跨域访问</h3>
+									<p>在实际开发中，会有一些需求，需要我们去请求另一个域，比如在在线支付过程中，我们需要使用银行的支付接口，也就要向银行的服务器发送请求。这个过程就是跨域访问。</p>
+									<h4>JSONP</h4>
+									<p>跨域访问的最简单的实现方法是让客户端发送请求给自身域的服务器，让服务器进作为代理转发请求给第三方服务器，这样就绕开了浏览器的同源策略的限制。另一种方法是插入动态脚本，利用<span class="key-word">同源策略不阻止script标签加载动态脚本</span>这一特性，通过script标签的src属性去加载跨域服务器上的数据，这种技术就是<span class="key-word">JSONP</span>。下面是一个例子：</p>
+									<div class="code-block">
+<pre><span style='color:#7f0055; '>&lt;</span><span style='color:#7f0055; font-weight:bold; '>html</span><span style='color:#7f0055; '>></span>
+<span style='color:#7f0055; '>&lt;</span><span style='color:#7f0055; font-weight:bold; '>head</span><span style='color:#7f0055; '>></span>
+	<span style='color:#7f0055; '>&lt;</span><span style='color:#7f0055; font-weight:bold; '>script</span> type=<span style='color:#2a00ff; '>"text/javascript"</span><span style='color:#7f0055; '>></span>
+		<span style='color:#7f0055; font-weight:bold; '>function</span> jsonpCallback = <span style='color:#7f0055; font-weight:bold; '>function</span>(result) {
+			console.<span style='color:#7f0055; font-weight:bold; '>log</span>(result);
+		}
+	<span style='color:#7f0055; '>&lt;/</span><span style='color:#7f0055; font-weight:bold; '>script</span><span style='color:#7f0055; '>></span>
+	<span style='color:#7f0055; '>&lt;</span><span style='color:#7f0055; font-weight:bold; '>script</span> type=<span style='color:#2a00ff; '>"text/javascript"</span> src=<span style='color:#2a00ff; '>"http://crossdomain.com/services.php?callback=jsonpCallback"</span><span style='color:#7f0055; '>></span><span style='color:#7f0055; '>&lt;/</span><span style='color:#7f0055; font-weight:bold; '>script</span><span style='color:#7f0055; '>></span>
+<span style='color:#7f0055; '>&lt;/</span><span style='color:#7f0055; font-weight:bold; '>head</span><span style='color:#7f0055; '>></span>
+<span style='color:#7f0055; '>&lt;/</span><span style='color:#7f0055; font-weight:bold; '>html</span><span style='color:#7f0055; '>></span>
+</pre>
+									</div>
+									<div class="warning">
+										<span>Warning: 由于是解释性语言，要注意回调函数的定义要在远程脚本加载之前。</span>
+									</div>
+									<p>服务器端代码如下：</p>
+									<div class="code-block">
+	<pre><span style='color:#7f0055;  '>&lt;?php</span><span style='color:#000000;  '>  </span>
+<span style='color:#3f7f59;  '>//服务端返回JSON数据  </span><span style='color:#000000;  '></span>
+<span style='color:#000000;  '>$arr</span><span style='color:#000000;  '>=</span><span style='color:#7f0055;  font-weight:bold; '>array</span><span style='color:#000000;  '>(</span><span style='color:#2a00ff;  '>'a'</span><span style='color:#000000;  '>=</span><span style='color:#000000;  '>></span><span style='color:#000000;  '>1</span><span style='color:#000000;  '>,</span><span style='color:#2a00ff;  '>'b'</span><span style='color:#000000;  '>=</span><span style='color:#000000;  '>></span><span style='color:#000000;  '>2</span><span style='color:#000000;  '>,</span><span style='color:#2a00ff;  '>'c'</span><span style='color:#000000;  '>=</span><span style='color:#000000;  '>></span><span style='color:#000000;  '>3</span><span style='color:#000000;  '>,</span><span style='color:#2a00ff;  '>'d'</span><span style='color:#000000;  '>=</span><span style='color:#000000;  '>></span><span style='color:#000000;  '>4</span><span style='color:#000000;  '>,</span><span style='color:#2a00ff;  '>'e'</span><span style='color:#000000;  '>=</span><span style='color:#000000;  '>></span><span style='color:#000000;  '>5</span><span style='color:#000000;  '>)</span><span style='color:#000000;  '>;</span><span style='color:#000000;  '>  </span>
+<span style='color:#3f7f59;  '>//将数据组装成JSON格式</span><span style='color:#000000;  '></span>
+<span style='color:#000000;  '>$result</span><span style='color:#000000;  '>=</span><span style='color:#7f0055;  font-weight:bold; '>json_encode</span><span style='color:#000000;  '>(</span><span style='color:#000000;  '>$arr</span><span style='color:#000000;  '>)</span><span style='color:#000000;  '>;</span><span style='color:#000000;  '>  </span>
+<span style='color:#3f7f59;  '>//获得回调函数名</span><span style='color:#000000;  '></span>
+<span style='color:#000000;  '>$callback</span><span style='color:#000000;  '>=</span><span style='color:#000000;  '>$_GET</span><span style='color:#000000;  '>[</span><span style='color:#2a00ff;  '>'callback'</span><span style='color:#000000;  '>]</span><span style='color:#000000;  '>;</span><span style='color:#000000;  '></span>
+<span style='color:#3f7f59;  '>//组装Javascript代码段  </span><span style='color:#000000;  '></span>
+<span style='color:#7f0055;  font-weight:bold; '>echo</span><span style='color:#000000;  '> </span><span style='color:#000000;  '>$callback</span><span style='color:#000000;  '>.</span><span style='color:#2a00ff;  '>"(</span><span style='color:#2a00ff;  '>$result</span><span style='color:#2a00ff;  '>)"</span><span style='color:#000000;  '>;</span><span style='color:#000000;  '> </span>
+<span style='color:#7f0055;  '>?></span>
+</pre>
+									</div>
+									<p>JSONP使得跨域访问成为可能，能够实现在一个页面中使用多种服务，比如旅游网站的地图显示等。当今互联网新出现的<span class="key-word">Mashup</span>,JSONP就是构建Mashup的主要技术。</p>
+									<p>JSONP涉及到两个方面，一个是如何将请求发送出去，这一点是利用了同源策略不阻止script标签加载动态脚本这一特性；另一个是如何从script标签中获得跨域请求返回的数据，这一点是通过让跨域服务器返回js文档，该文档会执行回调函数并将请求的数据作为参数，这样就可以在客户端定义的回调函数中处理请求的数据了。下面是JSONP工作的流程：</p>
+									<ol>
+										<li>客户端定义script标签，将script标签的src属性设置为跨域请求的URL，并将回调函数的函数名作为参数附加到URL上。</li>
+										<li>客户端执行script标签，成功发送出跨域访问的请求。</li>
+										<li>服务器端在接收到该请求时，先将请求的数据组装成一个JSON对象。<span class="key-word">使用JSON对象的原因是要将其作为Javascript回调函数的参数。</span></li>
+										<li>获取参数中的回调函数名，并将其与JSON对象组装成一个Javascript文档，即一段Javascript代码，并返回该文档给客户端。</li>
+										<li>客户端获得跨域服务器返回的数据，由于是从script标签中加载的，客户端会执行该Javascript代码。</li>
+										<li>客户端定义的回调函数被执行，其中参数就是要请求的跨域服务器数据</li>
+									</ol>
+									<p>但是JSONP不是一种标准的技术，在使用过程中我们仍然需要注意一些问题。JSONP的请求不会返回服务器状态，远程只是返回一段Javascript执行代码。同时JSONP还存在着一些安全问题，由于执行的是跨域服务器返回的Javascript代码段，如何被一些非信任的跨域服务器返回一些攻击性代码，客户端也只能默默的执行，Web应用程序的安全受到了威胁。</p>
+									<h3>利用XHR发送请求的详细过程</h3>
+								</div>
+							</article>
+						</div>
+					</div>
+					<div class="pt-page" index="21">
+						<div class="blog-body">
+							<div class="block-height-one-unit"></div>
+							<form class="items-list">
+								<ul id="me-select-list blog-list">
+									<li class="transitionbutton" targetIndex="22"><span class="blog-num">1.</span><label for="cb1"><span>CSS细节</span><span>对CSS的一些细节和要点</span><span class="blog-item-time">2015/5/4</span></label></li>
+									<li class="transitionbutton" targetIndex="23"><span class="blog-num">2.</span><label for="cb2"><span>CSS兼容性</span><span>不同浏览器对CSS的兼容问题</span><span class="blog-item-time">2015/5/4</span></label></li>
+								</ul>
+							</form>	
+						</div>
+					</div>
+					<div class="pt-page" index="22">
+						<div class="blog-body">
+							<header class="header">
+								<div class="title">
+									<h1>CSS细节</h1>
+									<p class="subline">CSS的实现细节</p>
+									<p><strong>姚川松</strong> 写于 <strong>2015/5/26</strong></p>
+								</div>
+							</header>
+							<article class="article-content">
+								<div>
+									<p>CSS</p>
+									<h3>position属性:relative,absolute</h3>
+									
+								</div>
+							</article>
+						</div>
+					</div>
+					<div class="pt-page" index="23">
+						<div class="blog-body">
+							<header class="header">
+								<div class="title">
+									<h1>Javascript相关的兼容问题</h1>
+									<p class="subline">DOM,BOM,事件等的兼容性</p>
+									<p><strong>姚川松</strong> 写于 <strong>2015/5/27</strong></p>
+								</div>
+							</header>
+							<article class="article-content">
+								<div>
+									<p>CSS</p>
+									<h3>事件处理</h3>
+									<p>IE采用全局变量window.event存储事件。</p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#3f7f59; '>//IE</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.myclass</span><span style='color:#2a00ff; '>'</span>).addeventlistener(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>click</span><span style='color:#2a00ff; '>'</span> ,<span style='color:#7f0055; font-weight:bold; '>function</span>() {
+	<span style='color:#7f0055; font-weight:bold; '>var</span> event = window.event;
+	<span style='color:#7f0055; font-weight:bold; '>var</span> element = e.srcElement;
+	<span style='color:#7f0055; font-weight:bold; '>var</span> keyCode = e.which;
+})
+</pre>
+									</div>
+									<p>firefox采用全局变量函数参数传递事件。</p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#3f7f59; '>//firefox</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.myclass</span><span style='color:#2a00ff; '>'</span>).addeventlistener(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>click</span><span style='color:#2a00ff; '>'</span> ,<span style='color:#7f0055; font-weight:bold; '>function</span>(e) {
+	<span style='color:#7f0055; font-weight:bold; '>var</span> event = e;
+	<span style='color:#7f0055; font-weight:bold; '>var</span> element = e.target;
+	<span style='color:#7f0055; font-weight:bold; '>var</span> keyCode = e.keyCode;
+})
+</pre>
+									</div>
+									<p>Chrome则支持这两种方法。下面给一个兼容IE,firefox,Chrome的例子：</p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#3f7f59; '>//兼容IE,firefox,Chrome</span>
+$(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.myclass</span><span style='color:#2a00ff; '>'</span>).addeventlistener(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>click</span><span style='color:#2a00ff; '>'</span> ,<span style='color:#7f0055; font-weight:bold; '>function</span>() {
+	<span style='color:#7f0055; font-weight:bold; '>var</span> event = arguments[0] || window.event;
+	<span style='color:#7f0055; font-weight:bold; '>var</span> element = event.target || event.srcElement;
+	<span style='color:#7f0055; font-weight:bold; '>var</span> keyCode = event.keyCode || event.which;
+})
+</pre>
+									</div>
+								</div>
+							</article>
+						</div>
+					</div>
+					<div class="pt-page" index="24">
+						<div class="blog-body">
+							<header class="header">
+								<div class="title">
+									<h1>Backbone框架介绍</h1>
+									<p class="subline">Backbone组件，优势</p>
+									<p><strong>姚川松</strong> 写于 <strong>2015/6/5</strong></p>
+								</div>
+							</header>
+							<article class="article-content">
+								<div>
+									
+								</div>
+							</article>
+						</div>
+					</div>
+					<div class="pt-page" index="25">
+						<div class="blog-body">
+							<header class="header">
+								<div class="title">
+									<h1>Backbone的Model</h1>
+									<p class="subline">Backbone组件之一Model</p>
+									<p><strong>姚川松</strong> 写于 <strong>2015/6/5</strong></p>
+								</div>
+							</header>
+							<article class="article-content">
+								<div>
+									<p>首先，给出官方关于Model的介绍：<a class="link" href="http://backbonejs.org/#Model">Backbone: Model</a>。官方文档中给出了Model的一些可以重载的属性，这些属性描述了Model的具体功能，我们将对这些属性的作用以及源码进行分析。</p>
+									<h4>extend</h4>
+									<p>该方法是Backbone自定义的方法，不是Underscore提供的_.extend方法。源代码如下：</p>
+									<div class="code-block">
+<pre><span style='color:#3f7f59; '>// Helper function to correctly set up the prototype chain, for subclasses.</span>
+<span style='color:#3f7f59; '>// Similar to `goog.inherits`, but uses a hash of prototype properties and</span>
+<span style='color:#3f7f59; '>// class properties to be extended.</span>
+<span style='color:#7f0055; font-weight:bold; '>var</span> extend = <span style='color:#7f0055; font-weight:bold; '>function</span>(protoProps, staticProps) {
+  <span style='color:#7f0055; font-weight:bold; '>var</span> parent = <span style='color:#7f0055; font-weight:bold; '>this</span>;
+  <span style='color:#7f0055; font-weight:bold; '>var</span> child;
+
+  <span style='color:#3f7f59; '>// The constructor function for the new subclass is either defined by you</span>
+  <span style='color:#3f7f59; '>// (the "constructor" property in your `extend` definition), or defaulted</span>
+  <span style='color:#3f7f59; '>// by us to simply call the parent's constructor.</span>
+  <span style='color:#7f0055; font-weight:bold; '>if</span> (protoProps &amp;&amp; _.has(protoProps, <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>constructor</span><span style='color:#2a00ff; '>'</span>)) {
+    child = protoProps.constructor;
+  } <span style='color:#7f0055; font-weight:bold; '>else</span> {
+    child = <span style='color:#7f0055; font-weight:bold; '>function</span>(){ <span style='color:#7f0055; font-weight:bold; '>return</span> parent.apply(<span style='color:#7f0055; font-weight:bold; '>this</span>, arguments); };
+  }
+
+  <span style='color:#3f7f59; '>// Add static properties to the constructor function, if supplied.</span>
+  _.extend(child, parent, staticProps);
+
+  <span style='color:#3f7f59; '>// Set the prototype chain to inherit from `parent`, without calling</span>
+  <span style='color:#3f7f59; '>// `parent`'s constructor function.</span>
+  <span style='color:#7f0055; font-weight:bold; '>var</span> Surrogate = <span style='color:#7f0055; font-weight:bold; '>function</span>(){ <span style='color:#7f0055; font-weight:bold; '>this</span>.constructor = child; };
+  Surrogate.prototype = parent.prototype;
+  child.prototype = <span style='color:#7f0055; font-weight:bold; '>new</span> Surrogate;
+
+  <span style='color:#3f7f59; '>// Add prototype properties (instance properties) to the subclass,</span>
+  <span style='color:#3f7f59; '>// if supplied.</span>
+  <span style='color:#7f0055; font-weight:bold; '>if</span> (protoProps) _.extend(child.prototype, protoProps);
+
+  <span style='color:#3f7f59; '>// Set a convenience property in case the parent's prototype is needed</span>
+  <span style='color:#3f7f59; '>// later.</span>
+  child.__super__ = parent.prototype;
+
+  <span style='color:#7f0055; font-weight:bold; '>return</span> child;
+};
+
+<span style='color:#3f7f59; '>// Set up inheritance for the model, collection, router, view and history.</span>
+Model.extend = Collection.extend = Router.extend = View.extend = History.extend = extend;
+</pre>
+									</div>
+								</div>
+							</article>
+						</div>
+					</div>
+					<div class="pt-page" index="26">
+						<div class="blog-body">
+							<header class="header">
+								<div class="title">
+									<h1>Backbone的View</h1>
+									<p class="subline">Backbone组件之一View</p>
+									<p><strong>姚川松</strong> 写于 <strong>2015/6/5</strong></p>
+								</div>
+							</header>
+							<article class="article-content">
+								<div>
+									
+								</div>
+							</article>
+						</div>
+					</div>
+					<div class="pt-page" index="27">
+						<div class="blog-body">
+							<header class="header">
+								<div class="title">
+									<h1>Backbone的Controller</h1>
+									<p class="subline">Backbone组件之一Controller</p>
+									<p><strong>姚川松</strong> 写于 <strong>2015/6/5</strong></p>
+								</div>
+							</header>
+							<article class="article-content">
+								<div>
+								</div>
+							</article>
+						</div>
+					</div>
+					<div class="pt-page" index="28">
+						<div class="blog-body">
+							<header class="header">
+								<div class="title">
+									<h1>Backbone的Router</h1>
+									<p class="subline">Backbone组件之一Router</p>
+									<p><strong>姚川松</strong> 写于 <strong>2015/6/5</strong></p>
+								</div>
+							</header>
+							<article class="article-content">
+								<div>
 								</div>
 							</article>
 						</div>

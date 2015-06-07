@@ -99,6 +99,16 @@ html, body, .container, .header {
 	color: #69606b;
 	line-height: 1.7;
 }
+.article-content ul {
+	font-size: 1.15em;
+	color: #69606b;
+	line-height: 1.7;
+}
+.article-content ol {
+	font-size: 1.15em;
+	color: #69606b;
+	line-height: 1.7;
+}
 
 .article-content blockquote {
 	padding: 0.25em;
@@ -127,6 +137,10 @@ html, body, .container, .header {
 	color: #5858FA;
 }
 
+.article-content a.link {
+	text-decoration: none;
+}
+
 .content-img-container {
 	text-align: center;
 }
@@ -135,4 +149,20 @@ html, body, .container, .header {
 	border: 5px white solid;
 	border-radius: 3px;
 	max-width: 835px;
+}
+
+.warning {
+	padding-bottom: 15px;
+	padding-top: 15px;
+	padding-left: 15px;
+	border: 5px rgb(223, 82, 82) solid;
+	background-color: #EC817D;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.warning>span{
+	font-style: italic;
+	color: white;
+	font-weight: 700;
 }
