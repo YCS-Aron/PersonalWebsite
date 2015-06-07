@@ -1,3 +1,3 @@
 var connect = require('connect');
-var app = connect().use(connect.static(__dirname));
+var app = connect().use(connect.static(''));
 app.listen(80);
