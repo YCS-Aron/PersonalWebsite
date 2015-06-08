@@ -19,6 +19,28 @@ var PageTransitions = (function() {
 		// support css animations
 		support = Modernizr.cssanimations,
 		pageStack = [];
+
+		var blogIndex = {
+			1: 'javascript-1',		//Javascript认知
+			2: 'plan',
+			3: 'timeline',
+			4: 'javascript-bloglist',
+			5: 'git-bloglist',
+			6: 'nodejs-bloglist',
+			7: 'java-bloglist',
+			8: 'spring-bloglist',
+			9: 'javascript-4',		//Javascript变量提升
+			11: 'javascript-3',		//Javascript闭包
+			12: 'javascript-2',		//Javascript函数和域
+			13: 'javascript-5',		//javascript面向对象
+			15: 'javascript-6',		//Javascript细节
+			16: 'jquery-2',			//jQuery事件机制
+			17: 'jquery-1',			//jQuery框架结构
+			18: '',
+			19: '',
+			20: 'jquery-3',			//ajax详解
+			21: 'css-bloglist'
+		}
 	
 	function init() {
 
@@ -98,6 +120,16 @@ var PageTransitions = (function() {
 			onEndAnimation( $currPage, $nextPage );
 		}
 
+		// if(blogIndex[nextPageIndex]) {
+		// 	window.location.hash = blogIndex[nextPageIndex];
+		// }
+
+		if(blogIndex[nextPageIndex]) {
+	  		var stateObject = {id: nextPageIndex};
+			var title = "Wow Title "+nextPageIndex;
+			var newUrl = blogIndex[nextPageIndex];
+			history.pushState(stateObject,title,newUrl);
+		}
 	}
 
 	function onEndAnimation( $outpage, $inpage ) {
