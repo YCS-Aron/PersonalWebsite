@@ -2,26 +2,18 @@
 <html lang="en" class="no-js">
 	<head>
 		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-		<meta name="viewport" content="width=device-width, initial-scale=1"> 
 		<title>YCS website</title>
-		<meta name="description" content="Modern effects and styles for off-canvas navigation with CSS transitions and SVG animations using Snap.svg" />
-		<meta name="keywords" content="sidebar, off-canvas, menu, navigation, effect, inspiration, css transition, SVG, morphing, animation" />
-		<meta name="author" content="Codrops" />
 		<link rel="shortcut icon" href="../favicon.ico">
-		<link rel="stylesheet" type="text/css" href="css/common.css" />
-		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="css/mainMenu.css" />
+		<link rel="stylesheet" type="text/css" href="frame/fonts.css" />
+		<link rel="stylesheet" type="text/css" href="frame/frame.css" />
 		<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/menu_topside.css" />
-		<link rel="stylesheet" type="text/css" href="css/icons.css" />
+		<link rel="stylesheet" type="text/css" href="frame/icons.css" />
 		<link rel="stylesheet" type="text/css" href="ToggleDropdownMenu/style.css" />
 		<link rel="stylesheet" type="text/css" href="PageTransition/ptanimation.css" />
 		<link rel="stylesheet" type="text/css" href="PageTransition/ptcomponent.css" />
-		<link rel="stylesheet" type="text/css" href="BlogContent/bccomponent.css" />
-		<link rel="stylesheet" type="text/css" href="Code/code.css" />
+		<link rel="stylesheet" type="text/css" href="Pages/techBlog/css/tech-blog.css" />
 		<link rel="stylesheet" type="text/css" href="Plan/style.css" />
+		<link rel="stylesheet" href="Pages/techBlog/highlight/styles/zenburn.css">
 	</head>
 	<body>
 		<div class="container">
@@ -43,44 +35,11 @@
 				</div>
 				<!-- LEFT MENU -->
 				<nav class="menu-side drop-menu">
-					<div class="drop-menu-option">
-						<div class="drop-menu-button">
-							<a index="0" class="icon icon-pen">Tech Blog</a>
-						</div>
-						<div class="options-list">
-							<div class="option transitionbutton" targetIndex="4">
-								<span>Javascript</span>
-								<span class="count">10</span>
-							</div>
-							<div class="option transitionbutton" targetIndex="21">
-								<span>CSS</span>
-								<span class="count">4</span>
-							</div>
-							<div class="option transitionbutton" targetIndex="6">
-								<span>NodeJS</span>
-								<span class="count">3</span>
-							</div>
-							<div class="option transitionbutton" targetIndex="7">
-								<span>Java</span>
-								<span class="count">11</span>
-							</div>
-							<div class="option transitionbutton" targetIndex="8">
-								<span>Spring</span>
-								<span class="count">10</span>
-							</div>
-							<div class="option">
-								<span>Rest</span>
-								<span class="count">10</span>
-							</div>
-							<div class="option transitionbutton" targetIndex="5">
-								<span>Git</span>
-								<span class="count">7</span>
-							</div>
-						</div>
-					</div>
-					<a index="1" class="icon icon-star transitionbutton" targetIndex="3">Timeline</a>
-					<a index="2" class="icon icon-photo">Photo</a>
-					<a index="3" class="icon icon-paperplane transitionbutton" targetIndex="2">Plan</a>
+					<a index="0" class="icon icon-pen">Javascript</a>
+					<a index="1" class="icon icon-star transitionbutton" targetIndex="3">Backbone</a>
+					<a index="2" class="icon icon-photo">NodeJS</a>
+					<a index="3" class="icon icon-paperplane transitionbutton" targetIndex="2">AngularJS</a>
+					<a index="3" class="icon icon-paperplane transitionbutton" targetIndex="2">AngularJS</a>
 				</nav>
 			</div> <!-- menu-wrap -->
 			<button class="menu-button" id="open-button"></button>
@@ -89,16 +48,26 @@
 				<div class="content">
 					<!-- 主页 -->
 					<div class="pt-page homepage" index="0">
-						<div class="hp-profile">
-							<img class="hg-portrait" src="img/user1.png">
-							</img>
-							<div class="hg-name">
-								<span>姚川松 Aron<span>
+						<div class="home-page-header-container">
+							<div class="home-page-top-cover">
+								<img src="img/home-page-cover.jpg"></img>
 							</div>
-							<div>
-								<div class="follow-bt"><a href="http://weibo.com/u/2115913882" target="_blank">关注我的微博</a></div>
-								<div class="follow-bt"><a href="Mailto:77294197@qq.com" target="_blank">QQ</a></div>
+						</div>
+						<div class="home-page-profile-container">
+							<img class="home-page-profile" src="img/user1.png"></img>
+							<div class="home-page-name"><span>姚川松 Aron</span></div>
+							<div class="home-page-job"><span>Tradeshift高级前端工程师</span></div>
+						</div>
+						<div class="home-page-quotes-container">
+							<div class="words">
+								<p>
+									<span class="eng">The way you spend your day is the way you spend on your life.</span>
+								</p>
+								<p>
+									<span>你如何度过你的一天，你就将如何度过你的一生。</span>
+								</p>
 							</div>
+							<img src="img/quote-picutre-1.jpg"></img>
 						</div>
 					</div>
 					<!-- Javascript 印象 -->
@@ -108,7 +77,7 @@
 								<div class="title">
 									<h1>Javascript认知</h1>
 									<p class="subline">对Javascript语言特性的认识</p>
-									<p><strong>姚川松</strong> &#8212; 写于 <strong>2015/3/21</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> &#8212; 写于 <strong>2015/3/21</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
@@ -313,7 +282,7 @@ module.exports = {
 								<div class="title">
 									<h1>Javascript变量提升</h1>
 									<p class="subline">关于Javascript中变量提升和域的一些理解</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/5/6</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/5/6</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
@@ -381,7 +350,7 @@ myfun2();
 								<div class="title">
 									<h1>Web前端设计要点</h1>
 									<p class="subline">在Web前端的设计方面需要注意的几个方面和技巧</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/5/1</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/5/1</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
@@ -405,7 +374,7 @@ myfun2();
 								<div class="title">
 									<h1>Javascript闭包</h1>
 									<p class="subline">对Javascript闭包以及相关的域的理解</p>
-									<p><strong>姚川松</strong> &#8212; 写于 <strong>2015/5/16</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> &#8212; 写于 <strong>2015/5/16</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
@@ -484,7 +453,7 @@ myfun2();
 								<div class="title">
 									<h1>Javascript函数和域</h1>
 									<p class="subline">对Javascript域的理解</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/5/16</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/5/16</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
@@ -583,159 +552,7 @@ console.<span style='color:#7f0055; font-weight:bold; '>log</span>(b);     <span
 						</div>
 					</div>
 					<div class="pt-page" index="13">
-						<div class="blog-body">
-							<header class="header">
-								<div class="title">
-									<h1>Javascript实现面向对象</h1>
-									<p class="subline">通过prototype和函数实现面向对象</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/5/18</strong></p>
-								</div>
-							</header>
-							<article class="article-content">
-								<div>
-									<p>面向对象包括三个最基本的特征：数据封装，继承，多态。Javascript对面向对象提供了哪些支持，又该如何用Javascript实现面向对象的三个特征呢？</p>
-									<h3>Javascript的函数对面向对象的支持</h3>
-									<h4>定义类的方式</h4>
-									<p>在Javascript中，定义可重复实例化的类是通过定义函数的方式，例子如下：</p>
-									<div class="code-block">
-<pre><html><body style='color:#000000; background:#ffffff; '><pre>
-<span style='color:#7f0055; font-weight:bold; '>var</span> Person = <span style='color:#7f0055; font-weight:bold; '>function</span>(n, a) {
-    <span style='color:#7f0055; font-weight:bold; '>var</span> name = n;
-    <span style='color:#7f0055; font-weight:bold; '>var</span> age = a;
-    <span style='color:#7f0055; font-weight:bold; '>this</span>.getInfo = <span style='color:#7f0055; font-weight:bold; '>function</span>() {
-        <span style='color:#7f0055; font-weight:bold; '>return</span> name + <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '> is </span><span style='color:#2a00ff; '>'</span> + age + <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '> years old.</span><span style='color:#2a00ff; '>'</span>;
-    };
-};
-<span style='color:#7f0055; font-weight:bold; '>var</span> p = (<span style='color:#7f0055; font-weight:bold; '>new</span> Person(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Aron</span><span style='color:#2a00ff; '>'</span>, 25));
-console.<span style='color:#7f0055; font-weight:bold; '>log</span>(p.getInfo());
-</pre>
-									</div>
-									<p>当采用new关键字调用函数时，采用的是<span class='key-word'>构造器方法</span>实例化类。在上面的例子中，我们需要弄清楚构造函数，私有成员和公有成员。构造函数可以认为是整个函数体，当采用new关键字实例化类时，默认会从函数中返回this变量，但是，若构造函数中存在return语句，那么该return语句会被执行，返回值由return值决定，非常不建议在构造函数内使用return语句，这样就破坏了构造函数的意义。同时，构造函数可以通过<span class='key-word'>classname.prototype.constructor</span>访问。（会被提升吗？）所以我们实例化类之后得到的对象的this变量。私有成员的定义方式是在函数中用var定义，因为构造函数只会返回this，所以函数体内的通过var定义的变量对外是不可见的，但是对于绑定在this上的方法而言却是可见的。公有成员的定义是通过绑定到this上实现的，可以通过返回的this访问函数内定义的公有数据。</p>
-									<h3>数据封装</h3>
-									<p>我们希望Javascript的对象能提供一个接口，该接口会访问该对象内部的数据，而且该数据只能通过接口得到，无法通过对象直接访问。在函数体内部用var关键字声明变量在函数外是无法访问的。这种方法可以"不是很合理"的实现数据封装，比如下面的例子：</p>
-									<div class="code-block">
-<pre><span style='color:#7f0055; font-weight:bold; '>var</span> Person = <span style='color:#7f0055; font-weight:bold; '>function</span>(name) {
-    <span style='color:#7f0055; font-weight:bold; '>this</span>.publicName = <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Public</span><span style='color:#2a00ff; '>'</span> + name;
-    <span style='color:#7f0055; font-weight:bold; '>var</span> privateName = <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Private</span><span style='color:#2a00ff; '>'</span> + name;
-    <span style='color:#7f0055; font-weight:bold; '>return</span> {
-        getName: <span style='color:#7f0055; font-weight:bold; '>function</span>(){
-            <span style='color:#7f0055; font-weight:bold; '>return</span> privateName;
-        }
-    }
-}
-<span style='color:#7f0055; font-weight:bold; '>var</span> person = <span style='color:#7f0055; font-weight:bold; '>new</span> Person(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Aron</span><span style='color:#2a00ff; '>'</span>);
-console.<span style='color:#7f0055; font-weight:bold; '>log</span>(person.privateName);   <span style='color:#3f7f59; '>//undefined</span>
-console.<span style='color:#7f0055; font-weight:bold; '>log</span>(person.getName());     <span style='color:#3f7f59; '>//PrivateAron</span><br>
-</pre>
-									</div>
-									<p>不是很合理的原因是，getName不是定义在Prototype中的，因此，每次用new关键字实例化时都会产生一个不一样的getName函数对象。合理的方式是将其放在Prototype中。比如下面的代码：</p>
-									<div class="code-block">
-<pre><span style='color:#7f0055; font-weight:bold; '>var</span> Person = <span style='color:#7f0055; font-weight:bold; '>function</span>(name) {
-    <span style='color:#7f0055; font-weight:bold; '>var</span> privateName = <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Private</span><span style='color:#2a00ff; '>'</span> + name;
-}
-Person.prototype.getName = <span style='color:#7f0055; font-weight:bold; '>function</span>(){
-    <span style='color:#7f0055; font-weight:bold; '>return</span> privateName; <span style='color:#3f7f59; '>//cast error: privateName is not defined</span>
-}
-<span style='color:#7f0055; font-weight:bold; '>var</span> person = <span style='color:#7f0055; font-weight:bold; '>new</span> Person(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Aron</span><span style='color:#2a00ff; '>'</span>);
-console.<span style='color:#7f0055; font-weight:bold; '>log</span>(person.getName());<br>
-</pre>
-									</div>
-									<p>在Prototype中的方法只能访问到函数域中的局部变量，函数参数和this。而<span class="key-word">this对应着调用该方法的对象</span>，在上面的例子中就是person对象。而person对象中能够直接访问的数据都是共有的，因此，既要满足封装特性，又要考虑Prototype的内存优势，是一个比较困难的问题。</p>
-									<h3>继承</h3>
-									<p>对于继承，首先要说明的是函数的<span class='key-word'>prototype</span>属性。依旧是上面的那个例子。仔细分析会发现这样一个问题，由于getInfo方法是绑定在this上的，所以，每次实例化Person对象时都会产生一个getInfo的函数对象，这是不合理的，实际上我们只需要一个getInfo函数的备份即可，当实例化很多个对象时，会大大占用内存。prototype属性就是为了解决这一问题而产生的。即prototype是依赖于类的，而不是具体的对象实例。可以通过类名即函数名直接访问prototype。每个实例对象都有一份prototype中所有属性的引用。</p>
-									<p>继承的实现依赖的是prototype链，即<span class='key-word'>原型链</span>。而且，当在对象中访问一个数据时，解释器会顺着prototype去寻找该数据，直到找到为止，因此，可以通过指定子类的prototype的值为基类的实例，从而实现子类共享基类的数据和方法。下面是一个通过prototype实现继承的例子：</p>
-									<div class="code-block">
-<pre><html><body style='color:#000000; background:#ffffff; '><pre>
-<span style='color:#3f7f59; '>//基类 base</span>
-<span style='color:#7f0055; font-weight:bold; '>function</span> base(a) {
-    <span style='color:#7f0055; font-weight:bold; '>this</span>.a = a;
-};
-base.prototype.fun = <span style='color:#7f0055; font-weight:bold; '>function</span>() {
-    console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>base</span><span style='color:#2a00ff; '>'</span> + <span style='color:#7f0055; font-weight:bold; '>this</span>.a);
-};
-<span style='color:#3f7f59; '>//子类child</span>
-<span style='color:#7f0055; font-weight:bold; '>function</span> child(a){
-    base.apply(<span style='color:#7f0055; font-weight:bold; '>this</span>, arguments);    <span style='color:#3f7f59; '>//以child的上下文执行base的构造函数，从而绑定this.a</span>
-};
-child.prototype = <span style='color:#7f0055; font-weight:bold; '>new</span> base();       <span style='color:#3f7f59; '>//获得base的原型，从而得到base中prototype上绑定的方法。</span>
-child.prototype.childfun = <span style='color:#7f0055; font-weight:bold; '>function</span>() {  
-    console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>child</span><span style='color:#2a00ff; '>'</span> + <span style='color:#7f0055; font-weight:bold; '>this</span>.a);
-};
-<span style='color:#7f0055; font-weight:bold; '>var</span> obj = <span style='color:#7f0055; font-weight:bold; '>new</span> child(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Tim</span><span style='color:#2a00ff; '>'</span>);
-obj.fun();            <span style='color:#3f7f59; '>//output baseTim</span>
-obj.childfun();       <span style='color:#3f7f59; '>//output childTim</span>
-</pre>
-									</div>
-									<div class="warning">
-										<span>child.prototype=new base()写成child.prototype=base.prototype是不可以的，因为这里的base.prototype是引用，child对prototype进行扩展时会同时修改base.prototype，从而影响所用的基类对象。</span>
-									</div>
-									<h3>多态</h3>
-									<p>多态是指一个接口，多种动作。下面是一个通过重载实现多态的例子：</p>
-									<div class="code-block">
-<pre><html><body style='color:#000000; background:#ffffff; '><pre>
-<span style='color:#3f7f59; '>//基类 base</span>
-<span style='color:#7f0055; font-weight:bold; '>function</span> base(a) {
-    <span style='color:#7f0055; font-weight:bold; '>this</span>.a = a;
-};
-base.prototype.fun = <span style='color:#7f0055; font-weight:bold; '>function</span>() {
-    console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>base</span><span style='color:#2a00ff; '>'</span> + <span style='color:#7f0055; font-weight:bold; '>this</span>.a);
-};
-<span style='color:#3f7f59; '>//子类child</span>
-<span style='color:#7f0055; font-weight:bold; '>function</span> child(a){
-    base.apply(<span style='color:#7f0055; font-weight:bold; '>this</span>, arguments);    <span style='color:#3f7f59; '>//以child的上下文执行base的构造函数，从而绑定this.a</span>
-};
-child.prototype = <span style='color:#7f0055; font-weight:bold; '>new</span> base();       <span style='color:#3f7f59; '>//获得base的原型，从而得到base中prototype上绑定的方法。</span>
-child.prototype.fun = <span style='color:#7f0055; font-weight:bold; '>function</span>() {  <span style='color:#3f7f59; '>//实现重载，并在重载的函数中调用基类的同名方法</span>
-    base.prototype.fun.call(<span style='color:#7f0055; font-weight:bold; '>this</span>);
-    console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>child</span><span style='color:#2a00ff; '>'</span> + <span style='color:#7f0055; font-weight:bold; '>this</span>.a);
-};
-<span style='color:#7f0055; font-weight:bold; '>var</span> obj = <span style='color:#7f0055; font-weight:bold; '>new</span> child(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Tim</span><span style='color:#2a00ff; '>'</span>);
-obj.fun();       <span style='color:#3f7f59; '>//output baseTim childTim</span>
-</pre>
-									</div>
-									<p>这种重载是通过覆盖child.prototype.fun实现的，在覆盖之前child.prototype.fun的值为base.prototype.fun这个函数对象。仍然可以通过base.prototype访问到基类的fun方法。prototype上绑定的方法和数据都是类共有的，即<span class='key-word'>实例对象 中保存的是prototype中对应值的引用</span>。下面给个例子：</p>
-									<div class="code-block">
-<pre><html><body style='color:#000000; background:#ffffff; '><pre>
-<span style='color:#7f0055; font-weight:bold; '>function</span> myclass(a){
-    <span style='color:#7f0055; font-weight:bold; '>this</span>.a = a;
-};
-myclass.prototype.myfun = <span style='color:#7f0055; font-weight:bold; '>function</span>() {  
-    console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>myclass </span><span style='color:#2a00ff; '>'</span> + <span style='color:#7f0055; font-weight:bold; '>this</span>.a);
-};
-myclass.prototype.data = <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>prototype data</span><span style='color:#2a00ff; '>'</span>;
-<span style='color:#7f0055; font-weight:bold; '>var</span> obj = <span style='color:#7f0055; font-weight:bold; '>new</span> myclass(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>test</span><span style='color:#2a00ff; '>'</span>);
-obj.myfun();                        <span style='color:#3f7f59; '>//output 'myclass test'</span>
-console.<span style='color:#7f0055; font-weight:bold; '>log</span>(obj.data);              <span style='color:#3f7f59; '>//output 'prototype data'</span>
-myclass.prototype.myfun = <span style='color:#7f0055; font-weight:bold; '>function</span>() {
-    console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>changed </span><span style='color:#2a00ff; '>'</span> + <span style='color:#7f0055; font-weight:bold; '>this</span>.a);
-};
-myclass.prototype.data = <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>changed prototype data</span><span style='color:#2a00ff; '>'</span>;
-obj.myfun();                        <span style='color:#3f7f59; '>//output 'changed test'</span>
-console.<span style='color:#7f0055; font-weight:bold; '>log</span>(obj.data);              <span style='color:#3f7f59; '>//output 'changed prototype data'</span>
-</pre>
-									</div>
-									<p>通过改变prototype上的值可以直接修改所有该类的实例对象上的数据。</p>
-									<h3>静态方法</h3>
-									<p>有时候我们需要类能够提供一些不依赖于具体实例，能通过类名直接访问的静态数据和方法，Javascript不直接提供静态方法，但是可以通过Javascript的特性实现静态方法和数据。例子如下：</p>
-									<div class="code-block">
-<pre><html><body style='color:#000000; background:#ffffff; '><pre>
-<span style='color:#7f0055; font-weight:bold; '>function</span> myclass(){};
-myclass.staticMethod = <span style='color:#7f0055; font-weight:bold; '>function</span>() {
-    console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>call a static function</span><span style='color:#2a00ff; '>'</span>);
-    console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#7f0055; font-weight:bold; '>this</span>.staticData);            <span style='color:#3f7f59; '>//this的值是myclass的函数对象</span>
-};
-myclass.staticData = <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>this is a static data</span><span style='color:#2a00ff; '>'</span>;
-myclass.staticMethod();
-console.<span style='color:#7f0055; font-weight:bold; '>log</span>(myclass.staticData);
-<span style='color:#7f0055; font-weight:bold; '>var</span> obj = <span style='color:#7f0055; font-weight:bold; '>new</span> myclass();
-<span style='color:#3f7f59; '>//obj.staticMethod();             //Error: obj没有staticMethod方法</span>
-<span style='color:#3f7f59; '>//console.log(obj.staticData);    //Error: obj没有staticData属性</span>
-</pre>
-									</div>
-									<p>静态数据绑定在函数对象上，而非实例对象上。因为用new关键字返回的是构造函数返回的this值，因此通过new关键字创建的实例无法获取静态数据。只能通过函数对象，即通过函数名访问。</p>
-								</div>
-							</article>
-						</div>
+						javascript-object-orientied
 					</div>
 					<div class="pt-page" index="14">
 						<div class="blog-body">
@@ -743,12 +560,12 @@ console.<span style='color:#7f0055; font-weight:bold; '>log</span>(myclass.stati
 								<div class="title">
 									<h1>NodeJS认知</h1>
 									<p class="subline">对NodeJS特性的一些理解</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/5/19</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/5/19</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
 								<div class="content-img-container">
-									<img src="img/1.jpg"></img>
+									<img src="img/quote-picutre-1.jpg"></img>
 								</div>
 								<div class="warning">
 									<span>Warning: You will be lose if you do not focus.</span>
@@ -783,7 +600,7 @@ console.<span style='color:#7f0055; font-weight:bold; '>log</span>(myclass.stati
 								<div class="title">
 									<h1>Javascript细节</h1>
 									<p class="subline">Javascript小知识</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/5/19</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/5/19</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
@@ -828,7 +645,7 @@ console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='
 str[0] = <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>M</span><span style='color:#2a00ff; '>'</span>;       <span style='color:#3f7f59; '>//想修改第一个字符为M</span>
 console.<span style='color:#7f0055; font-weight:bold; '>log</span>(str);   <span style='color:#3f7f59; '>//输出 Tradeshift home</span>
 <span style='color:#7f0055; font-weight:bold; '>var</span> newstr = <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>M</span><span style='color:#2a00ff; '>'</span> + str.<span style='color:#7f0055; font-weight:bold; '>slice</span>(1);    <span style='color:#3f7f59; '>//Mradeshift home</span>
-<span style='color:#7f0055; font-weight:bold; '>var</span> newstr = <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>M</span><span style='color:#2a00ff; '>'</span> + str.<span style='color:#7f0055; font-weight:bold; '>substring</span>(1);<span style='color:#3f7f59; '>//Mradeshift home</span><br>
+<span style='color:#7f0055; font-weight:bold; '>var</span> newstr = <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>M</span><span style='color:#2a00ff; '>'</span> + str.<span style='color:#7f0055; font-weight:bold; '>substring</span>(1);<span style='color:#3f7f59; '>//Mradeshift home</span>
 </pre>
 									</div>
 									<h3>new关键字</h3>
@@ -851,7 +668,7 @@ console.<span style='color:#7f0055; font-weight:bold; '>log</span>(str);   <span
 								<div class="title">
 									<h1>jQuery事件机制</h1>
 									<p class="subline">jQuery事件机制详解</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/5/22</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/5/22</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
@@ -957,7 +774,7 @@ jQuery.fn.extend({
 								<div class="title">
 									<h1>jQuery框架结构</h1>
 									<p class="subline">jQuery的模块划分</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/5/23</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/5/23</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
@@ -1089,7 +906,7 @@ $(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>input:last
 								<div class="title">
 									<h1>Javascript正则表达式</h1>
 									<p class="subline">Javascript的regexp</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/5/21</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/5/21</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
@@ -1105,7 +922,7 @@ $(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>input:last
 								<div class="title">
 									<h1>网页性能优化</h1>
 									<p class="subline">如何优化网页的性能</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/5/22</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/5/22</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
@@ -1121,18 +938,18 @@ $(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>input:last
 								<div class="title">
 									<h1>Ajax详解</h1>
 									<p class="subline">Ajax的实现方式和分析,XHR的介绍,同源策略和跨域访问的介绍,以及JSONP的原理</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/5/22</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/5/22</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
 								<div>
 									<p>Ajax是实现与服务器交互的新方法。Ajax的全称是Asynchronous Javascript And XML，从命名上可以看出，是采用了Javascript的异步机制和XML这两种技术，其中异步机制实现非阻塞的IO，XML来用表示HTTP请求。</p>
-									<p>通过Ajax可以实现在不刷新整个页面的情况下，对网页进行部分更新。（那以前是与服务器的交互方式是什么？为什么要刷新整个页面？）</p>
 									<p>所以，我们需要了解异步Javascript和XML HTTP请求即XmlHttpRequest两个概念。</p>
 									<h3>异步Javascript</h3>
-									<p>异步是指：程序不会去等待某个费时操作（比如I/O,服务器请求）返回状态，而是继续执行后面的操作，当状态返回时，再转而继续执行定义好的回调函数。Javascript是单线程执行的，它不像Java那样能够支持多线程（为什么Javascript要用单线程？多线程会给Javascript带来什么问题？）和并发操作。</p>
-									<p>作为单线程的Javascript就应该尽量让线程不要停下来，否则，整个程序都会陷入“假死”状态。在处理像I/O这样非常费时的操作时，为了获得良好的用户体验，同时也是Javascript语言特性的原因，决定了只能通过异步方法来处理I/O操作。</p>
-									<p>在异步编程中，应该注意几点。异步往往会调用回调函数，因此与请求数据相关的操作都必须放在回调函数中，因为这些代码必须保证请求数据有效。在回调函数的外部不应该使用请求数据，因为我们无法知道数据什么时候返回。<p>
+									<p>异步是指：程序不会去等待某个费时操作（比如I/O,服务器请求）返回结果，而是继续执行后面的操作，当结果返回时，再转而继续执行定义好的回调函数。Javascript是单线程执行的，它不像Java那样能够支持多线程和并发操作。那么，作为单线程的Javascript就应该尽量让线程不要停下来，否则，整个程序都会陷入“假死”状态。在处理像I/O这样非常费时的操作时，为了获得良好的用户体验，决定了非阻塞I/O的合理性。</p>
+									<div class="warning">
+										<span>与返回数据相关的操作要放在数据请求的回调函数中，否则数据的可靠性会变得很差。</span>
+									</div>
 									<p>Javascript有很多优秀的开源库，其中就有不少封装了异步机制的库，比如jQuery的Deferred对象，Q.js，bluebird等。他们在实现异步方面的差异请参考<span class="key-word">Javascript单线程</span>。了解他们在执行顺序上的区别对理解异步有很大的帮助。比如，下面一个例子：</p>
 									<div class="code-block">
 <pre><html><body style='color:#000000; background:#ffffff; '><pre>
@@ -1278,7 +1095,7 @@ console.<span style='color:#7f0055; font-weight:bold; '>log</span>( xmlDoc.getEl
 <span style='color:#7f0055; font-weight:bold; '>var</span> $xml = $( xmlDoc );
 console.<span style='color:#7f0055; font-weight:bold; '>log</span>($xml.find( <span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>to</span><span style='color:#2a00ff; '>"</span> ));
 console.<span style='color:#7f0055; font-weight:bold; '>log</span>($xml.find( <span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>from</span><span style='color:#2a00ff; '>"</span> ));
-console.<span style='color:#7f0055; font-weight:bold; '>log</span>($xml.find( <span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>body</span><span style='color:#2a00ff; '>"</span> ));<br>
+console.<span style='color:#7f0055; font-weight:bold; '>log</span>($xml.find( <span style='color:#2a00ff; '>"</span><span style='color:#2a00ff; '>body</span><span style='color:#2a00ff; '>"</span> ));
 </pre>
 									</div>
 									<h3>同源策略</h3>
@@ -1350,7 +1167,7 @@ console.<span style='color:#7f0055; font-weight:bold; '>log</span>($xml.find( <s
 								<div class="title">
 									<h1>CSS细节</h1>
 									<p class="subline">CSS的实现细节</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/5/26</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/5/26</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
@@ -1368,7 +1185,7 @@ console.<span style='color:#7f0055; font-weight:bold; '>log</span>($xml.find( <s
 								<div class="title">
 									<h1>Javascript相关的兼容问题</h1>
 									<p class="subline">DOM,BOM,事件等的兼容性</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/5/27</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/5/27</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
@@ -1418,7 +1235,7 @@ $(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.myclass</
 								<div class="title">
 									<h1>Backbone框架介绍</h1>
 									<p class="subline">Backbone组件，优势</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/6/5</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/6/5</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
@@ -1434,54 +1251,179 @@ $(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>.myclass</
 								<div class="title">
 									<h1>Backbone的Model</h1>
 									<p class="subline">Backbone组件之一Model</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/6/5</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/6/5</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
 								<div>
-									<p>首先，给出官方关于Model的介绍：<a class="link" href="http://backbonejs.org/#Model">Backbone: Model</a>。官方文档中给出了Model的一些可以重载的属性，这些属性描述了Model的具体功能，我们将对这些属性的作用以及源码进行分析。</p>
+									<p>首先，给出官方关于Model的介绍：<a class="link" href="http://backbonejs.org/#Model">Backbone: Model</a>。Model是Backbone用于管理数据的模块，Model的几个重要方面包括：set方法；fetch方法；save方法；如何实现属性的change事件；Model如何实现持久化。</p>
+									<p>官方文档中给出了Model的一些可以重载的属性，这些属性描述了Model的具体功能，我们将对这些属性的作用以及源码进行分析。</p>
 									<h4>extend</h4>
 									<p>该方法是Backbone自定义的方法，不是Underscore提供的_.extend方法。源代码如下：</p>
 									<div class="code-block">
-<pre><span style='color:#3f7f59; '>// Helper function to correctly set up the prototype chain, for subclasses.</span>
-<span style='color:#3f7f59; '>// Similar to `goog.inherits`, but uses a hash of prototype properties and</span>
-<span style='color:#3f7f59; '>// class properties to be extended.</span>
+<pre><span style='color:#3f7f59; '>// Backbone: line 1556</span>
+<span style='color:#3f7f59; '>// protoProps:  JSON</span>
+<span style='color:#3f7f59; '>// staticProps: JSON</span>
+<span style='color:#3f7f59; '>// 返回一个新的对象child，参数protoProps中的属性会被添加到新对象的prototype中，staticProps中的属性则直接绑定到新对象上作为静态属性</span>
 <span style='color:#7f0055; font-weight:bold; '>var</span> extend = <span style='color:#7f0055; font-weight:bold; '>function</span>(protoProps, staticProps) {
-  <span style='color:#7f0055; font-weight:bold; '>var</span> parent = <span style='color:#7f0055; font-weight:bold; '>this</span>;
-  <span style='color:#7f0055; font-weight:bold; '>var</span> child;
+    <span style='color:#7f0055; font-weight:bold; '>var</span> parent = <span style='color:#7f0055; font-weight:bold; '>this</span>;
+    <span style='color:#7f0055; font-weight:bold; '>var</span> child;
 
-  <span style='color:#3f7f59; '>// The constructor function for the new subclass is either defined by you</span>
-  <span style='color:#3f7f59; '>// (the "constructor" property in your `extend` definition), or defaulted</span>
-  <span style='color:#3f7f59; '>// by us to simply call the parent's constructor.</span>
-  <span style='color:#7f0055; font-weight:bold; '>if</span> (protoProps &amp;&amp; _.has(protoProps, <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>constructor</span><span style='color:#2a00ff; '>'</span>)) {
-    child = protoProps.constructor;
-  } <span style='color:#7f0055; font-weight:bold; '>else</span> {
-    child = <span style='color:#7f0055; font-weight:bold; '>function</span>(){ <span style='color:#7f0055; font-weight:bold; '>return</span> parent.apply(<span style='color:#7f0055; font-weight:bold; '>this</span>, arguments); };
-  }
+    <span style='color:#3f7f59; '>//管理子类的constructor属性</span>
+    <span style='color:#7f0055; font-weight:bold; '>if</span> (protoProps &amp;&amp; _.has(protoProps, <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>constructor</span><span style='color:#2a00ff; '>'</span>)) {
+      child = protoProps.constructor;
+    } <span style='color:#7f0055; font-weight:bold; '>else</span> {
+      child = <span style='color:#7f0055; font-weight:bold; '>function</span>(){ <span style='color:#7f0055; font-weight:bold; '>return</span> parent.apply(<span style='color:#7f0055; font-weight:bold; '>this</span>, arguments); };
+    }
 
-  <span style='color:#3f7f59; '>// Add static properties to the constructor function, if supplied.</span>
-  _.extend(child, parent, staticProps);
+    <span style='color:#3f7f59; '>//将parent和staticProps上的属性复制到child对象上</span>
+    <span style='color:#3f7f59; '>//parent是子类的静态成员对象，即this，比如Backbone.Model.extend()，parent就是Model上的静态属性</span>
+    <span style='color:#3f7f59; '>//staticProps中的属性是子类要新添加的静态属性</span>
+    <span style='color:#3f7f59; '>//这样会操作到parent中的prototype属性，但是后面会被覆盖重写</span>
+    _.extend(child, parent, staticProps);
 
-  <span style='color:#3f7f59; '>// Set the prototype chain to inherit from `parent`, without calling</span>
-  <span style='color:#3f7f59; '>// `parent`'s constructor function.</span>
-  <span style='color:#7f0055; font-weight:bold; '>var</span> Surrogate = <span style='color:#7f0055; font-weight:bold; '>function</span>(){ <span style='color:#7f0055; font-weight:bold; '>this</span>.constructor = child; };
-  Surrogate.prototype = parent.prototype;
-  child.prototype = <span style='color:#7f0055; font-weight:bold; '>new</span> Surrogate;
+    <span style='color:#3f7f59; '>//构造prototype对象，其中包含有子类prototype所有的属性和constructor属性，并赋值给child.prototype</span>
+    <span style='color:#7f0055; font-weight:bold; '>var</span> Surrogate = <span style='color:#7f0055; font-weight:bold; '>function</span>(){ <span style='color:#7f0055; font-weight:bold; '>this</span>.constructor = child; };
+    Surrogate.prototype = parent.prototype;   
+    child.prototype = <span style='color:#7f0055; font-weight:bold; '>new</span> Surrogate;          <span style='color:#3f7f59; '>//COOL!!</span>
 
-  <span style='color:#3f7f59; '>// Add prototype properties (instance properties) to the subclass,</span>
-  <span style='color:#3f7f59; '>// if supplied.</span>
-  <span style='color:#7f0055; font-weight:bold; '>if</span> (protoProps) _.extend(child.prototype, protoProps);
+    <span style='color:#3f7f59; '>//从protoProps中复制属性到子类的prototype中</span>
+    <span style='color:#7f0055; font-weight:bold; '>if</span> (protoProps) _.extend(child.prototype, protoProps);
 
-  <span style='color:#3f7f59; '>// Set a convenience property in case the parent's prototype is needed</span>
-  <span style='color:#3f7f59; '>// later.</span>
-  child.__super__ = parent.prototype;
+    <span style='color:#3f7f59; '>//将基类的constructor作为子类的静态属性</span>
+    child.__super__ = parent.prototype;
 
-  <span style='color:#7f0055; font-weight:bold; '>return</span> child;
+    <span style='color:#7f0055; font-weight:bold; '>return</span> child;
 };
 
 <span style='color:#3f7f59; '>// Set up inheritance for the model, collection, router, view and history.</span>
 Model.extend = Collection.extend = Router.extend = View.extend = History.extend = extend;
 </pre>
+									</div>
+									<p>extend方法使用了Underscore提供的extend方法，用来给对象添加属性。Backbone的extend方法通过扩展prototype属性实现了类似于‘类方法’，使得每个通过new关键字创建的对象都共享同一个函数对象；通过扩展对象本身实现了静态方法，可直接通过函数对象名访问。</p>
+									<p>Model,Collection,Router,View,History都会使用extend作为继承的方法。这是框架中非常重要的一个方法，是代码模块化，可扩展的基础。</p>
+									<h4>constructor/initialize</h4>
+									<p>constructor是Javascript对象提供的方法，不是Backbone定义的方法。</p>
+									<div class="code-block">
+<pre><span style='color:#3f7f59; '>//Line 248</span>
+<span style='color:#3f7f59; '>//Model的constructor</span>
+<span style='color:#7f0055; font-weight:bold; '>var</span> Model = Backbone.Model = <span style='color:#7f0055; font-weight:bold; '>function</span>(attributes, options) {
+    <span style='color:#7f0055; font-weight:bold; '>var</span> attrs = attributes || {};
+    options || (options = {});
+    <span style='color:#7f0055; font-weight:bold; '>this</span>.cid = _.uniqueId(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>c</span><span style='color:#2a00ff; '>'</span>);
+    <span style='color:#7f0055; font-weight:bold; '>this</span>.attributes = {};
+    <span style='color:#7f0055; font-weight:bold; '>if</span> (options.collection) <span style='color:#7f0055; font-weight:bold; '>this</span>.collection = options.collection;
+    <span style='color:#7f0055; font-weight:bold; '>if</span> (options.<span style='color:#7f0055; font-weight:bold; '>parse</span>) attrs = <span style='color:#7f0055; font-weight:bold; '>this</span>.<span style='color:#7f0055; font-weight:bold; '>parse</span>(attrs, options) || {};
+    attrs = _.defaults({}, attrs, _.result(<span style='color:#7f0055; font-weight:bold; '>this</span>, <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>defaults</span><span style='color:#2a00ff; '>'</span>));
+    <span style='color:#7f0055; font-weight:bold; '>this</span>.set(attrs, options);
+    <span style='color:#7f0055; font-weight:bold; '>this</span>.changed = {};
+    <span style='color:#7f0055; font-weight:bold; '>this</span>.initialize.apply(<span style='color:#7f0055; font-weight:bold; '>this</span>, arguments);
+};
+</pre>
+<pre>_.extend(Model.prototype, Events, {
+    <span style='color:#3f7f59; '>//...</span>
+
+    <span style='color:#3f7f59; '>// Initialize is an empty function by default. Override it with your own</span>
+    <span style='color:#3f7f59; '>// initialization logic.</span>
+    <span style='color:#3f7f59; '>// 可自定义initialize方法，默认什么都不做</span>
+    initialize: <span style='color:#7f0055; font-weight:bold; '>function</span>(){}
+
+    <span style='color:#3f7f59; '>//...</span>
+});
+</pre>
+									</div>
+									<p>在实例化一个Model对象时，首先调用constructor方法，然后在函数的最后调用initialize方法。initialize方法可以在constructor的第一个参数中进行设置。</p>
+									<h4>set</h4>
+									<p>该方法用来对attributes中的属性进行赋值。</p>
+									<div class="code-block">
+<pre>_.extend(Model.prototype, Events, {
+    <span style='color:#3f7f59; '>//...</span>
+
+    <span style='color:#3f7f59; '>// Set a hash of model attributes on the object, firing `"change"`. This is</span>
+    <span style='color:#3f7f59; '>// the core primitive operation of a model, updating the data and notifying</span>
+    <span style='color:#3f7f59; '>// anyone who needs to know about the change in state. The heart of the beast.</span>
+    <span style='color:#3f7f59; '>// options: unset : 删除对应的属性</span>
+    <span style='color:#3f7f59; '>//          silent: 不触发修改属性的change事件</span>
+    set: <span style='color:#7f0055; font-weight:bold; '>function</span>(key, val, options) {
+      <span style='color:#7f0055; font-weight:bold; '>var</span> attr, attrs, unset, changes, silent, changing, prev, current;
+      <span style='color:#7f0055; font-weight:bold; '>if</span> (key == <span style='color:#7f0055; font-weight:bold; '>null</span>) <span style='color:#7f0055; font-weight:bold; '>return</span> <span style='color:#7f0055; font-weight:bold; '>this</span>;
+
+      <span style='color:#3f7f59; '>// Handle both `"key", value` and `{key: value}` -style arguments.</span>
+      <span style='color:#3f7f59; '>// 两种形式的参数</span>
+      <span style='color:#7f0055; font-weight:bold; '>if</span> (<span style='color:#7f0055; font-weight:bold; '>typeof</span> key === <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>object</span><span style='color:#2a00ff; '>'</span>) {
+        attrs = key;
+        options = val;
+      } <span style='color:#7f0055; font-weight:bold; '>else</span> {
+        (attrs = {})[key] = val;
+      }
+
+      options || (options = {});
+
+      <span style='color:#3f7f59; '>// Run validation.</span>
+      <span style='color:#7f0055; font-weight:bold; '>if</span> (!<span style='color:#7f0055; font-weight:bold; '>this</span>._validate(attrs, options)) <span style='color:#7f0055; font-weight:bold; '>return</span> <span style='color:#7f0055; font-weight:bold; '>false</span>;
+
+      <span style='color:#3f7f59; '>// Extract attributes and options.</span>
+      unset           = options.unset;
+      silent          = options.silent;
+      changes         = [];
+      changing        = <span style='color:#7f0055; font-weight:bold; '>this</span>._changing;
+      <span style='color:#7f0055; font-weight:bold; '>this</span>._changing  = <span style='color:#7f0055; font-weight:bold; '>true</span>;           <span style='color:#3f7f59; '>//用_changing属性实现对attributes属性的锁，因为Javascript是单线程的，所以不需要原子操作</span>
+
+      <span style='color:#7f0055; font-weight:bold; '>if</span> (!changing) {
+        <span style='color:#7f0055; font-weight:bold; '>this</span>._previousAttributes = _.clone(<span style='color:#7f0055; font-weight:bold; '>this</span>.attributes);
+        <span style='color:#7f0055; font-weight:bold; '>this</span>.changed = {};
+      }
+      current = <span style='color:#7f0055; font-weight:bold; '>this</span>.attributes, prev = <span style='color:#7f0055; font-weight:bold; '>this</span>._previousAttributes;
+
+      <span style='color:#3f7f59; '>// Check for changes of `id`.</span>
+      <span style='color:#7f0055; font-weight:bold; '>if</span> (<span style='color:#7f0055; font-weight:bold; '>this</span>.idAttribute <span style='color:#7f0055; font-weight:bold; '>in</span> attrs) <span style='color:#7f0055; font-weight:bold; '>this</span>.id = attrs[<span style='color:#7f0055; font-weight:bold; '>this</span>.idAttribute];
+
+      <span style='color:#3f7f59; '>// For each `set` attribute, update or delete the current value.</span>
+      <span style='color:#7f0055; font-weight:bold; '>for</span> (attr <span style='color:#7f0055; font-weight:bold; '>in</span> attrs) {
+        val = attrs[attr];
+        <span style='color:#7f0055; font-weight:bold; '>if</span> (!_.isEqual(current[attr], val)) changes.push(attr);
+        <span style='color:#7f0055; font-weight:bold; '>if</span> (!_.isEqual(prev[attr], val)) {
+          <span style='color:#7f0055; font-weight:bold; '>this</span>.changed[attr] = val;
+        } <span style='color:#7f0055; font-weight:bold; '>else</span> {
+          <span style='color:#7f0055; font-weight:bold; '>delete</span> <span style='color:#7f0055; font-weight:bold; '>this</span>.changed[attr];
+        }
+        unset ? <span style='color:#7f0055; font-weight:bold; '>delete</span> current[attr] : current[attr] = val;
+      }
+
+      <span style='color:#3f7f59; '>// Trigger all relevant attribute changes.</span>
+      <span style='color:#7f0055; font-weight:bold; '>if</span> (!silent) {
+        <span style='color:#7f0055; font-weight:bold; '>if</span> (changes.<span style='color:#7f0055; font-weight:bold; '>length</span>) <span style='color:#7f0055; font-weight:bold; '>this</span>._pending = options;
+        <span style='color:#7f0055; font-weight:bold; '>for</span> (<span style='color:#7f0055; font-weight:bold; '>var</span> i = 0, l = changes.<span style='color:#7f0055; font-weight:bold; '>length</span>; i &lt; l; i++) {
+            <span style='color:#3f7f59; '>//触发change事件</span>
+            <span style='color:#7f0055; font-weight:bold; '>this</span>.trigger(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>change:</span><span style='color:#2a00ff; '>'</span> + changes[i], <span style='color:#7f0055; font-weight:bold; '>this</span>, current[changes[i]], options);
+        }
+      }
+
+      <span style='color:#3f7f59; '>// You might be wondering why there's a `while` loop here. Changes can</span>
+      <span style='color:#3f7f59; '>// be recursively nested within `"change"` events.</span>
+      <span style='color:#3f7f59; '>// ??</span>
+      <span style='color:#7f0055; font-weight:bold; '>if</span> (changing) <span style='color:#7f0055; font-weight:bold; '>return</span> <span style='color:#7f0055; font-weight:bold; '>this</span>;
+      <span style='color:#7f0055; font-weight:bold; '>if</span> (!silent) {
+        <span style='color:#7f0055; font-weight:bold; '>while</span> (<span style='color:#7f0055; font-weight:bold; '>this</span>._pending) {
+          options = <span style='color:#7f0055; font-weight:bold; '>this</span>._pending;
+          <span style='color:#7f0055; font-weight:bold; '>this</span>._pending = <span style='color:#7f0055; font-weight:bold; '>false</span>;
+          <span style='color:#7f0055; font-weight:bold; '>this</span>.trigger(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>change</span><span style='color:#2a00ff; '>'</span>, <span style='color:#7f0055; font-weight:bold; '>this</span>, options);
+        }
+      }
+      <span style='color:#7f0055; font-weight:bold; '>this</span>._pending = <span style='color:#7f0055; font-weight:bold; '>false</span>;
+      <span style='color:#7f0055; font-weight:bold; '>this</span>._changing = <span style='color:#7f0055; font-weight:bold; '>false</span>;
+      <span style='color:#7f0055; font-weight:bold; '>return</span> <span style='color:#7f0055; font-weight:bold; '>this</span>;
+    }
+
+    <span style='color:#3f7f59; '>//...</span>
+});
+</pre>
+									</div>
+									<p>这是Model模块的一个核心方法，set方法会和Events模块紧密结合，从而实现监听Model中数据变化的机制，以通知视图更新或者更新其他的属性等。</p>
+									<h4>fetch</h4>
+									<p>该方法用来从服务器获取Model中的数据。</p>
+									<div class="code-block">
+
 									</div>
 								</div>
 							</article>
@@ -1493,12 +1435,12 @@ Model.extend = Collection.extend = Router.extend = View.extend = History.extend 
 								<div class="title">
 									<h1>Backbone的View</h1>
 									<p class="subline">Backbone组件之一View</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/6/5</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/6/5</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
 								<div>
-									
+
 								</div>
 							</article>
 						</div>
@@ -1509,7 +1451,7 @@ Model.extend = Collection.extend = Router.extend = View.extend = History.extend 
 								<div class="title">
 									<h1>Backbone的Controller</h1>
 									<p class="subline">Backbone组件之一Controller</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/6/5</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/6/5</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
@@ -1524,7 +1466,7 @@ Model.extend = Collection.extend = Router.extend = View.extend = History.extend 
 								<div class="title">
 									<h1>Backbone的Router</h1>
 									<p class="subline">Backbone组件之一Router</p>
-									<p><strong>姚川松</strong> 写于 <strong>2015/6/5</strong></p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/6/5</strong></p>
 								</div>
 							</header>
 							<article class="article-content">
@@ -1536,6 +1478,8 @@ Model.extend = Collection.extend = Router.extend = View.extend = History.extend 
 				</div>
 			</div><!-- /content-wrap -->
 		</div><!-- /container -->
+		<script src="Pages/techBlog/highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
 		<script src="js/jquery-1.11.2.js"></script>
 		<script src="js/classie.js"></script>
 		<script src="js/main.js"></script>
