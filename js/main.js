@@ -43,7 +43,7 @@
 	  						history.pushState(null,null,newUrl);
 							loader.hide();
 							$(pages[ nextPageIndex ]).empty();
-							$(pages[ nextPageIndex ]).innerHTML = response;
+							pages[ nextPageIndex ].innerHTML = response;
 							classie.removeClass( pages[ currentPage ], 'show' );
 							currentPage = currentPage ? 0 : 1;
 							classie.addClass( pages[ currentPage ], 'show' );
