@@ -10,7 +10,8 @@
  */
 (function() {
 	var indexNameMap = {
-		'photo-blog': 'travelPage.html',
+		'travelPage': 'travelPage.html',
+		'photo-blog': 'Pages/techBlog/BlogArticles/Javascript/javascript-object-orientied.html'
 	}
 	var htmlPath;
 	var nextPageIndex;
