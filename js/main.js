@@ -15,6 +15,7 @@
 	}
 	var htmlPath;
 	var nextPageIndex;
+	var targetPage;
 
 	//page loading init
 	var pageWrap = document.getElementById( 'pagewrap' ),
@@ -28,32 +29,33 @@
 			trigger.addEventListener( 'click', function( ev ) {
 				ev.preventDefault();
 				loader.show();
-				htmlPath = '/' + indexNameMap[$(ev.target).attr('target')];
-				nextPageIndex = currentPage ? 0 : 1;
-				if(htmlPath) {
-					$.ajax({
-						url: htmlPath,
-						method: 'GET',
-						dataType: 'html'
-					}).then(function(response) {
-						setTimeout(function(){
-	  						var newUrl = htmlPath;
+				setTimeout(function() {
+					targetPage = indexNameMap[$(ev.target).attr('target')]
+					htmlPath = '/' + targetPage;
+					nextPageIndex = currentPage ? 0 : 1;
+					if(htmlPath) {
+						$.ajax({
+							url: htmlPath,
+							method: 'GET',
+							dataType: 'html'
+						}).then(function(response) {
+	  						var newUrl = targetPage;
 	  						history.pushState(null,null,newUrl);
 							loader.hide();
 							$(pages[ nextPageIndex ]).innerHTML = response;
 							classie.removeClass( pages[ currentPage ], 'show' );
 							currentPage = currentPage ? 0 : 1;
 							classie.addClass( pages[ currentPage ], 'show' );
-						}, 200);
-					});
-					// Following request is synchronous ??????
-					// $(pages[ nextPageIndex ]).load(htmlPath, function(){
-					// 	loader.hide();
-					// 	classie.removeClass( pages[ currentPage ], 'show' );
-					// 	currentPage = currentPage ? 0 : 1;
-					// 	classie.addClass( pages[ currentPage ], 'show' );
-					// });
-				}
+						});
+						// Following request is synchronous ??????
+						// $(pages[ nextPageIndex ]).load(htmlPath, function(){
+						// 	loader.hide();
+						// 	classie.removeClass( pages[ currentPage ], 'show' );
+						// 	currentPage = currentPage ? 0 : 1;
+						// 	classie.addClass( pages[ currentPage ], 'show' );
+						// });
+					}
+				}, 300);
 			} );
 		} );	
 	}
@@ -61,19 +63,14 @@
 	pageLoadingInit();
 
 	window.addEventListener('popstate', function(event) {
-	  	$.ajax({
-			url: window.location.pathname,
-			method: 'GET',
-			dataType: "html"
-		}).then(function(response) {
-				window.location.pathname = htmlPath;
-				loader.hide();
-				nextPageIndex = currentPage ? 0 : 1;
-				$(pages[ nextPageIndex ]).innerHTML = response;
-				classie.removeClass( pages[ currentPage ], 'show' );
-				currentPage = currentPage ? 0 : 1;
-				classie.addClass( pages[ currentPage ], 'show' );
-		});
+		// loader.show();
+		window.location.pathname = htmlPath;
+		// loader.hide();
+		// nextPageIndex = currentPage ? 0 : 1;
+		// $(pages[ nextPageIndex ]).innerHTML = response;
+		// classie.removeClass( pages[ currentPage ], 'show' );
+		// currentPage = currentPage ? 0 : 1;
+		// classie.addClass( pages[ currentPage ], 'show' );
 	});
 
 })();
