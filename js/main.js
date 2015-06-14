@@ -30,7 +30,7 @@
 				htmlPath = indexNameMap[$(ev.target).attr('target')];
 				nextPageIndex = currentPage ? 0 : 1;
 				if(htmlPath) {
-					$(pages[ nextPageIndex ]).load(htmlPath).then(function(){
+					$(pages[ nextPageIndex ]).load(htmlPath, function(){
 						loader.hide();
 						classie.removeClass( pages[ currentPage ], 'show' );
 						currentPage = currentPage ? 0 : 1;
