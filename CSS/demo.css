@@ -168,17 +168,6 @@ section h2 {
 	border-color: #fff;
 }
 
-.pageload-link {
-	padding: 13px 20px;
-	color: #fff;
-	background: rgba(0,0,0,0.25);
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	font-size: 0.6em;
-	white-space: nowrap;
-	z-index: 1;
-}
-
 .pageload-link:hover {
 	color: #fff;
 	background: rgba(0,0,0,0.2);

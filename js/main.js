@@ -27,7 +27,7 @@
 			trigger.addEventListener( 'click', function( ev ) {
 				ev.preventDefault();
 				loader.show();
-				htmlPath = indexNameMap[ev.target.attr('target')];
+				htmlPath = indexNameMap[$(ev.target).attr('target')];
 				nextPageIndex = currentPage ? 0 : 1;
 				if(htmlPath) {
 					$(pages[ nextPageIndex ]).load(htmlPath).then(function(){
