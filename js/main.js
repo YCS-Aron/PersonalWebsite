@@ -42,6 +42,7 @@
 	  						var newUrl = targetPage;
 	  						history.pushState(null,null,newUrl);
 							loader.hide();
+							$(pages[ nextPageIndex ]).clear();
 							$(pages[ nextPageIndex ]).innerHTML = response;
 							classie.removeClass( pages[ currentPage ], 'show' );
 							currentPage = currentPage ? 0 : 1;
