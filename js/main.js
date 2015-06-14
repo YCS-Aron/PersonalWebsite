@@ -35,6 +35,8 @@
 						method: 'GET',
 						dataType: "html"
 					}).then(function(response) {
+  						var newUrl = htmlPath;
+  						history.pushState(null,null,newUrl);
 						loader.hide();
 						$(pages[ nextPageIndex ]).innerHTML = response;
 						classie.removeClass( pages[ currentPage ], 'show' );
@@ -49,21 +51,14 @@
 					// 	classie.addClass( pages[ currentPage ], 'show' );
 					// });
 				}
-
-				// // after some time hide loader
-				// setTimeout( function() {
-				// 	loader.hide();
-
-				// 	classie.removeClass( pages[ currentPage ], 'show' );
-				// 	// update..
-				// 	currentPage = currentPage ? 0 : 1;
-				// 	classie.addClass( pages[ currentPage ], 'show' );
-
-				// }, 2000 );
 			} );
 		} );	
 	}
 
 	pageLoadingInit();
+
+	window.addEventListener('popstate', function(event) {
+	  	console.log(event);
+	});
 
 })();
