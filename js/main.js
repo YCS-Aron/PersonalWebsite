@@ -30,12 +30,23 @@
 				htmlPath = indexNameMap[$(ev.target).attr('target')];
 				nextPageIndex = currentPage ? 0 : 1;
 				if(htmlPath) {
-					$(pages[ nextPageIndex ]).load(htmlPath, function(){
+					$.ajax({
+						url: htmlPath,
+						method: 'GET',
+						dataType: "html"
+					}).then(function(response) {
+						$(pages[ nextPageIndex ]).innerHTML = response;
 						loader.hide();
 						classie.removeClass( pages[ currentPage ], 'show' );
 						currentPage = currentPage ? 0 : 1;
 						classie.addClass( pages[ currentPage ], 'show' );
-					});
+					})
+					// $(pages[ nextPageIndex ]).load(htmlPath, function(){
+					// 	loader.hide();
+					// 	classie.removeClass( pages[ currentPage ], 'show' );
+					// 	currentPage = currentPage ? 0 : 1;
+					// 	classie.addClass( pages[ currentPage ], 'show' );
+					// });
 				}
 
 				// // after some time hide loader
