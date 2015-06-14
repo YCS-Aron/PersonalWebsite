@@ -66,8 +66,7 @@
 			method: 'GET',
 			dataType: "html"
 		}).then(function(response) {
-				var newUrl = htmlPath;
-				history.pushState(null,null,newUrl);
+				window.location.pathname = htmlPath;
 				loader.hide();
 				nextPageIndex = currentPage ? 0 : 1;
 				$(pages[ nextPageIndex ]).innerHTML = response;
