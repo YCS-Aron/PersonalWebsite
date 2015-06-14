@@ -33,15 +33,17 @@
 					$.ajax({
 						url: htmlPath,
 						method: 'GET',
-						dataType: "html"
+						dataType: 'html'
 					}).then(function(response) {
-  						var newUrl = htmlPath;
-  						history.pushState(null,null,newUrl);
-						loader.hide();
-						$(pages[ nextPageIndex ]).innerHTML = response;
-						classie.removeClass( pages[ currentPage ], 'show' );
-						currentPage = currentPage ? 0 : 1;
-						classie.addClass( pages[ currentPage ], 'show' );
+						setTimeout(function(){
+	  						var newUrl = htmlPath;
+	  						history.pushState(null,null,newUrl);
+							loader.hide();
+							$(pages[ nextPageIndex ]).innerHTML = response;
+							classie.removeClass( pages[ currentPage ], 'show' );
+							currentPage = currentPage ? 0 : 1;
+							classie.addClass( pages[ currentPage ], 'show' );
+						}, 200);
 					});
 					// Following request is synchronous ??????
 					// $(pages[ nextPageIndex ]).load(htmlPath, function(){
