@@ -1,0 +1,66 @@
+<div class="blog-body">
+							<header class="header">
+								<div class="title">
+									<h1>Javascript变量提升</h1>
+									<p class="subline">关于Javascript中变量提升和域的一些理解</p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/5/6</strong></p>
+								</div>
+							</header>
+							<article class="article-content">
+								<div>
+									<p>目前绝大多数浏览器厂商都采用Javascript实现了各自浏览器的DOM和BOM，因此Javascript是前端开发必需掌握的一门语言。Javascript是运行在浏览器中的Javascript引擎上的脚本语言，它是一种基于原型的面向对象的语言，它拥有很多独特的语言特性，这些特性使得Javascript这门语言变得非常的有趣。</p>
+									<p>首先看一个变量提升的例子</p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#7f0055; font-weight:bold; '>var</span> testvar = 1;
+<span style='color:#7f0055; font-weight:bold; '>var</span> testvar2 = 3;
+<span style='color:#7f0055; font-weight:bold; '>function</span> myfun() {
+	console.<span style='color:#7f0055; font-weight:bold; '>log</span>(testvar);
+	<span style='color:#7f0055; font-weight:bold; '>if</span>(!testvar) {
+		<span style='color:#7f0055; font-weight:bold; '>var</span> testvar = 2;
+	}
+	console.<span style='color:#7f0055; font-weight:bold; '>log</span>(testvar);		
+}
+myfun();
+<span style='color:#7f0055; font-weight:bold; '>function</span> myfun2() {
+	console.<span style='color:#7f0055; font-weight:bold; '>log</span>(testvar2);		
+}
+myfun2();
+</pre>
+									</div>
+									<div class="code-block code-result">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#7f0055; font-weight:bold; '>undefined</span> 2 3
+</pre>
+									</div>
+									<p>函数内部可以访问外部函数域中的数据，可是在myfun中输出的testvar的值是undefined，这就是变量提升引起的。</p>
+									<p>变量提升的意思是：变量声明和函数声明会在解释的过程中，将声明语句提升到方法体的顶端。而且无论被提升的变量声明代码是不是死代码(即永远都不会被执行的代码)。</p>
+									<p>之所以有变量提升，是因为Javascript是解释性语言。不会想Java,C++那样经过编译？</p>
+									<p>要理解变量提升，还需要理解Javascript的一些其他特性，包括<span class="key-word">函数声明方式</span>，<span class="key-word">闭包</span>，<span class="key-word">域</span></p>
+									<h3>两种不同的函数声明方式</h3>
+									<p>函数声明方式有两种，一种使用了var，另一种没直接指定函数名。</p>
+									<div class="code-block">
+<pre style='color:#000000;background:#ffffff;'><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#7f0055; font-weight:bold; '>function</span> <span style='color:#7f0055; font-weight:bold; '>test</span>() {  
+     fun1(); <span style='color:#3f7f59; '>// TypeError "fun1 is not a function"  </span>
+     fun2(); 
+    <span style='color:#7f0055; font-weight:bold; '>var</span> fun1 = <span style='color:#7f0055; font-weight:bold; '>function</span> () { <span style='color:#3f7f59; '>// 变量指向函数表达式  </span>
+        <span style='color:#3f7f59; '>//...</span>
+    }  
+    <span style='color:#7f0055; font-weight:bold; '>function</span> fun2() { <span style='color:#3f7f59; '>// 函数声明 函数名为bar  </span>
+        <span style='color:#3f7f59; '>//...</span>
+    }  
+};  
+<span style='color:#7f0055; font-weight:bold; '>test</span>();
+</pre>
+									</div>
+									<p>这两种方式的差别有几点。第一，使用var的函数声明方式会被提升，但是只是变量被提升，函数体的赋值并没有被提升。第二，</p>
+									<h3>提升的位置</h3>
+									<p>提升的变量声明放在了什么地方？放在了该域的最前面。</p>
+									<p>没有var关键字，是不会提升的</p>
+									<h3>变量提升过程中的优先级</h3>
+									<p>这里说的优先级是指同样的两个变量名，哪种类型的变量声明会放在提升后的声明部分的前面。在函数体中，函数声明的优先级会高于变量的优先级。在形参中，拥有相同变量名的形参中的最后一个具有最高优先级，也就是说使用时访问的是最后一个，哪怕它是undefined<p>
+									<h3>如何避免变量提升带来的问题</h3>
+								</div>
+							</article>
+						</div> <!-- blog-body -->

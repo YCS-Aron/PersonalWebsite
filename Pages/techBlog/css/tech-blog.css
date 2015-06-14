@@ -1,16 +1,15 @@
-html, body, .container, .header {
-	height: 100%;
-}
-
 .blog-body {
 	font-family: 'Raleway', Arial, sans-serif;
 	height: 100%;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-left: 20%;
-  	margin-right: 20%;
-  	width: 60%;
-  	position: absolute;
+	padding-left: 40px;
+	padding-right: 40px;
+	margin-left: 17%;
+  	margin-right: 17%;
+  	width: 66%;
+  	box-shadow: 1px 5px 5px 5px rgba(0,0,0,.1);
+  	margin-top: 50px;
+  	margin-bottom: 50px;
+  	background-color: rgb(242, 243, 246);
 }
 
 /* *************************** Header *************************** */
@@ -18,15 +17,15 @@ html, body, .container, .header {
 	position: relative;
 	height: 200px;
 	width: 100%;
-	margin-top: 50px;
+	padding-top: 50px;
 }
 
 .title {
-	z-index: 1000;
+	z-index: 1;
 	padding: 0 1.25em;
 	width: 100%;
 	text-align: center;
-	position: absolute;
+	/*position: absolute;*/
 	top: 25%;
 }
 

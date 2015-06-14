@@ -1,0 +1,102 @@
+<div class="blog-body">
+							<header class="header">
+								<div class="title">
+									<h1>Javascript函数和域</h1>
+									<p class="subline">对Javascript域的理解</p>
+									<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/5/16</strong></p>
+								</div>
+							</header>
+							<article class="article-content">
+								<div>
+									<p>函数作为编程语言的一个重要特性，在Javascript中，函数就是对象，函数就是闭包，因此函数包含了Javascript的大部分精髓。我们需要了解函数声明的几种方式，函数调用的几种方式，函数的域是如何管理的，以及如何通过函数来实现面向对象编程，。</p>
+									<h3>Javascript中的函数</h3>
+									<p>Javascript中的函数有很多特别的地方。每个函数都有一个<span class="key-word">this</span>变量和<span class="key-word">arguments</span>变量，以及一个<span class="key-word">prototype</span>变量。this管理着实例对象上绑定的数据，可以通过this变量来实现数据访问权限的控制，this的值在不同的情况下是不一样的。而arguments是调用该函数时的参数列表，prototype是javascript实现面向对象的关键，javascript通过管理prototype链实现对象的扩展，关于prototype的详细内容参考<span class="key-word">Javascript的面向对象</span>。</p>
+									<h3>函数的声明方式</h3>
+									<p>函数的声明方式有两种，一种是匿名函数定义方式，另一种是指定函数名定义方式。这两种声明方式的主要区别在于<span class="key-word">变量提升</span>时，只有匿名函数定义方式并进行变量赋值才会被变量提升，虽然在执行时没有区别。例子如下：</p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#7f0055; font-weight:bold; '>var</span> myfun = <span style='color:#7f0055; font-weight:bold; '>function</span>() {	<span style='color:#3f7f59; '>//变量myfun会被提升</span>
+	<span style='color:#3f7f59; '>//...</span>
+};
+<span style='color:#7f0055; font-weight:bold; '>function</span> myfun2() {		<span style='color:#3f7f59; '>//变量myfun2不会提升</span>
+	<span style='color:#3f7f59; '>//...</span>
+};
+</pre>
+									</div>
+									<h3>函数的调用方式</h3>
+									<p>函数的调用方式分为三种，一种是最常用的通过函数名直接调用，第二种是匿名函数的调用，第三种是通过Function对象的call和apply方法进行调用。例子如下：</p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+myfun();		<span style='color:#3f7f59; '>//函数名直接调用</span>
+(<span style='color:#7f0055; font-weight:bold; '>function</span>(argsA, argsA){		<span style='color:#3f7f59; '>//匿名函数调用</span>
+	<span style='color:#3f7f59; '>//...</span>
+})(a, b);
+<span style='color:#7f0055; font-weight:bold; '>var</span> myfun2 = <span style='color:#7f0055; font-weight:bold; '>function</span>() {		
+	console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#7f0055; font-weight:bold; '>this</span>.name);
+};
+myfun2.call({name: <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Aron</span><span style='color:#2a00ff; '>'</span>});	<span style='color:#3f7f59; '>//通过Function对象提供的call和apply调用</span>
+myfun2.apply({name: <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Aron</span><span style='color:#2a00ff; '>'</span>});
+</pre>
+									</div>
+									<p>匿名函数的调用方式是为了立刻执行一段操作，并且为这段操作创造一个新的数据域。当需要在全局范围内执行一段代码时，通过这种方式可以避免污染全局数据。所有函数都从Function对象扩展而来，通过Function对象提供的call和apply方法调用函数时，会为该函数传入一个对象以替换掉函数中的this变量，也就是为函数提供了一个新的执行环境，如果将"子类"的prototype设置为"基类"的对象，就可以实现继承，当在重载的方法中需要调用子类的方法时，通过这种调用方法可以达到"逻辑是基类的，数据是子类的"的目的。例子如下：</p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#3f7f59; '>//基类 base</span>
+<span style='color:#7f0055; font-weight:bold; '>function</span> base(a) {
+    <span style='color:#7f0055; font-weight:bold; '>this</span>.a = a;
+};
+base.prototype.fun = <span style='color:#7f0055; font-weight:bold; '>function</span>() {
+    console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>base</span><span style='color:#2a00ff; '>'</span> + <span style='color:#7f0055; font-weight:bold; '>this</span>.a);
+};
+<span style='color:#3f7f59; '>//子类child</span>
+<span style='color:#7f0055; font-weight:bold; '>function</span> child(a){
+    base.apply(<span style='color:#7f0055; font-weight:bold; '>this</span>, arguments);
+};
+child.prototype.fun = <span style='color:#7f0055; font-weight:bold; '>function</span>() {  <span style='color:#3f7f59; '>//对base的fun方法进行重载</span>
+    base.prototype.fun.call(<span style='color:#7f0055; font-weight:bold; '>this</span>);  <span style='color:#3f7f59; '>//调用base中的fun方法，并设置执行环境为当前child对象</span>
+    console.<span style='color:#7f0055; font-weight:bold; '>log</span>(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>child</span><span style='color:#2a00ff; '>'</span> + <span style='color:#7f0055; font-weight:bold; '>this</span>.a);
+};
+(<span style='color:#7f0055; font-weight:bold; '>new</span> child(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Tim</span><span style='color:#2a00ff; '>'</span>)).fun();       <span style='color:#3f7f59; '>//output childTim</span>
+</pre>
+									</div>
+									<h3>Javascript中函数的域</h3>
+									<h4>函数作用域</h4>
+									<p>Javascript没有块作用域，即不会像C++或Java那样可以在语句块内部重新设定数据域，Javascript只有函数作用域。例子如下：</p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#7f0055; font-weight:bold; '>var</span> a = 10;
+<span style='color:#7f0055; font-weight:bold; '>var</span> fun = <span style='color:#7f0055; font-weight:bold; '>function</span>() {
+    <span style='color:#3f7f59; '>//重新开始一个数据域</span>
+    <span style='color:#7f0055; font-weight:bold; '>var</span> a = 20;
+};
+fun();
+console.<span style='color:#7f0055; font-weight:bold; '>log</span>(a);     <span style='color:#3f7f59; '>//output 10</span>
+
+<span style='color:#7f0055; font-weight:bold; '>var</span> b = 10;
+<span style='color:#7f0055; font-weight:bold; '>for</span>(<span style='color:#7f0055; font-weight:bold; '>var</span> i = 0; i &lt; 1; i++) {
+    <span style='color:#3f7f59; '>//任然是在全局数据域</span>
+    <span style='color:#7f0055; font-weight:bold; '>var</span> b = 20;
+}
+console.<span style='color:#7f0055; font-weight:bold; '>log</span>(b);     <span style='color:#3f7f59; '>//output 20</span>
+</pre>
+									</div>
+									<p>每个函数都有一个可以访问的数据域，这个数据域由定义函数的上下文和该函数本身的上下文决定，下面给个例子：</p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#7f0055; font-weight:bold; '>var</span> global_var;
+<span style='color:#7f0055; font-weight:bold; '>var</span> obj = <span style='color:#7f0055; font-weight:bold; '>function</span>(a) {
+	<span style='color:#7f0055; font-weight:bold; '>this</span>.publicA = a;
+	<span style='color:#7f0055; font-weight:bold; '>var</span> privateA;
+	<span style='color:#7f0055; font-weight:bold; '>this</span>.getAll = <span style='color:#7f0055; font-weight:bold; '>function</span>() {
+		console.<span style='color:#7f0055; font-weight:bold; '>log</span>([privateA, <span style='color:#7f0055; font-weight:bold; '>this</span>.publicA, global_var]);
+	};
+};
+(<span style='color:#7f0055; font-weight:bold; '>new</span> obj(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>Aron</span><span style='color:#2a00ff; '>'</span>)).getAll();
+</pre>
+									</div>
+									<p>obj是一个函数，因为全局数据域是obj的上一级域，obj函数中保存了对全局作用域的引用，因此obj中可以访问到global_var。在obj的内部，即其构造函数内，定义了一个私有变量privateA和一个绑定在this上的公有变量publicA，之所以是共有是因为在用关键字new调用函数时会将this作为返回值返回，在外部就可以通过返回值访问publicA。this上还有一个共有方法getAll，getAll是一个函数，实际上也是一个闭包，这个闭包的数据域也包括了父数据域即obj的数据域和本身内部定义的数据域（this应该算作内部数据域）。在这里，内部数据域只有一个this变量，而且已经指定为obj实例，注意，这里的getAll是绑定在obj对象上的，不是绑定在obj的prototype上的，这两者是有很大区别的。</p>
+									<p>当我们明确了一个函数所处的外部数据域和内部数据域时，访问一个数据会先从内部数据域开始，如果没有匹配到变量名，就到外部数据域的内部数据域中去找，如果任然没有找到，就继续深入到外部数据域的外部数据域，直到找到为止。没有则返回undefined。</p>
+									<!-- 如何显示图片 ？？？？？-->
+								</div>
+							</article>
+						</div>

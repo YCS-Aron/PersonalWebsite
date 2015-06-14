@@ -8,15 +8,15 @@ body {
 }
 
 body, 
-.container, 
+html,
+.body-container, 
 .content-wrap {
-	overflow: hidden;
 	width: 100%;
 	height: 100%;
 }
 
-.container {
-	background: #47506E;
+#pagewrap {
+	height: 100%;
 }
 
 .content-wrap {
@@ -28,7 +28,7 @@ body,
 }
 
 .content {
-	position: relative;
+	/*position: relative;*/
 	background: #fff;
 	height: 100%;
   	overflow-x: hidden;
@@ -36,7 +36,7 @@ body,
 
 /* Overlay */
 .content::before {
-	position: absolute;
+	/*position: absolute;*/
 	top: 0;
 	left: 0;
 	z-index: 10;
@@ -54,142 +54,6 @@ body,
 div.block-height-one-unit {
 	height: 56px;
 	width: 100%;
-}
-
-/* Aside menu and profile */
-/* Main Toggle Menu */
-.menu-wrap {
-	position: absolute;
-	font-weight: 700;
-	opacity: 0;
-	-webkit-transition: opacity 1s;
-	transition: opacity 1s;
-}
-
-/*Top*/
-.menu-wrap .menu-top {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	line-height: 58px;		/* this should equal height of icon list*/
-	width: 700px;			/* calculate form width of icon*/
-}
-
-/*Profile*/
-.menu-wrap .profile {
-	display: inline-block;
-	padding: 8px 10px;
-	line-height: 93px;
-	height: 140px;
-	position: relative;
-}
-
-.menu-wrap .profile {
-	width: 300px;
-}
-
-.menu-wrap .profile img {
-	position: absolute;
-	height: 100px;
-	width: 100px;
-	top: 21px;
-	left: 42px;
-	border-radius: 50%;
-}
-
-.menu-wrap .profile .name {
-	margin-left: 150px;
-	font-size: 1.5em;
-	color: #b8b7ad;
-}
-
-.menu-wrap .icon-list {
-	position: absolute;
-	top: 2px;
-	left: 320px;
-}
-
-.icon-list {
-	display: inline-block;
-	font-size: 1.25em;
-}
-
-.icon-list a i {
-	color: #b8b7ad;
-}
-
-.icon-list a i:hover {
-	color: #c94e50;
-}
-
-.icon-list a {
-	margin: 0 1em 0 0;
-	padding: 0;
-}
-
-.icon-list a:hover {
-	cursor: pointer;
-}
-
-@media screen and (max-width: 32em) {
-	.icon-list {
-		padding-left: 1em;
-	}
-}
-
-.menu-side a {
-	height: 50px;
-	display: block;
-	padding: 13px 10px 10px 20px;
-	outline: none;
-	box-shadow: inset 0 -1px rgba(0,0,0,0.2);
-	text-shadow: 0 0 1px rgba(255,255,255,0.1);
-	letter-spacing: 1px;
-	font-weight: 400;
-	color: #b8b7ad;
-	font-weight: 700;
-	-webkit-transition: background 0.3s, box-shadow 0.3s;
-	transition: background 0.3s, box-shadow 0.3s;
-}
-
-.menu-side a:hover {
-	cursor: pointer;
-	color: #c94e50;
-}
-
-.menu-side a:first-child {
-	border-top: 1px solid rgba(0,0,0,0.1);
-}
-
-.menu-side {
-	width: 300px;
-	font-family: sans-serif;
-    font-size: 18px; 
-}
-
-/* Shown menu */
-.show-menu .menu-wrap {
-	opacity: 1;
-}
-
-.show-menu .content-wrap,
-.show-menu .menu-button {
-	-webkit-transform: translate3d(300px,60px,0);
-	transform: translate3d(300px,60px,0);
-	overflow: hidden;
-}
-
-.show-menu .content {
-	/*  disable scroll event */
-	overflow-y: hidden;
-}
-
-.show-menu .content { 
-	opacity: 0.6;
-	-webkit-transition: opacity 0.3s;
-	transition: opacity 0.3s;
-	-webkit-transform: translate3d(0,0,0);
-	transform: translate3d(0,0,0);
 }
 
 /*********************************** Menu Button ***********************************/
@@ -237,10 +101,7 @@ body.show-menu div.content-wrap {
 }
 
 .homepage .home-page-header-container {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	right: 0px;
+	position: relative;
 	height: 225px;
 	width: 100%;
 }
@@ -258,7 +119,8 @@ body.show-menu div.content-wrap {
 }
 
 .homepage .home-page-profile-container {
-	margin-top: 150px;
+	font-family: 'Lato', Arial, sans-serif;
+	margin-top: -80px;
 	text-align: center;
 }
 
@@ -275,17 +137,16 @@ body.show-menu div.content-wrap {
 }
 
 .homepage .home-page-profile-container .home-page-name {
-	font-size: 35px;
-	font-weight: 600;
+	font-size: 30px;
+	font-weight: 500;
 	color: #666;
 	margin: 6px 0;
 	line-height: 1.2em;
 }
 
 .homepage .home-page-profile-container .home-page-job {
-	font-family: "";
 	font-size: 19px;
-	font-weight: 600;
+	font-weight: 500;
 	margin: 6px 0;
 	line-height: 1.5em;
 	color: #666;
@@ -295,10 +156,10 @@ body.show-menu div.content-wrap {
 	position: relative;
 	width: 700px;
 	height: 230px;
-	margin: 70px auto 0 auto;
+	margin: 30px auto 0 auto;
 	padding: 15px;
-	box-shadow: 0 1px 3px rgba(0,0,0,.1);
-	background-color: white;
+	/*box-shadow: 0 1px 3px rgba(0,0,0,.1);*/
+	/*background-color: white;*/
 }
 
 .homepage .home-page-quotes-container .words {
@@ -323,6 +184,139 @@ body.show-menu div.content-wrap {
 	border-width: 0;
 	border-color: #e2e2e2;
 }
+
+.homepage .sub-block-container {
+	position: relative;
+	width: 1280px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.homepage .sub-block-container section {
+	background-color: white;
+	padding: 24px;
+	width: 292px;
+	box-shadow: 0 1px 3px rgba(0,0,0,.1);
+  	position: absolute;
+  	top: 30px;
+	margin-bottom: 50px;
+}
+
+.homepage .sub-block-container section p {
+	font-size: 1.5em;
+	line-height: 1.5;
+}
+
+.homepage .sub-block-container section.tech-blog {
+	left: 15px;
+}
+
+.homepage .sub-block-container section.photo {
+	left: 337px;
+}
+
+.homepage .sub-block-container section.travel {
+	left: 659px;
+}
+
+.homepage .sub-block-container section.other {
+	left: 981px;
+}
+
+.homepage .sub-block-container section header {
+	text-align: center;
+}
+
+.homepage .sub-block-container section header > div {
+	font-size: 20px;
+	text-align: left;
+	padding-bottom: 10px;
+	border-bottom: dashed 1px #e2e2e2;
+}
+
+.block-icon {
+	background-size: 96px 120px;
+	background-image: url(account_icons_24@2x.png);
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 24px;
+	right: 24px;
+}
+
+.block-icon.instagram {
+	background-position: -48px 0;
+}
+
+code {
+	tab-size:4;
+}
+
+.homepage .sub-block-container section .content {
+	padding-top: 10px;
+	font: inherit;
+	color: #666;
+	font-size: 10px;
+	margin-top: 10px;
+}
+
+.homepage .sub-block-container section .content .title {
+	padding-top: 10px;
+	font: inherit;
+	text-align: left;
+	color: #e64a86;
+	font-size: 17px;
+}
+.homepage .sub-block-container section .content .img-container {
+	margin-bottom: 10px;
+}
+.homepage .sub-block-container section .content .img-container .description {
+	font: inherit;
+	text-align: left;
+	color: #6a9aca;
+	font-size: 14px;
+	margin-top: 10px;
+	padding-bottom: 20px;
+	border-bottom: dashed 1px #e2e2e2;
+}
+/*正方形图片*/
+.homepage .sub-block-container section .content .img-container img.square{
+	width: 244px;
+	height: 244px;
+}
+/*横向图片*/
+.homepage .sub-block-container section .content .img-container img.horizontal{
+	width: 244px;
+	height: 163px;
+}
+/*纵向图片*/
+.homepage .sub-block-container section .content .img-container img.vertical{
+	width: 244px;
+	height: 325px;
+}
+
+.homepage .sub-block-container section .time {
+	font: inherit;
+	text-align: left;
+	color: #6a9aca;
+	font-size: 14px;
+}
+
+.homepage .sub-block-container section.tech-blog header {
+	color: #6a9aca;
+}
+
+.homepage .sub-block-container section.photo header {
+	color: #6a9aca;
+}
+
+.homepage .sub-block-container section.travel header {
+	color: #fe8b06;
+}
+
 
 
 

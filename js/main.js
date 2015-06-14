@@ -9,44 +9,49 @@
  * http://www.codrops.com
  */
 (function() {
+	var indexNameMap = {
+		'photo-blog': 'travelPage.html',
+	}
+	var htmlPath;
+	var nextPageIndex;
 
-	var bodyEl = document.body,
-		content = document.querySelector( '.content-wrap' ),
-		openbtn = document.getElementById( 'open-button' ),
-		closebtn = document.getElementById( 'close-button' ),
-		isOpen = false;
+	//page loading init
+	var pageWrap = document.getElementById( 'pagewrap' ),
+	pages = [].slice.call( pageWrap.querySelectorAll( 'div.container' ) ),
+	currentPage = 0,
+	triggerLoading = [].slice.call( pageWrap.querySelectorAll( '.pageload-link' ) ),
+	loader = new SVGLoader( document.getElementById( 'loader' ), { speedIn : 100 } );
 
-	function init() {
-		initEvents();
+	function pageLoadingInit() {
+		triggerLoading.forEach( function( trigger ) {
+			trigger.addEventListener( 'click', function( ev ) {
+				ev.preventDefault();
+				loader.show();
+				htmlPath = indexNameMap[ev.target.attr('target')];
+				nextPageIndex = currentPage ? 0 : 1;
+				if(htmlPath) {
+					$(pages[ nextPageIndex ]).load(htmlPath).then(function(){
+						loader.hide();
+						classie.removeClass( pages[ currentPage ], 'show' );
+						currentPage = currentPage ? 0 : 1;
+						classie.addClass( pages[ currentPage ], 'show' );
+					});
+				}
+
+				// // after some time hide loader
+				// setTimeout( function() {
+				// 	loader.hide();
+
+				// 	classie.removeClass( pages[ currentPage ], 'show' );
+				// 	// update..
+				// 	currentPage = currentPage ? 0 : 1;
+				// 	classie.addClass( pages[ currentPage ], 'show' );
+
+				// }, 2000 );
+			} );
+		} );	
 	}
 
-	function initEvents() {
-		openbtn.addEventListener( 'click', toggleMenu );
-		if( closebtn ) {
-			closebtn.addEventListener( 'click', toggleMenu );
-		}
-
-		// close the menu element if the target it´s not the menu element or one of its descendants..
-		content.addEventListener( 'click', function(ev) {
-			var target = ev.target;
-			if( isOpen && target !== openbtn ) {
-				toggleMenu();
-			}
-		} );
-	}
-
-	function toggleMenu() {				//very cool !!!!!! *****
-		if( isOpen ) {
-			classie.remove( bodyEl, 'show-menu' );
-			$('.content-wrap>.cover').toggle();
-		}
-		else {
-			classie.add( bodyEl, 'show-menu' );
-			$('.content-wrap>.cover').toggle();
-		}
-		isOpen = !isOpen;
-	}
-
-	init();
+	pageLoadingInit();
 
 })();

@@ -1,0 +1,66 @@
+<div class="blog-body">
+							<header class="header">
+								<div class="title">
+									<h1>Javascript认知</h1>
+									<p class="subline">对Javascript语言特性的认识</p>
+									<p class="blog-time"><strong>姚川松</strong> &#8212; 写于 <strong>2015/3/21</strong></p>
+								</div>
+							</header>
+							<article class="article-content">
+								<div>
+									<p>目前绝大多数浏览器厂商都采用Javascript实现了各自浏览器的DOM和BOM，因此Javascript是前端开发必需掌握的一门语言。Javascript是运行在浏览器中的Javascript引擎上的脚本语言，它是一种基于原型的面向对象的语言，它拥有很多独特的语言特性，这些特性使得Javascript这门语言变得非常的有趣。</p>
+									<p>Javascript的语言特性主要有：宽松数据类型，单线程执行，基于原型的面向对象，支持闭包</p>
+									<h3>宽松类型</h3>
+									<p>在Javascript中定义一个变量是不需要指定其具体类型的，统一使用关键字<span class="key-word">var</span>。这和C++，Java这样的规范严格的语言有很大的不同。宽松数据类型的特性一方面让程序员可以“偷懒”，在定义时不用受到类型的约束。另一方面也给程序带来一定的隐患（比如在运行时可能会出现从一个值为undefined的变量中读它的一个属性的情况），这就使得程序变得不那么可靠，或者你需要在操作变量之前先检查变量类型是否正确和是否具有操作性，比如下面的代码：</p>
+									<div class="code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+<span style='color:#3f7f59; '>//定义一个函数，两个参数的类型不确定，那么函数的功能也就变得模糊了。</span>
+<span style='color:#7f0055; font-weight:bold; '>var</span> fun = <span style='color:#7f0055; font-weight:bold; '>function</span> (a, b) {
+    <span style='color:#7f0055; font-weight:bold; '>return</span> a + b;
+};
+fun(1,2); <span style='color:#3f7f59; '>//应该这么调用，返回值是3</span>
+fun(<span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>hello world</span><span style='color:#2a00ff; '>'</span>,2); <span style='color:#3f7f59; '>//如果不小心传入了一个字符串，函数能正常执行，返回值是"hello world2"，在C++中也由同样的结果，两者没有什么差别</span>
+fun(); <span style='color:#3f7f59; '>//又一个不小心，传入了两个undefined，它竟然奇迹般的不报错，还给你正经的返回一个NaN，</span>
+fun({attr: <span style='color:#2a00ff; '>'</span><span style='color:#2a00ff; '>nihao</span><span style='color:#2a00ff; '>'</span>}, 1); <span style='color:#3f7f59; '>//传入了一个JSON对象，结果为1</span>
+</pre>
+									</div>
+									<p>也正因为类型的灵活性，让Javascript有了很大的自由性。</p>
+									<h3>单线程的执行方式</h3>
+									<p>单线程是Javascript的一个重要特性。因为单线程的特性，使得Javascript代码分为异步<span class="key-word">Asynchronous</span>和同步<span class="key-word">Synchronous</span>两种执行方式。同步方式是指代码总是去等待当前任务执行结束，再去执行下一个任务，也就是一般的程序执行流程。异步方式是指当一个任务遇到I/O阻塞时，它会先去执行下一个任务，等到之前的I/O操作完成之后再回来继续执行未完成的任务（当然并不是I/O完成了就会立刻回来继续执行未完成的任务，因为它并不是像操作系统的中断那么迅速），具体执行的时机还需要了解Javascript的<span class="key-word">事件轮询</span>机制。</p>
+									<p><span class="key-word">setTimeout</span>是经常会用到的控制执行流程的方法，但是也会带来一些负作用，在控制程序执行流程方面，应该尽量用<span class="key-word">Promise</span>，目前有很多开源的Promise的实现，比如jQuery中的<span class="key-word">Deferred</span>对象，<span class="key-word">Q</span>，<span class="key-word">Bluebird</span>等等，当然，不同的Promise实现在流程控制上也是有差别的。</p>
+									<h3>基于原型的面向对象</h3>
+									<p>Javascript依然是面向对象的语言，虽然在使用过程中并没有像C++和Java那样通过创建类，然后实例化使用对象。在Javascript中，任务东西都可以成为对象，包括函数，实际上很多时候我们都是通过定义函数的方法来定义一个对象的，通过函数定义的对象的成员依旧有私有公有之分，能定义私有变量，便实现了封装</p>
+									<div class=" code-block">
+<pre><html><body style='color:#000000; background:#ffffff; '><pre>
+module.exports = {
+	getValue: <span style='color:#7f0055; font-weight:bold; '>function</span>(key) {
+		<span style='color:#7f0055; font-weight:bold; '>if</span> (<span style='color:#7f0055; font-weight:bold; '>this</span>.isDefaultSkipReasonTag(key)) {
+			<span style='color:#7f0055; font-weight:bold; '>return</span> REASONS[key];
+		}
+		<span style='color:#7f0055; font-weight:bold; '>if</span> (<span style='color:#7f0055; font-weight:bold; '>this</span>.isManualSkipReasonTag(key)) {
+			<span style='color:#7f0055; font-weight:bold; '>return</span> key.<span style='color:#7f0055; font-weight:bold; '>slice</span>(MANUAL_REASON_PREFIX.<span style='color:#7f0055; font-weight:bold; '>length</span>);
+		}
+		<span style='color:#7f0055; font-weight:bold; '>return</span> key;
+	},
+
+	getDefaultSkipReasonKeys: <span style='color:#7f0055; font-weight:bold; '>function</span>() {
+		<span style='color:#7f0055; font-weight:bold; '>var</span> indexes = [];
+		<span style='color:#7f0055; font-weight:bold; '>for</span> (<span style='color:#7f0055; font-weight:bold; '>var</span> prop <span style='color:#7f0055; font-weight:bold; '>in</span> REASONS) {
+			<span style='color:#7f0055; font-weight:bold; '>if</span> (REASONS.<span style='color:#7f0055; font-weight:bold; '>hasOwnProperty</span>(prop)) {
+				indexes.push(prop);
+			}
+		}
+		<span style='color:#7f0055; font-weight:bold; '>return</span> indexes;
+	}
+};
+</pre>
+									</div>
+									<p>Javascript实现继承的方式很特别，主要有两种方式：<span class="key-word">对象冒充</span>，<span class="key-word">原型方法</span>。其中对象冒充主要细分为三种：<span class="key-word">this绑定</span>，<span class="key-word">call方法</span>，<span class="key-word">apply方法</span>。这些方法都会涉及到Javascript的<span class="key-word">域</span>的概念。</p>
+									<p></p>
+									<h3>闭包</h3>
+									<p>闭包是一个概念，现在很多语言都支持闭包。Javascript支持闭包，闭包挑战了访问域，挑战了垃圾回收机制，实际上Javascript的所有函数都是一个闭包。闭包可以使得代码块（一般是以匿名函数形式的形式）能像变量一样在程序中进行传递。因为闭包总是能访问其所在的域，并且总是保持着其所在域的引用，所以闭包还会涉及到<span class="key-word">作用域</span>，<span class="key-word">垃圾回收</span>的问题。</p>
+									<p>闭包对于内存管理非常重要。用得不好，轻则降低内存利用率，重则内存泄露，用得好，节省内存提高效率。</p>
+									<p><strong>Excerpt from: <a href="http://www.gutenberg.org/ebooks/15237">The Chemistry of Food and Nutrition</a> by A. W. Duncan</strong></p>
+								</div>
+							</article>
+						</div> <!-- blog-body -->
