@@ -42,7 +42,7 @@
 						classie.removeClass( pages[ currentPage ], 'show' );
 						currentPage = currentPage ? 0 : 1;
 						classie.addClass( pages[ currentPage ], 'show' );
-					})
+					});
 					// Following request is synchronous ??????
 					// $(pages[ nextPageIndex ]).load(htmlPath, function(){
 					// 	loader.hide();
@@ -58,7 +58,20 @@
 	pageLoadingInit();
 
 	window.addEventListener('popstate', function(event) {
-	  	console.log(event);
+	  	$.ajax({
+			url: window.location.pathname,
+			method: 'GET',
+			dataType: "html"
+		}).then(function(response) {
+				var newUrl = htmlPath;
+				history.pushState(null,null,newUrl);
+				loader.hide();
+				nextPageIndex = currentPage ? 0 : 1;
+				$(pages[ nextPageIndex ]).innerHTML = response;
+				classie.removeClass( pages[ currentPage ], 'show' );
+				currentPage = currentPage ? 0 : 1;
+				classie.addClass( pages[ currentPage ], 'show' );
+		});
 	});
 
 })();
