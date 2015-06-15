@@ -65,7 +65,7 @@
 
 	window.addEventListener('popstate', function(event) {
 		// loader.show();
-		window.location.pathname = htmlPath;
+		// window.location.pathname = htmlPath;
 		// loader.hide();
 		// nextPageIndex = currentPage ? 0 : 1;
 		// $(pages[ nextPageIndex ]).innerHTML = response;
