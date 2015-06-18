@@ -234,23 +234,6 @@ body.show-menu div.content-wrap {
 	border-bottom: dashed 1px #e2e2e2;
 }
 
-.block-icon {
-	background-size: 96px 120px;
-	background-image: url(account_icons_24@2x.png);
-	display: inline-block;
-	width: 24px;
-	height: 24px;
-	overflow: hidden;
-	background-repeat: no-repeat;
-	position: absolute;
-	top: 24px;
-	right: 24px;
-}
-
-.block-icon.instagram {
-	background-position: -48px 0;
-}
-
 code {
 	tab-size:4;
 }
@@ -317,6 +300,44 @@ code {
 	color: #fe8b06;
 }
 
+.homepage .sub-block-container section.other header {
+	color: #6a9aca;
+}
+
+.block-icon {
+	background-size: 96px 120px;
+	background-image: url(account_icons_24@2x.png);
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 24px;
+	right: 24px;
+}
+
+.block-icon.instagram {
+	background-position: -48px 0;
+}
+
+/*LANGUAGE ICONS*/
+.language-icon {
+	background-size: 96px 120px;
+	background-image: url(language-icons.png);
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 24px;
+	right: 24px;
+}
+
+.language-icon.js {
+	background-position: 0 0;
+}
 
 
 
