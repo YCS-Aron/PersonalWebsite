@@ -3,7 +3,12 @@
 
 #header-logo,
 #page-header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
     height: 78px;
+    width: 100%;
+    z-index: 1;
 }
 #header-logo {
     width: 260px;
@@ -218,7 +223,7 @@ body #nav-toggle.collapsed span {
     position: relative;
 }
 #page-sidebar.collapse.in .scroll-sidebar {
-    height: auto !important;
+    height: 100%;
 }
 #page-sidebar.collapse.in #sidebar-menu {
     padding: 5px 10px;
@@ -229,10 +234,11 @@ body #nav-toggle.collapsed span {
 
 #page-sidebar {
     width: 260px;
-    float: left;
-    position: relative;
-    margin-right: -100%;
-    z-index: 160;
+    position: absolute;
+    left: 0px;
+    top: 78px;
+    z-index: 0;
+    height: 100%;
 }
 /* Sidebar menu */
 
@@ -384,10 +390,12 @@ body #nav-toggle.collapsed span {
 /* Page content wrapper */
 
 #page-content-wrapper {
-    float: left;
-    width: 100%;
-    position: relative;
-    z-index: 140;
+    position: absolute;
+    top: 78px;
+    left: 260px;
+    bottom: 0px;
+    right: 0px;
+    z-index: 0;
 }
 #page-content {
     margin-left: 260px;
@@ -435,7 +443,9 @@ body #nav-toggle.collapsed span {
     display: none;
 }
 #page-wrapper {
-    margin: 0 auto;
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
 /* Fixed header */
 
