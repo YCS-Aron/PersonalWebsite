@@ -243,6 +243,17 @@ body #nav-toggle.collapsed span {
     bottom: 0px;
     right: 0px;
     overflow: auto;
+    z-index: 0;
+}
+#content-loading {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    overflow: hidden;
+    z-index: 1;
+    display: none;
 }
 
 /* Sidebar */
