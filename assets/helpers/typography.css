@@ -124,41 +124,9 @@ address {
     line-height: 1.428571429;
     margin-bottom: 20px;
 }
-code,
 kbd,
-pre,
 samp {
     font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-code {
-    font-size: 90%;
-    padding: 0 4px;
-    white-space: nowrap;
-    color: #d05;
-    border: 1px solid #dfe8f1;
-    border-radius: 3px;
-    background: #fafafa;
-}
-pre {
-    font-size: 13px;
-    line-height: 1.428571429;
-    display: block;
-    margin: 0 0 10px;
-    padding: 9.5px;
-    word-wrap: break-word;
-    word-break: break-all;
-    color: #333;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f5f5f5;
-}
-pre code {
-    font-size: inherit;
-    padding: 0;
-    white-space: pre-wrap;
-    color: inherit;
-    border-radius: 0;
-    background-color: transparent;
 }
 p {
     line-height: 1.6em;

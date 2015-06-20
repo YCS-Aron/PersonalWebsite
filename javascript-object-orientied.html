@@ -1,0 +1,198 @@
+<div class="blog-body">
+	<header class="header">
+		<div class="title">
+			<h1>Javascript实现面向对象</h1>
+			<p class="subline">通过prototype和函数实现面向对象</p>
+			<p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/5/18</strong></p>
+		</div>
+	</header>
+	<article class="article-content">
+		<div>
+			<p>面向对象包括三个最基本的特征：数据封装，继承，多态。Javascript是一种弱类型的语言，而且不直接提供类的定义方法，但是其灵活的闭包，独特的函数对象，原型等丰富的特性给类的实现提供了可能。Javascript是灵活的，我们现在要讨论的是如何利用Javascript提供的这些特性来实现类和面向对象。</p>
+			<h3>new关键字</h3>
+			<p>在Javascript中，函数对象如果用new关键字调用，就可以实现类的一些特征，比如公用数据和共用接口。例子如下：</p>
+			<pre><code class="javascript">
+var Person = function(n, a) {
+	var nickname = 'secret';
+	this.name = n;
+	this.getInfo = function() {
+		return 'my name is ' + this.name;
+	};
+};
+var p = new Person('Aron');
+console.log(p.getInfo());	//output: my name is Aron
+			</code></pre>
+			<p>当采用new关键字调用函数时，采用的是<span class='key-word'>构造器(constructor)方法</span>来实例化对象。我们现在有必要探究一下构造器方式是怎么运作的。其实只需要关注函数体中的<span class="key-word">this对象</span>和函数对象的prototype对象上的<span class="key-word">constructor</span>属性。constructor是prototype对象中的一个属性，它的类型是函数类型，它的内容就是我们定义的函数内容。如下图：</p>
+			<div class="content-img-container">
+				<img src="assets/image-resources/blogs/javascript-object-orientied/1.png"></img>
+			</div> 
+			<p>当采用new关键字实例化对象时，解释器会执行constructor，并传入一个this对象，this对象的初始值是该函数对象的prototype中的属性的<span class="key-word">引用</span>（注意，是引用关系，而不是拷贝关系）和__proto__属性，该属性值是<span class="key-word">Object对象</span>的prototype对象中所有属性的引用，即"父类"的prototype对象中属性的引用。</p>
+			<p>解释器会在构造函数的最后加上一行<span class="key-word">return this;</span>,如果构造函数中没有显式的写return语句，this最终会被作为返回值返回出去。在构造函数中，this对象会被附加很多的数据和方法，这些数据和方法在this对象返回之后都会成为公有数据和公有方法，可以直接从this对象上读取。</p>
+			<div class="warning">
+				<span>如果你希望通过函数定义一个类，那么就不要在函数体内显式的写return语句。如果写了，那么该函数对象的prototype属性就变得毫无意义了。</span>
+			</div>
+			<div class="warning">
+				<span>当直接调用函数，比如var person = Person();这时函数体中的this是全局变量window，函数按照正常流程执行，不再隐秘的返回this。</span>
+			</div>
+			<p>因此，通过new关键字得到的this对象上包含了构造函数内附加的属性和方法，以及该类的prototype属性上的所有属性和方法的引用。</p>
+			<h3>prototype属性</h3>
+			<p>从第一个例子中我们实现了一个简单的类，能够作为模板实例化出对象，对象中含有我们需要的方法。但是这样有一个很严重的内存占用问题，每个实例化的对象中都有一个getInfo函数对象，而且内容一样，这样的设计是不合理的。为了达到不同对象共享同一个函数对象引用的情况，让实例对象共有的属性依赖于类，而不是实例对象，Javascript引入了prototype属性。那么第一个例子可以这样改写：</p>
+			<pre><code class="javascript">
+var Person = function(n, a) {
+	var nickname = 'secret';
+	this.name = n;
+};
+Person.prototype.getInfo = function() {
+	return 'my name is ' + this.name;
+};
+var p = new Person('Aron');
+console.log(p.getInfo());	//output: my name is Aron
+			</code></pre>
+			<p>每个实例化对象中都保存了prototype中所有属性的引用。因为在构造函数中，this对象的初始值包括了prototype对象中的所有值的引用，父类的prototype对象的引用，属性名是__proto__，以及constructor属性。</p>
+			<div class="content-img-container">
+				<img src="assets/image-resources/blogs/javascript-object-orientied/2.png"></img>
+			</div> 
+			<div class="warning">
+				<span>引入prototype的目的是为了让实例化对象的内存分配更合理，同时获得基类对象的prototype对象的访问权。</span>
+			</div>
+			<h3>数据封装</h3>
+			<p>我们希望类的有些数据不能直接访问，只能通过this上的接口访问，就像Java中的private成员。这时，我们可以利用Javascript函数域的特性。在函数体内部用var关键字声明的变量在函数外是无法访问的，可以通过这种方法"不是很合理"地实现数据封装，比如下面的例子：</p>
+			<pre><code class="javascript">
+var Person = function(name) {
+	this.publicName = 'Public' + name;
+	var privateName = 'Private' + name;
+	return {
+		getName: function(){
+			return privateName;
+		}
+	}
+}
+var person = new Person('Aron');
+console.log(person.privateName);   //undefined
+console.log(person.getName());     //PrivateAron
+			</code></pre>
+			<p>之所以要从构造函数中返回一个非this对象，是因为为了能够访问到函数内部通过var定义的'私有成员'，必须通过返回闭包的形式，只有这样，才能获得构造函数内部的<span class="key-word">域</span>。但是这样做会产生一个很严重的问题，getName在每个实例对象中都有一个备份，而不是引用，这样就产生了不必要的内存浪费。若我们想避免这个问题，只能将getName方法放在prototype对象中。比如下面的代码：</p>
+			<pre><code class="javascript">
+var Person = function(name) {
+	var privateName = 'Private' + name;
+}
+Person.prototype.getName = function(){
+	return privateName; //cast error: privateName is not defined
+}
+var person = new Person('Aron');
+console.log(person.getName());
+			</code></pre>
+			<p>现在问题又来了，prototype对象中的方法除了函数参数和通过var定义的内部数据，就只能访问到this对象，也就是说在prototype对象中的函数内是访问不到函数对象的私有数据的。如果一定要实现封装，就只有从构造函数内部返回一个包含有能够访问构造函数内部数据的闭包的集合。</p>
+			<div class="warning">
+				<span>考虑到实现方法实在不合理，一般来说，Javascript的对象不考虑私有成员。在Javascript中抛弃私有变量吧。</span>
+			</div>
+			<h3>静态方法</h3>
+			<p>有时候我们需要类能够提供一些不依赖于具体实例，能通过类名直接访问的静态数据和方法，Javascript不直接提供静态方法，可以将静态方法和数据视为函数对象上的一个简单属性。例子如下：</p>
+			<pre><code class="javascript">
+function myclass(){};
+myclass.staticMethod = function() {
+	console.log('call a static function');
+	console.log(this.staticData);            //this的值是myclass的函数对象
+};
+myclass.staticData = 'this is a static data';
+myclass.staticMethod();
+console.log(myclass.staticData);
+var obj = new myclass();
+//obj.staticMethod();             //Error: obj没有staticMethod方法
+//console.log(obj.staticData);    //Error: obj没有staticData属性
+			</code></pre>
+			<p><span class="key-word">静态对象只能通过对象名访问，不能通过实例访问。</span>静态数据绑定在函数对象上，而非实例对象上。因为用new关键字返回的是构造函数返回的this值，因此通过new关键字创建的实例无法获取静态数据。只能通过函数对象，即通过函数名访问。</p>
+			<h3>继承</h3>
+			<p></p>
+			<p>继承的实现依赖的是prototype链，即<span class='key-word'>原型链</span>。<span class='key-word'>__proto__</span>是基类的prototype对象，由于该属性的存在，使得解释器在当前对象的prototype中没有找到想要的属性时，可以进入到__proto__对象中查找。如果依旧没有找到，继续访问__proto__属性的__proto__属性，类似于遍历继承链，直到找到为止。所以，只要设置好__proto__即可实现继承。下面是一个通过prototype实现继承的例子：</p>
+			<pre><code class="javascript">
+//基类 base
+function base(a) {
+	this.a = a;
+};
+base.prototype.fun = function() {
+	console.log('base' + this.a);
+};
+//子类child
+function child(a){
+	base.apply(this, arguments);    //以child的上下文执行base的构造函数，从而绑定this.a
+};
+child.prototype = new base();       //获得base的原型，其中包含有prototype对象中的所有属性的引用。
+child.prototype.childfun = function() {  
+	console.log('child' + this.a);
+};
+var obj = new child('Tim');
+obj.fun();            //output baseTim
+obj.childfun();       //output childTim
+			</code></pre>
+			<div class="warning">
+				<span>child.prototype=new base()写成child.prototype=base.prototype是不可以的，因为这里的base.prototype是引用，child对prototype进行扩展时会同时修改base.prototype，从而影响所用的基类对象。</span>
+			</div>
+			<p>或者我们可以为Function对象定义一个extend方法，用来实现继承功能，可以扩展基类的实例方法和静态方法。代码如下：</p>
+			<pre><code class="javascript">
+//继承的实现方法
+Function.prototype.extend = function(protoattrs, staticattrs) {
+	var child = function(){},prop;
+	var parent = this;
+
+	child.prototype = {};
+	//bind prototype attributes
+	for (prop in protoattrs) {
+		child.prototype[prop] = protoattrs[prop];
+	}
+	//bind static attributes
+	for (prop in staticattrs) {
+		child[prop] = staticattrs[prop];
+	}
+	//handle constructor
+	child.prototype.constructor = protoattrs[constructor] ? protoattrs[constructor] : parent.prototype.constructor;
+	//handle __proto__
+	child.prototype.__proto__ = parent.prototype;
+
+	return child;
+};
+var Base = function(){
+	this.b = 10;
+}
+Base.prototype.fun = function(){
+	console.log('this is fun of base');
+}
+var Child = Base.extend({
+	childfun: function(){
+		console.log('this is childfun of child');
+	}
+}, {
+	staticmem: 'this is static data of Child'
+});
+var childobj = new Child();
+childobj.childfun();			//output : this is childfun of child
+childobj.fun();					//output : this is fun of base
+console.log(Child.staticmem);	//output : this is static data of Child
+			</code></pre>
+			<p>在extend方法中，首先构造一个空的函数对象，prototype对象也为空。依次附加prototype属性和静态属性，根据prototype中是否传入constructor方法设置constructor属性，再赋值__proto__为父类的prototype即可。这样我们就能保证实例出来的对象，技能访问到子类Base中的属性，又能访问到继承的属性和方法。</p>
+			<h3>重载</h3>
+			<p>基类和子类的相同接口表现出不同的行为。在Javascript对面向对象的支持中，子类和基类是两个不同的函数对象，其拥有不同的prototype对象，因此只需要将不同的接口实现函数赋值给不同的prototype对象中的相同字段即可。下面是一个例子：</p>
+			<pre><code class="javascript">
+//基类 base
+function base(a) {
+	this.a = a;
+};
+base.prototype.fun = function() {
+	console.log('base' + this.a);
+};
+//子类child
+function child(a){
+	base.apply(this, arguments);
+};
+child.prototype = new base();       
+child.prototype.fun = function() {  //实现重载，并在重载的函数中调用基类的同名方法
+	base.prototype.fun.call(this);
+	console.log('child' + this.a);
+};
+var obj = new child('Tim');
+obj.fun();       //output : baseTim childTim
+			</code></pre>
+			<p>在重载之前，因为原型链的存在，调用child实例上的fun方法时会执行base.prototype.fun。在子类中重载的fun方法中，仍然可以通过base.prototype访问到基类的fun方法。</p>
+		</div>
+	</article>
+</div>

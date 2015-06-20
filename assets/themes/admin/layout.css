@@ -255,6 +255,9 @@ body #nav-toggle.collapsed span {
     z-index: 1;
     display: none;
 }
+.blog-box {
+    padding: 70px;
+}
 
 /* Sidebar */
 

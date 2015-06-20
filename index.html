@@ -141,6 +141,9 @@
 <link rel="stylesheet" type="text/css" href="assets/helpers/admin-responsive.css">
 
 <link rel="stylesheet" type="text/css" href="ycs.css">
+<link rel="stylesheet" type="text/css" href="tech-blog.css">
+<!--hightlight-->
+<link rel="stylesheet" href="highlight/styles/zenburn.css">
 
     <!-- JS Core -->
 
@@ -188,7 +191,7 @@
                     Monarch <i>UI</i>
                     <span>YCS personal website</span>
                 </a>
-                <a id="close-sidebar" href="#"">
+                <a id="close-sidebar" href="#">
                     <i class="glyph-icon icon-angle-left"></i>
                 </a>
             </div>
@@ -471,9 +474,9 @@
                         <div class="sidebar-submenu">
                             <ul>
                                 <li><a class="ycs-link" linktarget="ycs"><span>Javascript语言特性</span></a></li>
-                                <li><a class="ycs-link" ><span>Javascript实现面向对象</span></a></li>
-                                <li><a class="ycs-link" ><span>Ajax</span></a></li>
-                                <li><a class="ycs-link" ><span>跨域访问和JSONP</span></a></li>
+                                <li><a class="ycs-link" linktarget="js-oo"><span>Javascript实现面向对象</span></a></li>
+                                <li><a class="ycs-link" linktarget="blocks"><span>Ajax</span></a></li>
+                                <li><a class="ycs-link" linktarget="timeline"><span>跨域访问和JSONP</span></a></li>
                             </ul>
                         </div><!-- .sidebar-submenu -->
                     </li>
@@ -711,8 +714,6 @@
         </div>  <!-- page-content-wrapper -->
     </div> <!-- 整个页面结束 -->
 
-<script type="text/javascript" src="ycs.js"></script>
-
 <!-- Bootstrap Dropdown -->
 <script type="text/javascript" src="assets/widgets/dropdown/dropdown.js"></script>
 <!-- Bootstrap Tooltip -->
@@ -763,6 +764,11 @@
 <!-- Theme switcher -->
 
 <script type="text/javascript" src="assets/widgets/theme-switcher/themeswitcher.js"></script>
+
+<script src="highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script type="text/javascript" src="ycs.js"></script>
 
 </body>
 </html>
