@@ -43,9 +43,6 @@
         -webkit-transform: translateX(0px);
         visibility: visible;
     }
-    #page-content {
-        margin-left: 260px;
-    }
     #page-sidebar.collapse {
         display: block;
     }

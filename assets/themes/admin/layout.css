@@ -234,8 +234,14 @@ body #nav-toggle.collapsed span {
     width: 260px;
     overflow: auto;
 }
-#home-page-sidebar {
 
+#page-content {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    overflow: auto;
 }
 
 /* Sidebar */
@@ -406,7 +412,6 @@ body #nav-toggle.collapsed span {
     z-index: 0;
 }
 #page-content {
-    margin-left: 260px;
     padding: 20px 30px;
 }
 /* Page title */
