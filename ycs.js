@@ -6,7 +6,9 @@ $(function(){
         'ycs': 'content.html',
         'timeline': 'timeline.html',
         'blocks': 'blocks.html',
-        'js-oo': 'javascript-object-orientied.html'
+        'js-oo': 'javascript-object-orientied.html',
+        'js-overview': 'javascript-overview.html',
+        'jsonp': 'cross-origin-and-jsonp.html'
     };
 
     $('a.ycs-link').on('click', function(){
