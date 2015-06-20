@@ -73,7 +73,7 @@
 #page-header .user-account-btn .dropdown-menu {
     padding-bottom: 0;
     top: 39px;
-    left: -12px;
+    left: 16px;
 }
 #page-header .user-account-btn .dropdown-menu:after,
 #page-header .user-account-btn .dropdown-menu:before {
@@ -233,6 +233,7 @@ body #nav-toggle.collapsed span {
     bottom: 0;
     width: 260px;
     overflow: auto;
+    padding-bottom: 50px;
 }
 
 #page-content {

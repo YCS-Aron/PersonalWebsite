@@ -20,8 +20,8 @@
 			outerClick = (function() {
 				$(window).load(function() {
 					$('body').children().on('click.superclick', function() {
-						var $allMenus = $('.sf-js-enabled');
-						$allMenus.superclick('reset');
+						//var $allMenus = $('.sf-js-enabled');
+						//$allMenus.superclick('reset');			//disable menu list hide when click the menu item.
 					});
 				});
 			})(),
