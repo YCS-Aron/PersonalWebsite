@@ -222,13 +222,21 @@ body #nav-toggle.collapsed span {
     width: 100%;
     position: relative;
 }
-#page-sidebar.collapse.in .scroll-sidebar {
-    height: 100%;
-}
 #page-sidebar.collapse.in #sidebar-menu {
     padding: 5px 10px;
 }
+/* self define */
+#home-page-scroll-sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 260px;
+    overflow: auto;
+}
+#home-page-sidebar {
 
+}
 
 /* Sidebar */
 
@@ -238,7 +246,7 @@ body #nav-toggle.collapsed span {
     left: 0px;
     top: 78px;
     z-index: 0;
-    height: 100%;
+    bottom: 0px;
 }
 /* Sidebar menu */
 
