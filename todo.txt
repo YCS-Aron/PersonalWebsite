@@ -4,7 +4,22 @@
 //    引入样式文件
 //    加载技术博客页面时调用highlight方法
 //加入javascript-object-orientied.html
-加入javascript语言特性
-加入ajax.html
-加载html文件之后,js定义的动作是否会失效
+//解决pre的高度的问题         不要在</code>和</pre>之间留换行符号
+完成javascript语言特性
+完成ajax.html
+
+密码输入页面
+路由设置问题
+    博客的URL不对应文件名,因此博客的url中不带.html  当直接在地址栏输入博客的url时,需要在后端组装成需要的html页面.然后返回.
+        首先,我需要写一个connect组件用于处理这种类型的URL.
+        使用cheerio进行dom操作.
+需要一个文件操作权限管理的中间件, 或者将静态文件中间件挂载在不同的目录下.
+Q ajax的url会自动的替换最后一个/后面的内容吗? 即使用的是相对路径
+
+照片的导航分类页面
+每个分类的照片列表
+
+屏蔽复制功能
+
+加载html文件之后,js定义的动作是否会失效??
 

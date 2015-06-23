@@ -1,7 +1,9 @@
 var connect = require('connect'),
-    serveStatic = require('serve-static');
+    static = require('serve-static');
 
 var app = connect();
-app.use(serveStatic("../../mywebsite"));
-app.listen(80);
+
+app.use(require('./BlogRouter'));
+app.use(static("../../mywebsite"));
+app.listen(3000);
 console.log('started server,listening at port 80');

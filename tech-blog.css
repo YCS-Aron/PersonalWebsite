@@ -58,8 +58,7 @@
 
 /* ***************************Conent *************************** */
 .article-content {
-	margin-top: 50px;
-	margin-bottom: 100px; 
+	margin-bottom: 100px;
 	padding: 0 0 3em;
 }
 
@@ -142,6 +141,7 @@
 pre {
 	padding-left: 0px;
 	tab-size: 4;
+	white-space: pre;
 }
 
 p {
