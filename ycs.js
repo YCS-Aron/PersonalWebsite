@@ -28,13 +28,13 @@ $(function(){
                 dataType: 'html'
             }).then(function(response){
                 setTimeout(function(){
+                    loadingbar.hide();
                     history.pushState(null, null, targetName);
                     content.innerHTML = response;
                     $(content).find('pre code').each(function(index, codeblock){
                         hljs.highlightBlock(codeblock);			//COOL !
                     });
-                    loadingbar.hide();
-                }, 500);
+                }, 300);
             });
         }
     });
