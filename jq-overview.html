@@ -9,7 +9,7 @@
     <article class="article-content">
         <div>
             <p>jQuery是Web前端用得最多的Javascript库之一。它提供了很多的方便开发的库和API。主要是：元素选择器selector，DOM操作，对ajax的封装，对事件绑定和动画的封装。</p>
-            <h3>元素选择器selector</h3>
+            <h2>元素选择器selector</h2>
             <p>jQuery的选择器又分为层次选择器，过滤选择器两类。先给出一个页面结构，后面的选择器例子均可用于该页面结构：</p>
 <pre><code class="html">
 &lt;div&gt;
@@ -78,7 +78,7 @@ $('button[id*=button1]');    //过滤出拥有id属性值含有button1的button�
 $('button[class~=button1]'); //过滤出拥有class属性值含有button1的button元素，其中class属性必须以空格分隔class名
 $('input[id][type=checkbox]');//过滤出拥有id属性，并且type属性值为checkbox的input元素
 </code></pre>
-            <h3>DOM操作</h3>
+            <h2>DOM操作</h2>
             <p>DOM全称是Document Object Model(文档对象模型),DOM操作是web前端开发中构造动态页面必不可少的内容。DOM操作主要包括DOM的创建和插入，获取DOM的数据信息两部分。下面是一些简单代码：</p>
 <pre><code class="javascript">
 //DOM的创建和插入
@@ -108,14 +108,14 @@ $('.buttons button:last').is('.myclass');	//等同于上一行代码
 $('.buttons button:last').text();			//获取文本信息
 $('input:last').val();	                    //获取input元素的内容
 </code></pre>
-            <h3>事件绑定和动画</h3>
+            <h2>事件绑定和动画</h2>
             <h4>事件绑定</h4>
             <p>jQuery对事件绑定进行了封装，提供了多个不同的API以满足coder在不同环境下的不同需求。jQuery提供了bind, live, delegate, on四种绑定事件的方法，其中on是一个通用接口，其他三种绑定方法适用于不同的需求，主要区别在于动态元素和静态元素的事件绑定上，具体参考<span class="key-word">jQuery事件机制</span>。</p>
             <h4>动画</h4>
             <p>jQuery提供了animate函数封装了动画效果的复杂实现，屏蔽了浏览器的兼容性。具体参考<span class="key-word">CSS实现动画</span>中关于用jQuery实现动画的内容。</p>
-            <h3>ajax的封装</h3>
+            <h2>ajax的封装</h2>
             <p>ajax不是一个新技术，而是通过采用XML技术和Javascript异步来实现的一种与服务器的交互方式。jQuery为此实现了自己的Javascript异步控制对象：Deferred对象，以支持请求返回后的回调操作。jQuery封装了使用XHR来实现服务器交互的代码，只对coder提供了一个$.ajax接口，大大方便了开发。并且实现了对浏览器的兼容。</p>
-            <h3>jQuery的优势和劣势</h3>
+            <h2>jQuery的优势和劣势</h2>
             <p>jQuery是一个很强大的开源库，提供了非常多有用的API，屏蔽了底层的使用细节，并拥有浏览器兼容性，不用再为绑定事件和处理事件的浏览器兼容费脑经了。但是它只是提供了一套工具，没有提供前端的模块划分，实现高内聚低耦合的代码结构的解决方案，所以它非常适合于作为前端框架的依赖库来使用，而不是仅仅依靠jQuery提供的API来开发应用。</p>
         </div>
     </article>

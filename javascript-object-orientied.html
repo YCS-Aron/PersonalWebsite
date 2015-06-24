@@ -9,7 +9,7 @@
 	<article class="article-content">
 		<div>
 			<p>面向对象包括三个最基本的特征：数据封装，继承，多态。Javascript是一种弱类型的语言，而且不直接提供类的定义方法，但是其灵活的闭包，独特的函数对象，原型等丰富的特性给类的实现提供了可能。Javascript是灵活的，我们现在要讨论的是如何利用Javascript提供的这些特性来实现类和面向对象。</p>
-			<h3>new关键字</h3>
+			<h2>new关键字</h2>
 			<p>在Javascript中，函数对象如果用new关键字调用，就可以实现类的一些特征，比如公用数据和共用接口。例子如下：</p>
 			<pre><code class="javascript">
 var Person = function(n, a) {
@@ -35,7 +35,7 @@ console.log(p.getInfo());	//output: my name is Aron
 				<span>当直接调用函数，比如var person = Person();这时函数体中的this是全局变量window，函数按照正常流程执行，不再隐秘的返回this。</span>
 			</div>
 			<p>因此，通过new关键字得到的this对象上包含了构造函数内附加的属性和方法，以及该类的prototype属性上的所有属性和方法的引用。</p>
-			<h3>prototype属性</h3>
+			<h2>prototype属性</h2>
 			<p>从第一个例子中我们实现了一个简单的类，能够作为模板实例化出对象，对象中含有我们需要的方法。但是这样有一个很严重的内存占用问题，每个实例化的对象中都有一个getInfo函数对象，而且内容一样，这样的设计是不合理的。为了达到不同对象共享同一个函数对象引用的情况，让实例对象共有的属性依赖于类，而不是实例对象，Javascript引入了prototype属性。那么第一个例子可以这样改写：</p>
 			<pre><code class="javascript">
 var Person = function(n, a) {
@@ -55,7 +55,7 @@ console.log(p.getInfo());	//output: my name is Aron
 			<div class="warning">
 				<span>引入prototype的目的是为了让实例化对象的内存分配更合理，同时获得基类对象的prototype对象的访问权。</span>
 			</div>
-			<h3>数据封装</h3>
+			<h2>数据封装</h2>
 			<p>我们希望类的有些数据不能直接访问，只能通过this上的接口访问，就像Java中的private成员。这时，我们可以利用Javascript函数域的特性。在函数体内部用var关键字声明的变量在函数外是无法访问的，可以通过这种方法"不是很合理"地实现数据封装，比如下面的例子：</p>
 			<pre><code class="javascript">
 var Person = function(name) {
@@ -86,7 +86,7 @@ console.log(person.getName());
 			<div class="warning">
 				<span>考虑到实现方法实在不合理，一般来说，Javascript的对象不考虑私有成员。在Javascript中抛弃私有变量吧。</span>
 			</div>
-			<h3>静态方法</h3>
+			<h2>静态方法</h2>
 			<p>有时候我们需要类能够提供一些不依赖于具体实例，能通过类名直接访问的静态数据和方法，Javascript不直接提供静态方法，可以将静态方法和数据视为函数对象上的一个简单属性。例子如下：</p>
 			<pre><code class="javascript">
 function myclass(){};
@@ -102,7 +102,7 @@ var obj = new myclass();
 //console.log(obj.staticData);    //Error: obj没有staticData属性
 			</code></pre>
 			<p><span class="key-word">静态对象只能通过对象名访问，不能通过实例访问。</span>静态数据绑定在函数对象上，而非实例对象上。因为用new关键字返回的是构造函数返回的this值，因此通过new关键字创建的实例无法获取静态数据。只能通过函数对象，即通过函数名访问。</p>
-			<h3>继承</h3>
+			<h2>继承</h2>
 			<p></p>
 			<p>继承的实现依赖的是prototype链，即<span class='key-word'>原型链</span>。<span class='key-word'>__proto__</span>是基类的prototype对象，由于该属性的存在，使得解释器在当前对象的prototype中没有找到想要的属性时，可以进入到__proto__对象中查找。如果依旧没有找到，继续访问__proto__属性的__proto__属性，类似于遍历继承链，直到找到为止。所以，只要设置好__proto__即可实现继承。下面是一个通过prototype实现继承的例子：</p>
 			<pre><code class="javascript">
@@ -170,7 +170,7 @@ childobj.fun();					//output : this is fun of base
 console.log(Child.staticmem);	//output : this is static data of Child
 			</code></pre>
 			<p>在extend方法中，首先构造一个空的函数对象，prototype对象也为空。依次附加prototype属性和静态属性，根据prototype中是否传入constructor方法设置constructor属性，再赋值__proto__为父类的prototype即可。这样我们就能保证实例出来的对象，技能访问到子类Base中的属性，又能访问到继承的属性和方法。</p>
-			<h3>重载</h3>
+			<h2>重载</h2>
 			<p>基类和子类的相同接口表现出不同的行为。在Javascript对面向对象的支持中，子类和基类是两个不同的函数对象，其拥有不同的prototype对象，因此只需要将不同的接口实现函数赋值给不同的prototype对象中的相同字段即可。下面是一个例子：</p>
 			<pre><code class="javascript">
 //基类 base

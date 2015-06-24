@@ -10,7 +10,7 @@
         <div>
             <p>Ajax是实现与服务器交互的新方法。Ajax的全称是Asynchronous Javascript And XML，从命名上可以看出，是采用了Javascript的异步机制和XML这两种技术，其中异步机制实现非阻塞的IO，XML来用表示HTTP请求。</p>
             <p>所以，我们需要了解异步Javascript和XML HTTP请求即XmlHttpRequest两个概念。</p>
-            <h3>异步Javascript</h3>
+            <h2>异步Javascript</h2>
             <p>异步是指：程序不会去等待某个费时操作（比如I/O,服务器请求）返回结果，而是继续执行后面的操作，当结果返回时，再转而继续执行定义好的回调函数。Javascript是单线程执行的，它不像Java那样能够支持多线程和并发操作。那么，作为单线程的Javascript就应该尽量让线程不要停下来，否则，整个程序都会陷入“假死”状态。在处理像I/O这样非常费时的操作时，为了获得良好的用户体验，决定了非阻塞I/O的合理性。</p>
             <div class="warning">
                 <span>与返回数据相关的操作要放在数据请求的回调函数中，否则数据的可靠性会变得很差。</span>
@@ -61,7 +61,7 @@ get his name YaoChuansong
 */
 </code></pre>
             <p>jQuery的Deferred对象并不保证执行序列总是异步的，而Q，bluebird则保证所有执行序列总是异步的。</p>
-            <h3>XmlHttpRequest</h3>
+            <h2>XmlHttpRequest</h2>
             <p>XMLHttpRequest最早由Microsoft设计并发布。现在已经是W3C标准的一部分。它用XML格式去表示HTTP请求（那以前是用什么表示的HTTP请求？）。之所以用XML，是利用了XML跨平台的特点。</p>
             <h4>XHR的headers</h4>
             <p>在利用XHR发送一个请求的过程中，需要设置URL，以及对XHR的各个字段进行设置，这些字段将直接影响XHR的执行结果，这些字段包括附带的数据格式，希望服务器返回的数据格式等，用来描述整个HTTP报文。下面是个例子：</p>
@@ -153,7 +153,7 @@ console.log($xml.find( "to" ));
 console.log($xml.find( "from" ));
 console.log($xml.find( "body" ));
             </code></pre>
-            <h3>利用XHR发送请求的详细过程</h3>
+            <h2>利用XHR发送请求的详细过程</h2>
         </div>
     </article>
 </div>

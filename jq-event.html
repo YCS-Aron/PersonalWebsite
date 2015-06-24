@@ -10,7 +10,7 @@
         <div>
             <p>jQuery的一个重要部分就是事件机制，通过事件机制我们可以实现UI的实时更新等很多前端的特征。</p>
             <p>jQuery实现事件绑定的方法bind,on,live,delegate四种方法。下面需要了解下这四种绑定方式的区别。</p>
-            <h3>bind</h3>
+            <h2>bind</h2>
 <pre><code class="javascript">
 $('.myclass').bind('click', function() {
     //code...
@@ -20,7 +20,7 @@ $('.myclass').click(function() {	//平时我们用的click,focus等绑定方法�
 });
 </code></pre>
             <p>直接绑定响应函数到元素上。这种方法简单直接，在各种浏览器中都能兼容。但是，<span class="key-word">这种方法非常不适合动态元素的绑定</span>，当需要对一个元素下的所有子元素都绑定同一个响应函数时，而且这些子元素是动态的，会随时添加和被删除，那么我们就需要维护所有子元素的绑定事件，当添加子元素时，还需要手动的去添加，非常费时。</p>
-            <h3>live</h3>
+            <h2>live</h2>
 <pre><code class="javascript">
 $('.myclass').live('click', function() {
     //code...
@@ -34,7 +34,7 @@ $(document).on('click', function(e) {
             <p>live是将事件的响应绑定到根元素即document上，其所有的子元素上的事件都会通过<span class="code-block">冒泡</span>传递到document上，document再通过获取事件的类型和元素来决定执行哪个响应函数，这就是<span class="code-block">事件委托</span>。live可以很好的解决动态元素的事件绑定问题，无需在添加新元素时去管理新元素的事件绑定。通过这种方式我们可以写最少的代码，做最多的事情，但是性能上会有些损失，尤其是子元素在DOM树中处于很深的位置时，而且，因为必须要到达根元素，该事件的<span class="key-word">stopPropagation</span>无效。</p>
             <p>live不够灵活，不推荐采用这种方法绑定事件。</p>
 
-            <h3>delegate</h3>
+            <h2>delegate</h2>
 <pre><code class="javascript">
 $('.myclass').delegate('button', 'click', function() {
     //code...
@@ -48,7 +48,7 @@ $('.myclass').on('click', function(e) {
             <p>该方式不再将事件处理委托给document，而是由coder决定委托的元素。这个例子中，委托元素是$('.myclass')，要监听的元素是$('.myclass button')。自定义委托元素，十分灵活。</p>
             <p></p>
 
-            <h3>on</h3>
+            <h2>on</h2>
             <p>首先来看一下on的声明格式。</p>
 <pre><code class="javascript">
 jQuery.fn.extend({
