@@ -254,6 +254,7 @@ body #nav-toggle.collapsed span {
     overflow: hidden;
     z-index: 1;
     display: none;
+    background-color: rgb(204, 204, 209);
 }
 .blog-box {
     padding: 70px;

@@ -27,14 +27,14 @@ $(function(){
                 method: 'GET',
                 dataType: 'html'
             }).then(function(response){
+                loadingbar.fadeOut();
                 setTimeout(function(){
-                    loadingbar.hide();
                     history.pushState(null, null, targetName);
                     content.innerHTML = response;
                     $(content).find('pre code').each(function(index, codeblock){
                         hljs.highlightBlock(codeblock);			//COOL !
                     });
-                }, 300);
+                }, 200);
             });
         }
     });
