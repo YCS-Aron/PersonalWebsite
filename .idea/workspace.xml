@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a8a6566c-88a7-4bf8-9e68-8e7d4780b3c9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/themes/admin/layout.css" afterPath="$PROJECT_DIR$/assets/themes/admin/layout.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ycs.js" afterPath="$PROJECT_DIR$/ycs.js" />
     </list>
     <ignored path="mywebsite.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,21 +44,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ycs.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ycs.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ycs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6958763">
+            <state vertical-scroll-proportion="0.0">
               <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="layout.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/themes/admin/layout.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="233" column="17" selection-start-line="233" selection-start-column="17" selection-end-line="233" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.5167526">
+              <caret line="257" column="39" selection-start-line="257" selection-start-column="39" selection-end-line="257" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -159,8 +157,8 @@
         <option value="$PROJECT_DIR$/nodeServer/BlogRouter.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/ycs.css" />
-        <option value="$PROJECT_DIR$/assets/themes/admin/layout.css" />
         <option value="$PROJECT_DIR$/ycs.js" />
+        <option value="$PROJECT_DIR$/assets/themes/admin/layout.css" />
       </list>
     </option>
   </component>
@@ -520,12 +518,12 @@
       <workItem from="1434681066850" duration="9000" />
       <workItem from="1434681092807" duration="9000" />
       <workItem from="1434681123730" duration="12691000" />
-      <workItem from="1435051337433" duration="7503000" />
+      <workItem from="1435051337433" duration="9421000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51694000" />
+    <option name="totallyTimeSpent" value="53612000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -918,18 +916,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/themes/admin/layout.css">
+    <entry file="file://$PROJECT_DIR$/ycs.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="233" column="17" selection-start-line="233" selection-start-column="17" selection-end-line="233" selection-end-column="17" />
+          <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ycs.js">
+    <entry file="file://$PROJECT_DIR$/assets/themes/admin/layout.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6958763">
-          <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.5167526">
+          <caret line="257" column="39" selection-start-line="257" selection-start-column="39" selection-end-line="257" selection-end-column="39" />
           <folding />
         </state>
       </provider>
