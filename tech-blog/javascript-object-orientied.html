@@ -24,7 +24,7 @@ console.log(p.getInfo());	//output: my name is Aron
 			</code></pre>
 			<p>当采用new关键字调用函数时，采用的是<span class='key-word'>构造器(constructor)方法</span>来实例化对象。我们现在有必要探究一下构造器方式是怎么运作的。其实只需要关注函数体中的<span class="key-word">this对象</span>和函数对象的prototype对象上的<span class="key-word">constructor</span>属性。constructor是prototype对象中的一个属性，它的类型是函数类型，它的内容就是我们定义的函数内容。如下图：</p>
 			<div class="content-img-container">
-				<img src="assets/image-resources/blogs/javascript-object-orientied/1.png"></img>
+				<img src="../assets/image-resources/blogs/javascript-object-orientied/1.png"></img>
 			</div> 
 			<p>当采用new关键字实例化对象时，解释器会执行constructor，并传入一个this对象，this对象的初始值是该函数对象的prototype中的属性的<span class="key-word">引用</span>（注意，是引用关系，而不是拷贝关系）和__proto__属性，该属性值是<span class="key-word">Object对象</span>的prototype对象中所有属性的引用，即"父类"的prototype对象中属性的引用。</p>
 			<p>解释器会在构造函数的最后加上一行<span class="key-word">return this;</span>,如果构造函数中没有显式的写return语句，this最终会被作为返回值返回出去。在构造函数中，this对象会被附加很多的数据和方法，这些数据和方法在this对象返回之后都会成为公有数据和公有方法，可以直接从this对象上读取。</p>
@@ -50,7 +50,7 @@ console.log(p.getInfo());	//output: my name is Aron
 			</code></pre>
 			<p>每个实例化对象中都保存了prototype中所有属性的引用。因为在构造函数中，this对象的初始值包括了prototype对象中的所有值的引用，父类的prototype对象的引用，属性名是__proto__，以及constructor属性。</p>
 			<div class="content-img-container">
-				<img src="assets/image-resources/blogs/javascript-object-orientied/2.png"></img>
+				<img src="../assets/image-resources/blogs/javascript-object-orientied/2.png"></img>
 			</div> 
 			<div class="warning">
 				<span>引入prototype的目的是为了让实例化对象的内存分配更合理，同时获得基类对象的prototype对象的访问权。</span>

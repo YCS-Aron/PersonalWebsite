@@ -470,7 +470,7 @@
                         <div class="sidebar-submenu">
                             <ul>
                                 <li><a class="ycs-link" linktarget="js-overview"><span>Javascript认知</span></a></li>
-                                <li><a class="ycs-link" linktarget="js-oo"><span>Javascript实现面向对象</span></a></li>
+                                <li><a class="ycs-link classified" linktarget="js-oo"><span>Javascript实现面向对象</span></a></li>
                                 <li><a class="ycs-link" linktarget=""><span>Javascript闭包</span></a></li>
                                 <li><a class="ycs-link" linktarget=""><span>Javascript变量提升</span></a></li>
                                 <li><a class="ycs-link" linktarget=""><span>Javascript单线程</span></a></li>
@@ -631,8 +631,8 @@
                             <span>美女</span>
                         </a>
                         <div class="sidebar-submenu">
-
                             <ul>
+                                <li><a class="ycs-link"><span>第一任女友</span></a></li>
                                 <li><a class="ycs-link"><span>Timeline</span></a></li>
                                 <li><a class="ycs-link"><span>Chat</span></a></li>
                                 <li><a class="ycs-link"><span>Checklist</span></a></li>
@@ -681,6 +681,7 @@
         </div> <!-- 左侧菜单栏 结束 -->
         <!-- 主页内容部分 -->
         <div id="page-content-wrapper">
+            <!--LOADING SPINNER-->
             <div id="content-loading">
                 <div class="spinner">
                     <div class="bounce1"></div>
@@ -688,7 +689,34 @@
                     <div class="bounce3"></div>
                     <span>Loading...</span>
                 </div>
-
+            </div>
+            <!--PASS WORD PANEL-->
+            <div class="center-vertical" id="password-panel">
+                <div class="center-content">
+                    <div class="col-md-4 col-sm-5 col-xs-11 col-lg-3 center-margin">
+                        <div class="panel-layout wow bounceInDown animated animated animated" style="visibility: visible;">
+                            <div class="panel-content pad0A bg-white">
+                                <div class="meta-box meta-box-offset">
+                                    <img src="../../assets/image-resources/gravatar.jpg" alt="" class="meta-image img-bordered img-circle">
+                                    <h3 class="meta-heading font-size-16">你要访问的是私密内容</h3>
+                                    <h4 class="meta-subheading font-size-13 font-gray" id="pwd-notification">请输入密码</h4>
+                                </div>
+                                <div action="" class="form-inline" method="">
+                                    <div class="content-box-wrapper pad20A">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" placeholder="Password" class="form-control">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="button"><i class="glyph-icon icon-unlock-alt"></i></button>
+                                    </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="page-content">
                 <div style="position:absolute;top: 40%;text-align: center;bottom: 0px;left: 0px;right: 0px;">

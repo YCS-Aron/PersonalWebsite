@@ -9,3 +9,11 @@ a.ycs-link:hover {
     margin-top: 5px;
     font-size: 1.3em;
 }
+
+#password-panel {
+    display: none;
+}
+
+#password-panel .center-content {
+    padding-top: 20%;
+}

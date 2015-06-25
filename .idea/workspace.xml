@@ -2,13 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8a6566c-88a7-4bf8-9e68-8e7d4780b3c9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ajax.html" afterPath="$PROJECT_DIR$/ajax.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cross-origin-and-jsonp.html" afterPath="$PROJECT_DIR$/cross-origin-and-jsonp.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascript-object-orientied.html" afterPath="$PROJECT_DIR$/javascript-object-orientied.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/javascript-overview.html" afterPath="$PROJECT_DIR$/javascript-overview.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jq-event.html" afterPath="$PROJECT_DIR$/jq-event.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jq-overview.html" afterPath="$PROJECT_DIR$/jq-overview.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/ajax.html" afterPath="$PROJECT_DIR$/tech-blog/ajax.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/cross-origin-and-jsonp.html" afterPath="$PROJECT_DIR$/tech-blog/cross-origin-and-jsonp.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/javascript-object-orientied.html" afterPath="$PROJECT_DIR$/tech-blog/javascript-object-orientied.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/javascript-overview.html" afterPath="$PROJECT_DIR$/tech-blog/javascript-overview.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/jq-event.html" afterPath="$PROJECT_DIR$/tech-blog/jq-event.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/jq-overview.html" afterPath="$PROJECT_DIR$/tech-blog/jq-overview.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodeServer/BlogRouter.js" afterPath="$PROJECT_DIR$/nodeServer/BlogRouter.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tech-blog.css" afterPath="$PROJECT_DIR$/tech-blog.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ycs.css" afterPath="$PROJECT_DIR$/ycs.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ycs.js" afterPath="$PROJECT_DIR$/ycs.js" />
     </list>
     <ignored path="mywebsite.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,41 +35,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="tech-blog.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tech-blog.css">
+      <file leaf-file-name="BlogRouter.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nodeServer/BlogRouter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7036083">
-              <caret line="91" column="21" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ycs.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ycs.js">
+      <file leaf-file-name="ycs.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ycs.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/themes/admin/layout.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="223" column="1" selection-start-line="223" selection-start-column="1" selection-end-line="223" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="connect.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nodeServer/connect.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="51" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
+              <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -73,11 +58,22 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.764706">
-              <caret line="141" column="53" selection-start-line="141" selection-start-column="46" selection-end-line="141" selection-end-column="53" />
+            <state vertical-scroll-proportion="-8.254902">
+              <caret line="490" column="83" selection-start-line="490" selection-start-column="83" selection-end-line="490" selection-end-column="83" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ycs.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ycs.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7196262">
+              <caret line="61" column="24" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="24" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -103,10 +99,6 @@
         <option value="$PROJECT_DIR$/assets/helpers/typography.css" />
         <option value="$PROJECT_DIR$/todo.txt" />
         <option value="$PROJECT_DIR$/nodeServer/connect.js" />
-        <option value="$PROJECT_DIR$/nodeServer/BlogRouter.js" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/ycs.css" />
-        <option value="$PROJECT_DIR$/ycs.js" />
         <option value="$PROJECT_DIR$/assets/themes/admin/layout.css" />
         <option value="$PROJECT_DIR$/highlight/styles/zenburn.css" />
         <option value="$PROJECT_DIR$/jq-event.html" />
@@ -116,6 +108,11 @@
         <option value="$PROJECT_DIR$/javascript-overview.html" />
         <option value="$PROJECT_DIR$/jq-overview.html" />
         <option value="$PROJECT_DIR$/tech-blog.css" />
+        <option value="$PROJECT_DIR$/tech-blog/javascript-object-orientied.html" />
+        <option value="$PROJECT_DIR$/nodeServer/BlogRouter.js" />
+        <option value="$PROJECT_DIR$/ycs.css" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/ycs.js" />
       </list>
     </option>
   </component>
@@ -189,7 +186,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="nodeServer" />
+              <option name="myItemId" value="tech-blog" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -211,6 +208,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="true" />
     <property name="SearchEverywhereHistoryKey" value="dfa&#9;null&#9;null" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tech-blog" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -475,12 +477,12 @@
       <workItem from="1434681066850" duration="9000" />
       <workItem from="1434681092807" duration="9000" />
       <workItem from="1434681123730" duration="12691000" />
-      <workItem from="1435051337433" duration="12192000" />
+      <workItem from="1435051337433" duration="17951000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56383000" />
+    <option name="totallyTimeSpent" value="62142000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -496,7 +498,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21816881" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22460657" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -560,7 +562,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ajax.html">
+    <entry file="file://$PROJECT_DIR$/tech-blog/ajax.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
@@ -568,7 +570,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cross-origin-and-jsonp.html">
+    <entry file="file://$PROJECT_DIR$/tech-blog/cross-origin-and-jsonp.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="12" />
@@ -581,12 +583,12 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="493" column="68" selection-start-line="493" selection-start-column="68" selection-end-line="493" selection-end-column="79" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jq-event.html">
+    <entry file="file://$PROJECT_DIR$/tech-blog/jq-event.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="52" selection-start-line="11" selection-start-column="52" selection-end-line="11" selection-end-column="52" />
@@ -623,7 +625,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -633,7 +635,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -643,7 +645,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -720,14 +722,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/content.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25531915">
-          <caret line="19" column="68" selection-start-line="19" selection-start-column="68" selection-end-line="19" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/blocks.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.125">
@@ -775,22 +769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nodeServer/BlogRouter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ycs.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/highlight/styles/zenburn.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.4444447">
@@ -807,64 +785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.764706">
-          <caret line="141" column="53" selection-start-line="141" selection-start-column="46" selection-end-line="141" selection-end-column="53" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ajax.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82047874">
-          <caret line="155" column="34" selection-start-line="155" selection-start-column="34" selection-end-line="155" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cross-origin-and-jsonp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.708334">
-          <caret line="59" column="34" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascript-object-orientied.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-64.458336">
-          <caret line="172" column="22" selection-start-line="172" selection-start-column="22" selection-end-line="172" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/javascript-overview.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-48.75">
-          <caret line="78" column="28" selection-start-line="78" selection-start-column="28" selection-end-line="78" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jq-overview.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1196809">
-          <caret line="117" column="32" selection-start-line="117" selection-start-column="32" selection-end-line="117" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jq-event.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38164893">
-          <caret line="22" column="14" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/themes/admin/layout.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -873,18 +793,101 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ycs.js">
+    <entry file="file://$PROJECT_DIR$/tech-blog/javascript-object-orientied.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.43351063">
+          <caret line="173" column="33" selection-start-line="173" selection-start-column="33" selection-end-line="173" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tech-blog/ajax.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8523936">
+          <caret line="155" column="34" selection-start-line="155" selection-start-column="34" selection-end-line="155" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tech-blog.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7036083">
-          <caret line="91" column="21" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
+        <state vertical-scroll-proportion="-12.0">
+          <caret line="147" column="13" selection-start-line="147" selection-start-column="13" selection-end-line="147" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tech-blog/cross-origin-and-jsonp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8523936">
+          <caret line="59" column="34" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tech-blog/javascript-overview.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7726064">
+          <caret line="78" column="28" selection-start-line="78" selection-start-column="28" selection-end-line="78" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tech-blog/jq-overview.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.99202126">
+          <caret line="117" column="32" selection-start-line="117" selection-start-column="32" selection-end-line="117" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tech-blog/jq-event.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3949468">
+          <caret line="22" column="14" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ycs.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.254902">
+          <caret line="490" column="83" selection-start-line="490" selection-start-column="83" selection-end-line="490" selection-end-column="83" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nodeServer/BlogRouter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/content.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35904256">
+          <caret line="19" column="68" selection-start-line="19" selection-start-column="68" selection-end-line="19" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ycs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7196262">
+          <caret line="61" column="24" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="24" />
           <folding />
         </state>
       </provider>

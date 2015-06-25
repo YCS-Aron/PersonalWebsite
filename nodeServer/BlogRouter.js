@@ -5,27 +5,27 @@ var cheerio = require('cheerio');
 var map = [
     {
         regexp: /^(\/js-oo)$/,
-        path: '../javascript-object-orientied.html'
+        path: '../tech-blog/javascript-object-orientied.html'
     },
     {
         regexp: /^(\/js-overview)$/,
-        path: '../javascript-overview.html'
+        path: '../tech-blog/javascript-overview.html'
     },
     {
         regexp: /^(\/ajax)$/,
-        path: '../ajax.html'
+        path: '../tech-blog/ajax.html'
     },
     {
         regexp: /^(\/jsonp)$/,
-        path: '../cross-origin-and-jsonp.html'
+        path: '../tech-blog/cross-origin-and-jsonp.html'
     },
     {
         regexp: /^(\/jq-overview)$/,
-        path: '../jq-overview.html'
+        path: '../tech-blog/jq-overview.html'
     },
     {
         regexp: /^(\/jq-event)$/,
-        path: '../jq-event.html'
+        path: '../tech-blog/jq-event.html'
     }
 ];
 
