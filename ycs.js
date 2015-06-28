@@ -7,6 +7,7 @@ $(function(){
     var content = $('#page-content');
     var pwdNotification = $('#pwd-notification');
 
+    //this data should put in server
     var targetUrlMap = {
         'ycs': 'content.html',
         'timeline': 'timeline.html',
@@ -16,39 +17,79 @@ $(function(){
         'jsonp': 'tech-blog/cross-origin-and-jsonp.html',
         'ajax': 'tech-blog/ajax.html',
         'jq-overview': 'tech-blog/jq-overview.html',
-        'jq-event': 'tech-blog/jq-event.html'
+        'jq-event': 'tech-blog/jq-event.html',
+        'nodejs-module': 'tech-blog/nodejs-module.html'
     };
 
-    $('a.ycs-link').on('click', function(){
-        var targetName = $(this).attr('linktarget');
-        var url = targetUrlMap[targetName];
-        var classifiedPromise = new $.Deferred();
-        if(url) {
-            //check classified
-            if($(this).hasClass('classified')) {
-                content.empty();
-                passwordPanel.show();
-                passwordInput.val('');
-                passwordInput.focus();
-                var sumitHandler = function(){
+    //verify user input password
+    var verifyPassword = function(){
+        var promise = new $.Deferred();
+        if(passwordInput.val() === 'ycs') {
+            return promise.resolve();
+        } else {
+            passwordInput.val('');
+            pwdNotification.text('密码错误!');
+            return promise.reject();
+        }
+    };
+
+    //check if the page need password
+    var checkClassification = function(pathname) {
+        var classificationPromise = new $.Deferred();
+        $.ajax({
+            url: pathname + '/ifClassified',
+            method: 'GET'
+        }).then(function(){
+            classificationPromise.resolve();
+        }, function(){
+            classificationPromise.reject();
+        }).done();
+        return classificationPromise;
+    };
+
+    //verify classification and verify pwd and load content
+    var flow = function(targetName){
+        var passPwdPromise = new $.Deferred();
+        var url = getPathWithIndex(targetName);
+
+        checkClassification(targetName).then(function(){
+            //if this blog is classified , show the password panel
+            loadingbar.hide();
+            content.empty();
+            passwordPanel.show();
+            passwordInput.focus();
+            passwordButton.bind('click', function(){
+                if(passwordInput.val() === 'ycs') {
+                    passwordInput.val('');
+                    passPwdPromise.resolve();
+                } else {
+                    passwordInput.val('');
+                    pwdNotification.text('密码错误!');
+                }
+            });
+            passwordInput.keydown(function(e){              //HACK: why the value will be empty.I did not remove listener.so it will trigger twice.
+                var keycode = e.keyCode || e.which || event.which; console.log(passwordInput.val());
+                if(keycode === 13){
                     if(passwordInput.val() === 'ycs') {
-                        passwordPanel.hide();
-                        classifiedPromise.resolve();
+                        passwordInput.val('');
+                        passPwdPromise.resolve();
                     } else {
                         passwordInput.val('');
                         pwdNotification.text('密码错误!');
                     }
-                };
-                passwordButton.bind('click', sumitHandler);
-                //passwordButton.bind('click', sumitHandler);  绑定回车按键事件
-            } else {
-                classifiedPromise.resolve();
-            }
+                }
+            });
+        }, function(){
+            passPwdPromise.resolve();
+        }).done();
 
-            classifiedPromise.then(function(){
-                //loading blog content
-                var element = this;
-                content.empty();
+        if(url) {
+            passPwdPromise.then(function(){
+                //if this blog is not classified , load the html content
+                passwordButton.unbind('click');
+                passwordInput.unbind('keydown');
+
+                passwordPanel.hide();
                 loadingbar.show();
                 $.ajax({
                     url: url,           //HACK
@@ -66,5 +107,27 @@ $(function(){
                 });
             });
         }
+    };
+
+    //
+    var getPathWithIndex = function(targetName){
+        return targetUrlMap[targetName];
+    };
+
+    //add click listener to blog link
+    $('a.ycs-link').bind('click', function(e){
+        var elem = $(e.target).closest('a');      //HACK:  why e.target will become span element.
+        var targetName = elem.attr('linktarget');
+
+        loadingbar.show();
+        content.empty();
+
+        if(targetName) {
+            flow(targetName);
+        }
     });
+
+    if(window.location.pathname && window.location.pathname.slice(1)) {
+        flow(window.location.pathname.slice(1));
+    }
 });

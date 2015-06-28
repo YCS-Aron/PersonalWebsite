@@ -26,6 +26,10 @@ var map = [
     {
         regexp: /^(\/jq-event)$/,
         path: '../tech-blog/jq-event.html'
+    },
+    {
+        regexp: /^(\/nodejs-module)$/,
+        path: '../tech-blog/nodejs-module.html'
     }
 ];
 
@@ -33,6 +37,9 @@ module.exports = function(req, res, next) {
     var urlObj = url.parse(req.url);
     var pathname = urlObj.pathname;
     var $, content, regexp, filepath;
+
+    //console.log(__dirname);       Users/YCS/mywebsite/nodeServer
+
 
     map.forEach(function(item, index){
         if(item.regexp.test(pathname)) {
