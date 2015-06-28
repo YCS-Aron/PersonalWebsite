@@ -27,10 +27,11 @@
     box-shadow: 0 0 0 transparent;
 }
 .timeline-box .tl-row .tl-item .popover.left {
-    float: right;
+    width: 93%;
     margin-right: 35px;
 }
 .timeline-box .tl-row .tl-item.float-right .popover.right {
+    width: 93%;
     margin-left: 35px;
 }
 .timeline-box .tl-row .tl-item .tl-panel {

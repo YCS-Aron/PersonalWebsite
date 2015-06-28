@@ -16,9 +16,11 @@ module.exports = function(req, res, next) {
 
     if(ifClassified) {
         res.statusCode = 200;
-        res.end();
+        res.writeHead({'Content-Type': 'text/plain'});
+        res.end('true');
     } else {
-        res.statusCode = 404;
-        res.end();
+        res.statusCode = 200;
+        res.writeHead({'Content-Type': 'text/plain'});
+        res.end('false');
     }
 }

@@ -7,47 +7,54 @@ var config = [
     {
         name: 'js-overview',
         regexp: /^(\/js-overview)$/,
-        path: '../tech-blog/javascript-overview.html',
+        path: '../blog/tech/javascript-overview.html',
         classified: false
     },
     {
         name: 'js-oo',
         regexp: /^(\/js-oo)$/,
-        path: '../tech-blog/javascript-object-orientied.html',
-        classified: true
+        path: '../blog/tech/javascript-object-orientied.html',
+        classified: false
     },
     //ajax
     {
         name: 'ajax',
         regexp: /^(\/ajax)$/,
-        path: '../tech-blog/ajax.html',
+        path: '../blog/tech/ajax.html',
         classified: false
     },
     {
         name: 'jsonp',
         regexp: /^(\/jsonp)$/,
-        path: '../tech-blog/cross-origin-and-jsonp.html',
+        path: '../blog/tech/cross-origin-and-jsonp.html',
         classified: false
     },
     //jQuery
     {
         name: 'jq-overview',
         regexp: /^(\/jq-overview)$/,
-        path: '../tech-blog/jq-overview.html',
+        path: '../blog/tech/jq-overview.html',
         classified: false
     },
     {
         name: 'jq-event',
         regexp: /^(\/jq-event)$/,
-        path: '../tech-blog/jq-event.html',
+        path: '../blog/tech/jq-event.html',
         classified: false
     },
     //Node
     {
         name: 'nodejs-module',
         regexp: /^(\/nodejs-module)$/,
-        path: '../tech-blog/nodejs-module.html',
+        path: '../blog/tech/nodejs-module.html',
         classified: false
+    },
+    //private
+    {
+        name: 'timeline',
+        regexp: /^(\/timeline)$/,
+        path: '../blog/private/timeline.html',
+        classified: true
     }
 ];
 

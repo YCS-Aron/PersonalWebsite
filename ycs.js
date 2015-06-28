@@ -12,13 +12,14 @@ $(function(){
         'ycs': 'content.html',
         'timeline': 'timeline.html',
         'blocks': 'blocks.html',
-        'js-oo': 'tech-blog/javascript-object-orientied.html',
-        'js-overview': 'tech-blog/javascript-overview.html',
-        'jsonp': 'tech-blog/cross-origin-and-jsonp.html',
-        'ajax': 'tech-blog/ajax.html',
-        'jq-overview': 'tech-blog/jq-overview.html',
-        'jq-event': 'tech-blog/jq-event.html',
-        'nodejs-module': 'tech-blog/nodejs-module.html'
+        'js-oo': 'blog/tech/javascript-object-orientied.html',
+        'js-overview': 'blog/tech/javascript-overview.html',
+        'jsonp': 'blog/tech/cross-origin-and-jsonp.html',
+        'ajax': 'blog/tech/ajax.html',
+        'jq-overview': 'blog/tech/jq-overview.html',
+        'jq-event': 'blog/tech/jq-event.html',
+        'nodejs-module': 'blog/tech/nodejs-module.html',
+        'timeline': 'blog/private/timeline.html'
     };
 
     //verify user input password
@@ -39,10 +40,14 @@ $(function(){
         $.ajax({
             url: pathname + '/ifClassified',
             method: 'GET'
-        }).then(function(){
-            classificationPromise.resolve();
-        }, function(){
-            classificationPromise.reject();
+        }).then(function(response){
+            if(response === 'true') {
+                //password is essential
+                classificationPromise.resolve();
+            } else {
+                //password needless
+                classificationPromise.reject();
+            }
         }).done();
         return classificationPromise;
     };
@@ -99,6 +104,7 @@ $(function(){
                     loadingbar.fadeOut();
                     setTimeout(function(){
                         history.pushState(null, null, targetName);
+                        content.empty();
                         content.append($(response))
                         content.find('pre code').each(function(index, codeblock){
                             hljs.highlightBlock(codeblock);			//COOL !

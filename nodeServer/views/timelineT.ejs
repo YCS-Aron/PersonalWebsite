@@ -1,0 +1,60 @@
+<div class="panel">
+    <div class="panel-body">
+        <h3 class="title-hero">
+            MileStones
+        </h3>
+        <div class="example-box-wrapper">
+            <div class="timeline-box">
+                <% if (config.length) { %>
+                    <% config.forEach( function(item, index){ %>
+                        <div class="tl-row">
+                            <% if(index%2){ %>
+                            <div class="tl-item float-right">
+                            <% } else { %>
+                            <div class="tl-item">
+                            <% } %>
+
+                                <% if(item.category === 'Thesis'){ %>
+                                    <div class="tl-icon bg-green">
+                                <% } else if(item.category === 'Travel') {%>
+                                    <div class="tl-icon bg-blue-alt">
+                                <% } else if(item.category === 'Job') {%>
+                                    <div class="tl-icon bg-purple">
+                                <% } else if(item.category === 'Body') {%>
+                                    <div class="tl-icon bg-red">
+                                <% } else if(item.category === 'Technology') {%>
+                                    <div class="tl-icon bg-yellow">
+                                <% } %>
+                                    <i class="glyph-icon icon-cog"></i>
+                                </div>
+
+                                <div class="tl-panel">
+                                    <%= item.deadline %>
+                                </div>
+
+                                <% if(index%2){ %>
+                                    <div class="popover right">
+                                <% } else { %>
+                                    <div class="popover left">
+                                <% } %>
+
+                                    <div class="arrow"></div>
+                                    <div class="popover-content">
+                                        <div class="tl-label bs-label bg-blue-alt">
+                                            <%= item.category %>
+                                        </div>
+                                        <p class="tl-content"><%= item.description %></p>
+                                        <div class="tl-time">
+                                            <i class="glyph-icon icon-clock-o"></i>
+                                            <%= item.state %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>

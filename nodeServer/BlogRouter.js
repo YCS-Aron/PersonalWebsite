@@ -1,37 +1,9 @@
 var url = require('url');
 var fs = require('fs');
+var ejs = require('ejs');
+var path = require('path');
 var cheerio = require('cheerio');
-
-var map = [
-    {
-        regexp: /^(\/js-oo)$/,
-        path: '../tech-blog/javascript-object-orientied.html'
-    },
-    {
-        regexp: /^(\/js-overview)$/,
-        path: '../tech-blog/javascript-overview.html'
-    },
-    {
-        regexp: /^(\/ajax)$/,
-        path: '../tech-blog/ajax.html'
-    },
-    {
-        regexp: /^(\/jsonp)$/,
-        path: '../tech-blog/cross-origin-and-jsonp.html'
-    },
-    {
-        regexp: /^(\/jq-overview)$/,
-        path: '../tech-blog/jq-overview.html'
-    },
-    {
-        regexp: /^(\/jq-event)$/,
-        path: '../tech-blog/jq-event.html'
-    },
-    {
-        regexp: /^(\/nodejs-module)$/,
-        path: '../tech-blog/nodejs-module.html'
-    }
-];
+var config = require('../config/classificationConfig');
 
 module.exports = function(req, res, next) {
     var urlObj = url.parse(req.url);
@@ -40,8 +12,7 @@ module.exports = function(req, res, next) {
 
     //console.log(__dirname);       Users/YCS/mywebsite/nodeServer
 
-
-    map.forEach(function(item, index){
+    config.forEach(function(item, index){
         if(item.regexp.test(pathname)) {
             filepath = item.path;
         }
@@ -55,7 +26,8 @@ module.exports = function(req, res, next) {
             };
 
             $ = cheerio.load(data.toString());
-            fs.readFile(filepath, function(er, data){
+
+            fs.readFile(filepath, function(er, data){console.log('read file ,not timeline');
                 $('#page-content').empty();
                 $('#page-content').append(data.toString());
                 res.statusCode = 200;
