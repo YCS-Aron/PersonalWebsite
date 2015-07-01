@@ -4,12 +4,6 @@
 
 module.exports = [
     {
-        category: 'Thesis',
-        description: '完成研究生毕业论文的初稿——基于Backbone和NodeJS的电子发票管理系统的设计与实现',
-        deadline: '2015-7-30',
-        state: '未完成'
-    },
-    {
         category: 'Body',
         description: '体重稳定到66KG,多强化肩膀,胸和腹,降低脂肪率.',
         deadline: '2015-7-30',
@@ -17,19 +11,25 @@ module.exports = [
     },
     {
         category: 'Technology',
-        description: '精通Backbone,AngularJS,jQuery,Handlebars,Less,Grunt,NodeJS,Connect,Express.精通高性能的Web系统架构.',
+        description: '精通Backbone, jQuery, Handlebars, Less, Grunt, NodeJS, Connect, Express, Rest.',
         deadline: '2015-7-30',
         state: '未完成'
     },
     {
         category: 'Thesis',
-        description: '提交研究生毕业论文电子档到软件学院信息化平台——基于Backbone和NodeJS的电子发票管理系统的设计与实现',
+        description: '完成研究生毕业论文的初稿,提交电子档到软件学院信息化平台——基于Backbone和NodeJS的电子发票管理系统的设计与实现',
         deadline: '2015-8-15',
         state: '未完成'
     },
     {
         category: 'Job',
         description: '为期一年的Tradeshift实习期结束',
+        deadline: '2015-8-31',
+        state: '未完成'
+    },
+    {
+        category: 'Technology',
+        description: '精通AngularJS,精通高性能的Web系统架构.',
         deadline: '2015-8-31',
         state: '未完成'
     },
@@ -55,6 +55,18 @@ module.exports = [
         category: 'Travel',
         description: '香港深度一周游: 浅水湾游泳',
         deadline: '2015-10-10',
+        state: '未完成'
+    },
+    {
+        category: 'Travel',
+        description: '泰国深度游',
+        deadline: '???',
+        state: '未完成'
+    },
+    {
+        category: 'Job',
+        description: '跳槽,45W年薪,技术主管',
+        deadline: '2020-1-1',
         state: '未完成'
     }
 ];

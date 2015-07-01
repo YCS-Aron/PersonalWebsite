@@ -19,7 +19,7 @@
 }
 #header-logo .logo-content-big,
 .logo-content-small {
-    background: url('../../image-resources/logo-admin.png') left 50% no-repeat;
+    background: url('../../image-resources/logo.png') left 50% no-repeat;
     text-indent: -999em;
     position: absolute;
     height: 34px;
@@ -441,15 +441,49 @@ body #nav-toggle.collapsed span {
     border-bottom: 0;
 }
 
-/* Page content wrapper */
+/* Animation of extend page-content */
+@keyframes extend-page-content
+{
+    from {left: 260px;}
+    to {left: 0px;}
+}
+
+@-moz-keyframes extend-page-content /* Firefox */
+{
+    from {left: 260px;}
+    to {left: 0px;}
+}
+
+@-webkit-keyframes extend-page-content /* Safari 和 Chrome */
+{
+    from {left: 260px;}
+    to {left: 0px;}
+}
+
+@-o-keyframes extend-page-content /* Opera */
+{
+    from {left: 260px;}
+    to {left: 0px;}
+}
+
+.page-content-closed {
+    animation: extend-page-content 0.4s;
+    -moz-animation: extend-page-content 0.4s;	/* Firefox */
+    -webkit-animation: extend-page-content 0.4s;	/* Safari 和 Chrome */
+    -o-animation: extend-page-content 0.4s;	/* Opera */
+    left: 0px !important;
+}
 
 #page-content-wrapper {
     position: absolute;
     top: 78px;
-    left: 260px;
     bottom: 0px;
     right: 0px;
     z-index: 0;
+    left: 260px;
+    transition: left 0.7s ease;
+    -moz-transition: left 0.7s ease;
+    -webkit-transition: left 0.7s ease;
 }
 #page-content {
     padding: 20px 30px;
@@ -563,7 +597,6 @@ body #nav-toggle.collapsed span {
 }
 
 /* Closed sidebar */
-
 #page-sidebar {
     -webkit-transition: transform 0.5s ease;
     -o-transition: transform 0.5s ease;

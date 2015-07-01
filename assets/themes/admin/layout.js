@@ -109,16 +109,14 @@ $(document).ready(function() {
 
     /* Colapse sidebar */
     $(function() {
-
         $('#close-sidebar').click(function() {
             $('body').toggleClass('closed-sidebar');
             $('.glyph-icon', this).toggleClass('icon-angle-right').toggleClass('icon-angle-left');
+
+            $('#page-content-wrapper').toggleClass('page-content-closed');
         });
 
     });
 
     /* Sidebar scroll */
-
-
-
 });

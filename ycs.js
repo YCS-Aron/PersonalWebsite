@@ -73,7 +73,7 @@ $(function(){
                 }
             });
             passwordInput.keydown(function(e){              //HACK: why the value will be empty.I did not remove listener.so it will trigger twice.
-                var keycode = e.keyCode || e.which || event.which; console.log(passwordInput.val());
+                var keycode = e.keyCode || e.which || event.which;
                 if(keycode === 13){
                     if(passwordInput.val() === 'ycs') {
                         passwordInput.val('');
@@ -125,10 +125,9 @@ $(function(){
         var elem = $(e.target).closest('a');      //HACK:  why e.target will become span element.
         var targetName = elem.attr('linktarget');
 
-        loadingbar.show();
-        content.empty();
-
         if(targetName) {
+            loadingbar.show();
+            content.empty();
             flow(targetName);
         }
     });

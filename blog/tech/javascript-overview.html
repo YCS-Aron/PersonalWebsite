@@ -1,17 +1,18 @@
 <div class="blog-body">
     <header class="header">
         <div class="title">
-            <h1>Javascript认知</h1>
+            <h1>Javascript语言特性</h1>
             <p class="subline">对Javascript语言特性的认识</p>
             <p class="blog-time"><strong>姚川松</strong> &#8212; 写于 <strong>2015/3/21</strong></p>
         </div>
     </header>
     <article class="article-content">
         <div>
-            <p>目前几乎所有浏览器厂商都采用Javascript实现各自浏览器的对外接口,比如DOM和BOM，并且几乎所有的浏览器都内置了Javascript引擎,所以,只需要打开浏览器,在控制栏里直接输入Javascript代码就能运行。Javascript拥有很多独特的语言特性,使得它成为一门非常与众不同的语言, 并让Javascript这门语言变得非常的有趣, 同时, 也是因为它与众不同的特性, 使得它成为争议最多的语言。</p>
+            <p>在google对ajax广泛使用的背景下, Javascript从一个只被用来在浏览器上操作DOM的脚本语言, 成为了最热门的语言之一, 随着Javascript的发展, 用Javascript编写的开源框架和库越来越多: Backbone, Angular, jQuery, Underscore, Handlebars, Q等等, 使其成为了Github上被用来编写开源项目最多的语言. </p>
+            <p>目前几乎所有浏览器厂商都采用Javascript实现各自浏览器的对外接口,比如DOM和BOM, 并且几乎所有的浏览器都内置了Javascript引擎,所以,只需要打开浏览器,在控制栏里直接输入Javascript代码就能运行。Javascript拥有很多独特的语言特性,使得它成为一门非常与众不同的语言, 并让Javascript这门语言变得非常的有趣, 同时, 也是因为它与众不同的特性, 使得它成为争议最多的语言。</p>
             <p>Javascript的语言特性主要有：宽松数据类型, 函数即对象, 函数作用域, 变量提升, 闭包, 原型概念, 单线程.</p>
             <h2>宽松类型</h2>
-            <p>Javascript是弱类型语言，统一使用关键字<span class="key-word">var</span>定义数据,而无需指定具体的数据类型。这使得它和C++, Java这样的数据类型检查严格的语言有很大的不同。宽松数据类型的特性一方面让程序员可以“偷懒”, 另一方面也给程序的稳定性带来一定的隐患, 比如定义了一个计算两个数值相加的add函数, 如果我传入字符串, 依旧可以运行, 但是结果却不是我想要的, 这就使得程序变得不那么可靠，或者你需要在操作变量之前先检查变量类型是否正确和是否具有操作性，比如下面的代码：</p>
+            <p>Javascript是<span class="key-word">弱类型</span>语言，统一使用关键字<span class="key-word">var</span>定义数据,而无需指定具体的数据类型。这使得它和C++, Java这样的数据类型检查严格的语言有很大的不同。宽松数据类型的特性一方面让程序员可以“偷懒”, 另一方面也给程序的稳定性带来一定的隐患, 因为不同的数据类型对应的相同操作的含义是不一样的. 比如定义了一个计算两个数值相加的add函数, 如果我传入字符串, 依旧可以运行, 但是结果却不是我想要的, 这就使得程序变得不那么可靠，或者你需要在操作变量之前先检查变量类型是否正确和是否具有操作性，比如下面的代码：</p>
             <pre><code class="javascript">
 var add = function (a, b) { //定义一个加法功能的函数
     return a + b;
@@ -20,8 +21,16 @@ add(1,2);               //应该这么调用，返回值是3
 add('hello world',2);   //如果不小心传入了一个字符串，函数能正常执行，返回值是"hello world2"，在C++中也由同样的结果，两者没有什么差别
 add();                  //又一个不小心，传入了两个undefined，它竟然奇迹般的不报错，还给你正经的返回一个NaN，
 add({attr: 'nihao'}, 1); //传入了一个JSON对象，结果为1
+
+var correctAdd = function(a, b){
+    if(typeof(a) === 'number' && typeof(b) === 'number') {
+        return a + b;
+    } else {
+        throw new Error('incorrect operand type!');
+    }
+}
             </code></pre>
-            <p>也正因为类型的灵活性，让Javascript有了很大的自由性, 但是却牺牲了可靠性, 这就需要Coder自己检查数据合法性, 以满足可靠性. </p>
+            <p>正因为类型的灵活性，让Javascript有了很大的自由性, 但是却牺牲了可靠性, 这就需要Coder自己检查数据合法性, 以满足可靠性. 也就是说, 定义类型的时候方便了, 也就意味着使用时要小心翼翼, 如果还不放心, 就多写一些类型检查代码吧. </p>
             <p>Javascript的弱类型和脚本语言的特点, 使得它在开发大型系统时的可靠性受到了质疑. 它不像Java那样可以在编译阶段就检查出很多的类型错误, 通过数据类型限制了错误的发生, 保证了程序的可靠性, 这也就是Java的数据类型丰富并且拥有泛型的原因. 但是, 也是因为Javascript的弱类型, 使得Javascript代码比Java代码要简洁得多而且灵活得多, Coder可以把更多的精力放在代码逻辑上, 而不是数据类型的定义和处理上, 着实解放了程序员.</p>
             <h2>函数即对象</h2>
             <p>在Javascript中定义一个函数, 解释器会生成一个该函数对应的对象, 该对象中的属性包括Object对象的prototype对象上的属性和constructor, 该对象只是一个普通的JSON对象, 你可以给它绑定任何数据. 作为普通函数, 它可以直接调用, 如果希望通过函数来实现抽象类, 那么你需要在函数体中使用<span class="key-word">this对象</span>, 并从函数中不返回任何数据. 如果你使用了this, 那么你可能又需要<span class="key-word">new调用方式</span>, 它和<span class="key-word">prototype</span>一起实现了类的抽象, 当使用new调用方式时, 函数会返回this对象作为实例化的结果. 当我们需要实现抽象时. 即为每个实例对象都绑定指定固有属性的引用, 那么需要给函数对象绑定prototype对象. prototype对象中还用__proto__属性引用了继承对象的prototype对象. 下面是一段使用函数实现类的例子: </p>
@@ -83,4 +92,71 @@ obj.getInfo();
             <!--<p><strong>Excerpt from: <a href="http://www.gutenberg.org/ebooks/15237">The Chemistry of Food and Nutrition</a> by A. W. Duncan</strong></p>-->
         </div>
     </article>
+    <div class="content-box" style="margin-bottom: 200px;">
+        <h3 class="content-box-header bg-blue text-left">
+            <i class="glyph-icon icon-comments"></i>
+            评论
+        </h3>
+        <div class="content-box-wrapper">
+
+            <ul class="chat-box">
+                <li class="float-left">
+                    <div class="chat-author">
+                        <img width="36" src="../../assets/image-resources/gravatar.jpg" alt="">
+                    </div>
+                    <div class="popover right no-shadow">
+                        <div class="arrow"></div>
+                        <div class="popover-content">
+                            <h3>
+                                <a href="#" title="Horia Simon">Horia Simon</a>
+                                <div class="float-right">
+                                    <a href="#" class="btn glyph-icon icon-inbox font-gray tooltip-button" data-placement="bottom" title="" data-original-title="This chat line was received in the mail."></a>
+                                </div>
+                            </h3>
+                            This comment line has a title (author name) and a right button panel.
+                            <div class="chat-time">
+                                <i class="glyph-icon icon-clock-o"></i>
+                                a few seconds ago
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="chat-author">
+                        <img width="36" src="../../assets/image-resources/gravatar.jpg" alt="">
+                    </div>
+                    <div class="popover left no-shadow">
+                        <div class="arrow"></div>
+                        <div class="popover-content">
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+                            <div class="chat-time">
+                                <i class="glyph-icon icon-clock-o"></i>
+                                a few seconds ago
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+        <div class="button-pane pad10A">
+            <div class="input-group">
+                <input type="text" placeholder="Say something here..." class="form-control">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default" tabindex="-1"><i class="glyph-icon icon-mail-reply"></i></button>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" tabindex="-1" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div> <!-- blog-body -->

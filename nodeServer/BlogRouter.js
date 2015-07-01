@@ -27,7 +27,7 @@ module.exports = function(req, res, next) {
 
             $ = cheerio.load(data.toString());
 
-            fs.readFile(filepath, function(er, data){console.log('read file ,not timeline');
+            fs.readFile(filepath, function(er, data){
                 $('#page-content').empty();
                 $('#page-content').append(data.toString());
                 res.statusCode = 200;
