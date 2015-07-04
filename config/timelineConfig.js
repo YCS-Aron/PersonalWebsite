@@ -4,6 +4,12 @@
 
 module.exports = [
     {
+        category: 'Job',
+        description: '内推阿里巴巴,阿里巴巴秋招网申截止',
+        deadline: '2015-7-25',
+        state: '未完成'
+    },
+    {
         category: 'Body',
         description: '体重稳定到66KG,多强化肩膀,胸和腹,降低脂肪率.',
         deadline: '2015-7-30',
@@ -43,6 +49,12 @@ module.exports = [
         category: 'Travel',
         description: '深度苏州游: 拙政园,留园,狮子林,周庄,同里,木渎,虎丘,寒山寺,平江路,山塘街,甪直古镇,松鹤楼,得月楼,金鸡湖大酒店自助餐,西山(陆巷古村,明月湾村,东村,堂里村,植里村),协和菜馆,凤凰街,十全街美食,太湖国家湿地公园.',
         deadline: '2015-8-31',
+        state: '未完成'
+    },
+    {
+        category: 'Job',
+        description: '内推腾讯,腾讯秋招网申截止',
+        deadline: '2015-9-10',
         state: '未完成'
     },
     {

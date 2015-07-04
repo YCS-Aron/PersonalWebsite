@@ -1,0 +1,42 @@
+<div class="blog-body">
+    <header class="header">
+        <div class="title">
+            <h1>npm工具介绍</h1>
+            <p class="subline">npm工具介绍</p>
+            <p class="blog-time"><strong>姚川松</strong> &#8212; 写于 <strong>2015/7/2</strong></p>
+        </div>
+    </header>
+    <article class="article-content">
+        <div>
+            <p>Grunt是一个自动化脚本执行工具, 用户自动的执行工程中需要执行的各种javascript脚本. 比如, 在实际开发过程中我们可能需要在编写代码之后对代码进行打包, 打包之后的文件还需要进行JSHint的格式检查, 经过格式检查后的代码还需要进行压缩, 压缩过的代码还需要进行单元测试. 又如果我们使用了LESS或者Sass等语言, 我们还需要对LESS进行解析, 生成css文件. 还有SVG, 图片等的处理. 在得到最终代码之前, 我们有很多任务需要执行, Grunt就是一个帮助我们执行这些重复任务的工具. 而且这些任务都已经有现成的Grunt插件可以使用, 可以直接通过npm进行安装.</p>
+            <h2>定义一个Grunt任务</h2>
+            <p><strong>官方文档: <a href="http://www.gruntjs.net/sample-gruntfile">自定义Grunt任务</a></strong></p>
+            <h2>Grunt工具的工作方式</h2>
+            <p>package.json和Gruntfile.js</p>
+            <div class="warning">
+                <span>Model上的数据都是保存在attributes属性上的, 如果你直接操作attributes上的数据, 不会触发任何change事件.</span>
+            </div>
+            <h2>数据验证</h2>
+            <p>当设置Model的属性和保存数据到服务器时, 对数据进行验证是很有必要的. 因此Model提供了Validate方法用来实现数据验证功能. 它的参数是新设置的值的JSON对象, 如果验证失败, 则返回出错信息, 否则, 不返回任何数据. 下面是一个例子:</p>
+<pre><code class="javascript">
+    var people = Backbone.Model.extent({
+    default: {
+    name: 'Aron',
+    age: 24
+    },
+    validate: function(attrs){
+    if(attrs.age < 0) {
+    return 'value of age must be positive';
+    }
+    }
+    });
+    var me = new people();
+    me.set('age', -1);          //output: value of age must be positive
+</code></pre>
+            <div class="warning">
+                <span>Model的save, fetch, destroy只是定义了这样的一个接口, 后台具体如何实现不受任何限制.</span>
+            </div>
+            <!--<p><strong>Excerpt from: <a href="http://www.gutenberg.org/ebooks/15237">The Chemistry of Food and Nutrition</a> by A. W. Duncan</strong></p>-->
+        </div>
+    </article>
+</div> <!-- blog-body -->

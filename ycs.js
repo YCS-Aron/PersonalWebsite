@@ -19,6 +19,9 @@ $(function(){
         'jq-overview': 'blog/tech/jq-overview.html',
         'jq-event': 'blog/tech/jq-event.html',
         'nodejs-module': 'blog/tech/nodejs-module.html',
+        'backbone-model': 'blog/tech/backbone-model.html',
+        'backbone-view': 'blog/tech/backbone-view.html',
+        'grunt-overview': 'blog/tech/grunt-overview.html',
         'timeline': 'blog/private/timeline.html'
     };
 
@@ -88,31 +91,29 @@ $(function(){
             passPwdPromise.resolve();
         }).done();
 
-        if(url) {
-            passPwdPromise.then(function(){
-                //if this blog is not classified , load the html content
-                passwordButton.unbind('click');
-                passwordInput.unbind('keydown');
+        passPwdPromise.then(function(){
+            //if this blog is not classified , load the html content
+            passwordButton.unbind('click');
+            passwordInput.unbind('keydown');
 
-                passwordPanel.hide();
-                loadingbar.show();
-                $.ajax({
-                    url: url,           //HACK
-                    method: 'GET',
-                    dataType: 'html'
-                }).then(function(response){
-                    loadingbar.fadeOut();
-                    setTimeout(function(){
-                        history.pushState(null, null, targetName);
-                        content.empty();
-                        content.append($(response))
-                        content.find('pre code').each(function(index, codeblock){
-                            hljs.highlightBlock(codeblock);			//COOL !
-                        });
-                    }, 200);
-                });
+            passwordPanel.hide();
+            loadingbar.show();
+            $.ajax({
+                url: url,           //HACK
+                method: 'GET',
+                dataType: 'html'
+            }).then(function(response){
+                loadingbar.fadeOut();
+                setTimeout(function(){
+                    history.pushState(null, null, targetName);
+                    content.empty();
+                    content.append($(response))
+                    content.find('pre code').each(function(index, codeblock){
+                        hljs.highlightBlock(codeblock);			//COOL !
+                    });
+                }, 200);
             });
-        }
+        });
     };
 
     //
@@ -125,14 +126,19 @@ $(function(){
         var elem = $(e.target).closest('a');      //HACK:  why e.target will become span element.
         var targetName = elem.attr('linktarget');
 
-        if(targetName) {
-            loadingbar.show();
-            content.empty();
-            flow(targetName);
+        if(targetName && getPathWithIndex(targetName)){
+            if(targetName) {
+                loadingbar.show();
+                content.empty();
+                flow(targetName);
+            }
         }
     });
 
-    if(window.location.pathname && window.location.pathname.slice(1)) {
-        flow(window.location.pathname.slice(1));
+    if(window.location.pathname) {
+        var initTargetName = window.location.pathname.slice(1);
+        if(initTargetName && getPathWithIndex(targetName)) {
+            flow(window.location.pathname.slice(1));
+        }
     }
 });

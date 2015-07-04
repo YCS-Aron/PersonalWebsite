@@ -1,5 +1,5 @@
 .blog-body {
-	font-family: 'Raleway', Arial, sans-serif;
+	/*font-family: 'Raleway', Arial, sans-serif;*/
 	height: 100%;
 	padding-left: 40px;
 	padding-right: 40px;
@@ -60,6 +60,7 @@
 .article-content {
 	margin-bottom: 100px;
 	padding: 0 0 3em;
+	Line-height: 200%;
 }
 
 .article-content a{

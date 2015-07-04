@@ -49,6 +49,26 @@ var config = [
         path: '../blog/tech/nodejs-module.html',
         classified: false
     },
+    //backbone
+    {
+        name: 'backbone-model',
+        regexp: /^(\/backbone-model)$/,
+        path: '../blog/tech/backbone-model.html',
+        classified: false
+    },
+    {
+        name: 'backbone-view',
+        regexp: /^(\/backbone-view)$/,
+        path: '../blog/tech/backbone-view.html',
+        classified: false
+    },
+    //grunt
+    {
+        name: 'grunt-overview',
+        regexp: /^(\/grunt-overview)$/,
+        path: '../blog/tech/grunt-overview.html',
+        classified: false
+    },
     //private
     {
         name: 'timeline',

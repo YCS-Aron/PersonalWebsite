@@ -68,5 +68,67 @@ module.exports = {
                 <li>若所有的父目录的node_modules文件夹中都没有, 则到环境变量NODE_PATH指定的目录中去找.</li>
                 <li>如果依旧没有找到, 则抛出异常.</li>
             </ul>
+            <h2>package.json文件</h2>
+            <p>package.json是模块的配置文件, 包括模块的名字, 版本号, 入口文件, 依赖模块等. 这些属性决定了模块的内容. 每个模块都应该有这样一个文件.</p>
+            <p>package.json中的属性定义了模块的不同内容, 下面是一个定义比较完整的模块的package.json文件的内容:</p>
+<pre><code class="javascript">
+{
+    "name": "apps-server",
+    "version": "1.0.0",
+    "main": "Gruntfile.js",
+    "private": true,
+    "scripts": {
+        "start": "grunt server"
+    },
+    "dependencies": {
+        "archiver": "0.10.0",
+        "body-parser": "1.9.2",
+        "cheerio": "0.13.1",
+        "domelementtype": "1.1.1",
+        "express": "4.10.2",
+        "grunt": "0.4.5",
+        "grunt-contrib-compress": "0.9.1",
+        "grunt-contrib-jasmine": "0.6.3",
+        "grunt-contrib-jshint": "0.10.0",
+        "grunt-exec": "0.4.6",
+        "grunt-jscs": "1.8.0",
+        "handlebars": "2.0.0-alpha.2",
+        "jasmine": "2.1.1",
+        "jscs": "1.13.1",
+        "jshint": "2.5.0",
+        "less": "1.7.0",
+        "lodash": "2.4.1",
+    },
+    "engines": {
+        "node": ">=0.10.31"
+    },
+    "engineStrict": true,
+    "devDependencies": {
+        "fs-extra": "^0.16.3",
+        "progress": "^1.1.8",
+        "wget": "0.0.1",
+        "yauzl": "^2.2.1"
+    }
+}
+</code></pre>
+            <p>对其中的一些字段进行简单的描述:</p>
+            <h3>name, version</h3>
+            <p>定义了当前模块的名称和版本号, 这两个属性唯一标示了一个模块. </p>
+            <h3>main</h3>
+            <p>定义模块的入口程序, 默认是index.js, 可以自己定义入口程序, 该入口程序中的module.exports对应的数据就是模块的内容.</p>
+            <h3>dependencies</h3>
+            <p>为模块所依赖的其他模块的版本的hash, 版本号需满足semver的规范.</p>
+            <p><strong>Reference: <a onclick="window.open('http://semver.org/');">node-semver官方文档</a></strong></p>
+            <h3>devDependencies</h3>
+            <p>一些额外模块的版本的hash, 如果发布该模块, 也就是开发中需要的模块, 比如测试模块等. 当执行npm install命令时, devDependencies中的依赖也会被安装, 需要执行npm install --production可以忽略devDependencies中定义的依赖.</p>
+            <p><strong>Reference: <a onclick="window.open('https://github.com/npm/npm/issues/1434');">如何通过命令忽略devDependencies中定义的依赖</a></strong></p>
+            <h3>bin</h3>
+            <p></p>
+            <h3>scripts</h3>
+            <p>是一个从包生命周期的阶段到脚本命令的hash对象, 该例子中的scripts表示启动命令采用grunt server,scripts默认值是 <span class="key-word">"scripts": {"start": "node server.js"}</span>. 即默认将start命令设置为node server.js</p>
+            <h3>engines</h3>
+            <p>用于定义该模块执行的node版本.</p>
+            <p><strong>Reference: <a onclick="window.open('https://docs.npmjs.com/files/package.json');">node关于package.json的官方文档( 英文 )</a></strong></p>
+            <p><strong>Reference: <a onclick="window.open('http://www.mujiang.info/translation/npmjs/files/package.json.html');">node关于package.json的官方文档的国内翻译版本, 翻译质量一般</a></strong></p>
     </article>
 </div>

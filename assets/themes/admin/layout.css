@@ -1,6 +1,8 @@
 /* Dashboard Admin Template Layout */
 /* Header */
-
+a:hover {
+    cursor: pointer;
+}
 #header-logo,
 #page-header {
     position: absolute;
@@ -258,7 +260,6 @@ body #nav-toggle.collapsed span {
     background: rgba(78, 137, 190, 0.8);
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
-
 
 #page-content {
     position: absolute;

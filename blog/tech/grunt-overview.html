@@ -1,0 +1,102 @@
+<div class="blog-body">
+    <header class="header">
+        <div class="title">
+            <h1>Grunt工具介绍</h1>
+            <p class="subline">对Grunt自动化工具的功能和使用方法的介绍</p>
+            <p class="blog-time"><strong>姚川松</strong> &#8212; 写于 <strong>2015/7/2</strong></p>
+        </div>
+    </header>
+    <article class="article-content">
+        <div>
+            <p>Grunt是一个自动化脚本执行工具, 用于自动的执行开发工程中各种javascript脚本和任务. 比如, 在实际开发过程中我们可能需要在编写代码之后对代码进行<span class="key-word">打包</span>, 打包之后的文件还需要进行<span class="key-word">JSHint</span>的格式检查, 经过格式检查后的代码还需要进行<span class="key-word">压缩</span>, 压缩过的代码还需要进行<span class="key-word">单元测试</span>. 又如果我们使用了LESS或者Sass等语言, 我们还需要对LESS进行解析, 生成css文件. 还有SVG, 图片等的处理. 在得到最终的执行代码之前, 我们有很多任务需要执行, Grunt就是一个帮助我们执行这些重复任务的工具. 而且这些任务都已经有现成的Grunt插件可以使用, 可以直接通过npm进行安装.</p>
+            <p>对于Grunt, 我们需要了解一些基本的内容. 包括如何定义一个Grunt任务, Grunt的工作方式.</p>
+            <h2>定义一个Grunt模块</h2>
+            <p>每个Grunt模块都由一个Gruntfile.js文件定义, 在Gruntfile.js中会配置该模块的配置信息, 比如打包任务的输入和输出, 自动化过程中要监听的内容, 以及监听到事件后要执行的任务. 还会加载对应的Grunt任务插件, 比如grunt-contrib-uglify等.</p>
+            <p>Gruntfile.js定义的依旧是node的一个模块, 所以在Gruntfile.js中依旧采用module.exports定义模块内容. Grunt的配置内容是一个JSON对象, 下面是一个Gruntfile的例子: </p>
+<pre><code class="javascript">
+module.exports = function(grunt) {
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        concat: {
+            options: {
+                separator: ';'
+            },
+            dist: {
+                src: ['src/**/*.js'],
+                dest: 'dist/<%= pkg.name %>.js'
+            }
+        },
+        uglify: {
+            options: {
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+            },
+            dist: {
+                files: {
+                    'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+                }
+            }
+        },
+        qunit: {
+            files: ['test/**/*.html']
+        },
+        jshint: {
+            files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+            options: {
+                //这里是覆盖JSHint默认配置的选项
+                globals: {
+                    jQuery: true,
+                    console: true,
+                    module: true,
+                    document: true
+                }
+            }
+        },
+        watch: {
+            files: ['<%= jshint.files %>'],
+            tasks: ['jshint', 'qunit']
+        }
+    });
+
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-qunit');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+
+    grunt.registerTask('test', ['jshint', 'qunit']);
+
+    grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+};
+</code></pre>
+            <p>我们需要了解Grunt模块的配置对象属性的含义和任务的配置对象属性的含义.</p>
+            <p><span class="key-word">grunt.initConfig</span>传入的是初始化配置对象, 该方法必须被调用, 如果不希望通过该方法进行配置, 可以在该方法中传入一个空对象, 然后再通过其他方式配置, 其他方式包括<span class="key-word">grunt.config.set</span>方法. </p>
+            <p>pkg属性加载了该Gruntfile所在的模块中的package.json中定义的模块配置对象. 是JSON格式的. 在后面的配置过程中会用到<span class="key-word">package.json</span>中的数据.</p>
+            <p>接下来是定义concat任务的配置信息. concat是用来对文件进行打包的插件, 通过打包多个js文件从而减少客户端的文件请求次数. concat对应的Grunt插件是<span>grunt-contrib-concat</span>, 这个插件会在后面进行加载. options中定义的值会覆盖concat插件的内置属性的默认值, options的operator字段定义了压缩过程中文件内容之间的分隔符. dist是concat插件需要的一个配置信息, 其中的src表示输入的文件, 它通常包含很多文件, 所以是一个数组的形式, 这里的<span class="key-word">['src/**/*.js']</span>表示src目录下的所有的javascript文件. dest表示输出, 即destination的缩写, 这里的<span class="key-word">'dist/<%= pkg.name %>.js'</span>表示生成一个dist目录下的, 并以模块名命名的js格式的文件.</p>
+            <p><strong>Reference: <a onclick="window.open('https://www.npmjs.com/package/grunt-contrib-concat');">NPMJS:关于concat的配置字段含义</a></strong></p>
+            <div class="warning">
+                <span>任务名必须和Grunt任务的插件名对应. Grunt工具会通过名字匹配找到对应的Grunt插件</span>
+            </div>
+            <p>接下来是定义uglify任务的配置信息, uglify是用来压缩文件的插件, 从而减少请求文件时的数据量. 这里的options定义的banner的值, 这里的banner字段是定义压缩后在文件的顶部要添加的字符信息, <span class="key-word">'/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'</span>表示在压缩后的js文件的顶部添加一段注释, 注释信息包括模块名和当前时间. dist属性中定义了文件的输入和输出, <span class="key-word">'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']</span>是指将concat任务生成的文件, 即concat.dist.dest指定的文件名作为输入, 压缩成以模块名命名的后缀为.min.js的文件.</p>
+            <p><strong>Reference: <a onclick="window.open('https://www.npmjs.com/package/grunt-contrib-uglify');">NPMJS:关于uglify的配置字段含义</a></strong></p>
+            <p>由于配置过程中很多信息都是基于文件的, 关于如何在配置中声明文件, 比如输入文件和输入文件, 请查看如下链接: </p>
+            <p><strong>Reference: <a onclick="window.open('http://www.gruntjs.net/configuring-tasks#options');">官方文档: Grunt配置中的文件声明方式</a></strong></p>
+            <p>接下来是定义QUnit任务的配置信息, QUnit是一个单元测试框架, 这里只配置了测试时要执行的测试文件, 这里的配置信息是指test目录下的所有html文件. </p>
+            <p>接下来是定义jshint任务的配置信息, jshint定义了一个javascript语法的子集, 从而规避掉javascript的不好的特性. 这里通过<span class="key-word">files</span>字段的配置了要检查的文件集合, 这里的<span class="key-word">['gruntfile.js', 'src/**/*.js', 'test/**/*.js']</span>是指gruntfile.js文件, src目录下的所有js文件, 以及test目录下的所有js文件. options字段重载了jshint的默认检查规则, options对象中的jQuery字段是指代码中使用了jQuery, module字段是指代码按照<span class="key-word">strict code</span>的规范. </p>
+            <p><strong>Reference: <a onclick="window.open('http://jshint.com/docs/options/');">官方文档: JSHint配置中各个字段的含义</a></strong></p>
+            <p>watch定义了监听的代码文件, 以及监听到代码变化后要执行的任务. Grunt就是通过<span class="key-word">watch</span>定义的对象来配置自动化的. <span class="key-word">files</span>字段定义了监听的文件, 这里是指jshint配置信息中的files内容. <span class="key-word">tasks</span>字段定义了一个任务的执行序列, 这里是指在监听到文件变化时, 先执行jshint任务, 再执行qunit任务.  </p>
+            <p>然后就是加载我们需要的Grunt插件, 即配置过的那些任务对应的Grunt插件, Grunt工具通过名称匹配从Gruntfile定义的配置对象中找到Grunt插件需要的配置信息. 加载是通过<span class="key-word">grunt.loadNpmTasks</span>方法实现的. 加载的插件必须已经通过npm安装成功.</p>
+            <p>接下来是定义执行任务的命令. <span class="key-word">grunt.registerTask('test', ['jshint', 'qunit']);</span>是指可以通过<span class="key-word">grunt test</span>命令执行<span class="key-word">['jshint', 'qunit']</span>对应的任务序列. 即先后执行jshint任务和qunit任务. <span class="key-word">grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);</span>则定义了<span class="key-word">grunt</span>命令对应的任务序列.</p>
+            <div class="warning">
+                <span>配置过程中, 读取JSON对象的语法类似于ejs模板引擎引入JSON对象的语法.</span>
+            </div>
+            <p><strong>Reference: <a onclick="window.open('http://www.gruntjs.net/sample-gruntfile');">官方文档: Grunt实例</a></strong></p>
+            <h2>Grunt工具的工作方式</h2>
+            <p>Grunt自动化任务的启动是通过<span class="key-word">grunt</span>命令. grunt命令的使用是通过<span class="key-word">grunt-cli</span>. 因此我们需要安装这个模块以支持grunt命令, 即执行命令<span class="key-word">sudo npm install -g grunt-cli</span>.</p>
+            <p>每次运行grunt命令时, 它就会利用node的<span class="key-word">require</span>去寻找grunt模块, 查找grunt模块的顺序遵循require的搜索顺序, 那么就会优先加载当前目录的grunt模块, 所有我们可以在模块中的不同目录下保存多个版本的grunt. 当加载grunt成功后, 会加载Gruntfile.js中的内容, </p>
+            <div class="warning">
+                <span>加载Gruntfile.js的顺序是什么, 和require的顺序一样吗? 为什么我在Apps-server依赖的jasmine模块中不能执行grunt命令 ?</span>
+            </div>
+            <p><strong>Reference: <a onclick="window.open('http://www.gruntjs.net/using-the-cli');">官方文档: Grunt命令行</a></strong></p>
+        </div>
+    </article>
+</div> <!-- blog-body -->
