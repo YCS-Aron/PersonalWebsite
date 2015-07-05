@@ -49,6 +49,12 @@ var config = [
         path: '../blog/tech/nodejs-module.html',
         classified: false
     },
+    {
+        name: 'nodejs-exp',
+        regexp: /^(\/nodejs-exp)$/,
+        path: '../blog/tech/nodejs-exp.html',
+        classified: false
+    },
     //backbone
     {
         name: 'backbone-model',
@@ -74,6 +80,12 @@ var config = [
         name: 'timeline',
         regexp: /^(\/timeline)$/,
         path: '../blog/private/timeline.html',
+        classified: true
+    },
+    {
+        name: 'todo',
+        regexp: /^(\/todo)$/,
+        path: '../blog/private/todo.html',
         classified: true
     }
 ];

@@ -22,7 +22,9 @@ $(function(){
         'backbone-model': 'blog/tech/backbone-model.html',
         'backbone-view': 'blog/tech/backbone-view.html',
         'grunt-overview': 'blog/tech/grunt-overview.html',
-        'timeline': 'blog/private/timeline.html'
+        'timeline': 'blog/private/timeline.html',
+        'todo': 'blog/private/todo.html',
+        'nodejs-exp': 'blog/tech/nodejs-exp.html'
     };
 
     //verify user input password
@@ -137,7 +139,7 @@ $(function(){
 
     if(window.location.pathname) {
         var initTargetName = window.location.pathname.slice(1);
-        if(initTargetName && getPathWithIndex(targetName)) {
+        if(initTargetName && getPathWithIndex(initTargetName)) {
             flow(window.location.pathname.slice(1));
         }
     }

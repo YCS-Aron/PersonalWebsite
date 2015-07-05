@@ -1,0 +1,48 @@
+<div class="blog-body">
+    <header class="header">
+        <div class="title">
+            <h1>Node开发经验</h1>
+            <p class="subline">Node中的一些需要注意的问题</p>
+            <p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/7/4</strong></p>
+        </div>
+    </header>
+    <article class="article-content">
+        <div>
+            <p>Node是新的后台开发环境, 对其中一些需要注意的地方进行总结.</p>
+            <h2>同步和异步读取文件</h2>
+            <p>在Node中, 我们会经常用到connect的中间件, 而中间件的原理是, 如果我调用res.end()方法, 那么请求就会返回, 而请求的处理往往需要读取相关文件, 假如在中间件中有这样一段代码: </p>
+<pre><code class="javascript">
+module.exports = function(req, res, next){
+    var urlObj = url.parse(req.url);
+    var pathname = urlObj.pathname;
+    if(pathname === 'test') {
+        fs.readFile(filepath, function(er, data){       //异步的文件操作
+            res.statusCode = 200;
+            res.writeHead({'Content-Type': 'text/html'});
+            res.end(data);
+        });
+    } else {
+        next();
+    }
+}
+</code></pre>
+            <p>这段代码的意思是, 如果请求的路径是test, 就去读取filepath变量对应的路径的文件时, 而这个文件读取操作是异步的, 所以后面的中间件会被执行, 这样可能会导致请求在后面的中间件中被处理并返回. 所以, 这里的读取文件操作应该是<span class="key-word">同步</span>的, 代码如下:</p>
+<pre><code class="javascript">
+module.exports = function(req, res, next){
+    var urlObj = url.parse(req.url);
+    var pathname = urlObj.pathname;
+    if(pathname === 'test') {
+        var data = fs.readFileSync(filepath).toString();    //同步的文件操作
+        res.statusCode = 200;
+        res.writeHead({'Content-Type': 'text/html'});
+        res.end(data);
+    } else {
+        next();
+    }
+}
+</code></pre>
+            <p>异步是好东西, 但是却不是适合任何场景. <span class="key-word">fs.readFileSync</span>, <span class="key-word">fs.writeFileSync</span>, <span class="key-word">fs.appendFileSync</span>为我们提供了同步的文件操作.</p>
+            <p><strong>Reference: <a onclick="window.open('http://www.daveeddy.com/2013/03/26/synchronous-file-io-in-nodejs/');">Synchronous File IO in Node.js</a></strong></p>
+        </div>
+    </article>
+</div>
