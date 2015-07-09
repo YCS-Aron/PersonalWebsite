@@ -29,7 +29,7 @@ module.exports = function(req, res, next){
         var template = ejs.render(data, {config: config});
         res.statusCode = 200;
         res.writeHead({'Content-Type': 'text/html'});
-        res.end(template);console.log('1');
+        res.end(template);
     } else {
         next();
     }

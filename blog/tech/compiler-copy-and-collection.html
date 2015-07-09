@@ -1,0 +1,45 @@
+<div class="blog-body">
+    <header class="header">
+        <div class="title">
+            <h1>垃圾回收之拷贝复制</h1>
+            <p class="subline">拷贝复制垃圾回收方式的原理和实现方式</p>
+            <p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/7/6</strong></p>
+        </div>
+    </header>
+    <article class="article-content">
+        <div>
+            <p>垃圾回收使用的三种主流方式: <span class="key-word">标记清扫</span>, <span class="key-word">拷贝复制</span>, <span class="key-word">分代</span>. 这里将介绍拷贝复制垃圾回收方式的原理和实现.</p>
+            <h2>原理</h2>
+            <p>拷贝复制的原理是将<span class="key-word">堆(heap)</span>分成相同大小的两部分, 分别命令为<span class="key-word">from</span>和<span class="key-word">to</span>. 新分配的内存都是在from中, 具体采用的内存分配方式可以自己决定, 我们采用最简单的线性分配方式. to区域是用来在GC阶段保存和紧凑存活节点的, 而且, <span class="key-word">from和to在每一次GC后都会互换.</span></p>
+            <p>新构造出来的节点总是分配在from区域中, 随着程序的不断运行, 在调用某一个new方法时, new方法发现from区域的剩余空间不足以保存即将新建的对象, 那么, 这个时候就会调用<span class="key-word">GC</span>. 这个时候, 系统希望能够将from中存活的节点拷贝到to中, 再将保存了存活节点的to区域作为新的from区域, 而之前的from区域而整个清空, 作为下一次GC的to区域. 要想达到这个效果, GC需要做一下几件事情:</p>
+            <h3>标记存活节点: 寻找入口节点</h3>
+            <p>当发生垃圾回收时, 一定是发生在对象的构造函数或者成员函数中, 即一定是发生在函数中, 那么在函数中, 我们可以访问到哪些数据可以帮助我们标记存活节点. 主要是三部分:  <span class="key-word">函数参数列表即栈顶指针</span>, <span class="key-word">this指针即所处对象的数据成员列表地址</span>和<span class="key-word">函数的数据模型的地址</span>. 通过this指针还可以访问到该对象所有基类对象的数据成员. 通过函数的数据模型还可以访问到上级函数的函数数据模型对象地址. 从而追踪调用链.</p>
+            <p>系统希望找到那些存活节点, 从而将他们全部拷贝到to区域. 首先, 我们需要清楚什么是存活节点, <span class="key-word">存活节点是整个程序域中能够通过当前的程序上下文直接后者间接遍历到的对象</span>, 我们还需要了解, 系统遍历的策略是什么. 存活对象在堆中的分布类似于<span class="key-word">图</span>结构, 当需要进行垃圾回收时, 系统会定位到当前的函数域, 那么这个函数域中一定包含<span class="key-word">函数参数</span>, <span class="key-word">所处对象的数据成员</span>, <span class="key-word">函数的本地变量</span>和<span class="key-word">上级函数的数据域</span>这四部分. 将这四部分数据中的对象指针作为搜索存活节点的<span class="key-word">入口节点</span>. <span class="key-word">函数参数</span>一定是保存在<span class="key-word">栈</span>里面的, 而函数当前的参数栈我们可以通过  ?????  访问到. <span class="key-word">函数的本地变量</span>也就是在函数内部声明的变量, 我们可以通过函数的数据模型中的本地变量列表访问到. 要想访问到<span class="key-word">函数所处对象的成员变量</span>, 可以通过函数的数据模型中的<span class="key-word">this</span>指针获取当前对象的<span class="key-word">数据成员集合</span>的地址. 通过当前函数的数据模型中的指针, 还可以访问到上级函数的数据域, 其处理方式类似于当前的函数数据域的处理方式. 只需要遍历这四个部分, 将每个部分中的对象指针作为入口节点. </p>
+            <h3>标记存活节点: 遍历对象图</h3>
+            <p>有了入口节点, 我们就可以通过这些节点遍历堆中的存活对象, 这些入口节点都是指针, 他们指向了堆中的一块内存区域, 而该内存区域保存着对象的真正数据, 我们看一下能够访问到哪些数据. 通过this指针可以访问到函数所处的对象的数据成员, 以及继承的父类对象的数据成员. 之所以能够直接通过this访问到父类对象的数据成员是因为<span class="key-word">父类和子类对象的起始地址是一样的</span>. 通过函数参数列表可以访问到参数中的对象. 通过函数的数据模型访问到调用上一级调用函数的数据成员. </p>
+            <p>通过指针间指, 我们可以遍历上级对象, 上级函数中的存活对象. 从而标记存活节点. 我们可以通过<span class="key-word">在对象模型中添加额外的空间来保存标记信息</span>, 事实上只需要一比特的数据即可. </p>
+            <h3>标记存活节点: 复制存活对象到to区域</h3>
+            <p>复制存活节点到to区域的过程就是复制对象和修改对象的指针为新地址值的过程. 拷贝复制的复制策略是这样的: 从入口节点开始, 只要遇到一个还在from区域的存活节点, 就将其<span class="key-word">逐字节</span>拷贝到to区域的最低地址处, 并保留from区域中的老对象, 标记老对象为已经遍历过的状态, 避免重复遍历, 同时, 将其在to区域的新地址保存在老对象中, 为的是当别的对象引用了该对象, 需要修改指针值. 随着遍历的过程的进行, 所有存活节点都会被复制到to区域中, 并且实现了一次紧凑, 死节点将留在原来的from区域中, 并被清除. 然后交换from区域和to区域的起始地址, 准备下一个分配堆空间. </p>
+<pre><code class="java">
+</code></pre>
+            <div class="warning">
+                <span>函数中的this指针是函数所处对象的数据成员集合的地址, 即函数执行的上下文. this总是被作为第一个参数默认传入. </span>
+            </div>
+            <div class="warning">
+                <span>数据域中的对象都是以指针的形式保存的, 真正的数据都需要通过指针定位到堆的一块内存. </span>
+            </div>
+            <div class="warning">
+                <span>this的作用类似Javascript中的prototype. </span>
+            </div>
+            <h2>实现方式</h2>
+            <h4>如何定义from和to</h4>
+            <h4>分配新内存的策略是什么</h4>
+            <h4>如何标记存活节点</h4>
+            <h4>拷贝的策略是什么</h4>
+            <p>标记清扫垃圾回收方式是采用了, </p>
+
+            <p><strong>Reference: <a onclick="window.open('http://www.daveeddy.com/2013/03/26/synchronous-file-io-in-nodejs/');">Synchronous File IO in Node.js</a></strong></p>
+            <h2>require的依赖顺序</h2>
+        </div>
+    </article>
+</div>

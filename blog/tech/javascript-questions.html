@@ -1,0 +1,48 @@
+<div class="blog-body">
+    <header class="header">
+        <div class="title">
+            <h1>一些Javascript的问题</h1>
+            <p class="subline">一些Javascript的有趣的问题收集</p>
+            <p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/7/9</strong></p>
+        </div>
+    </header>
+    <article class="article-content">
+        <div>
+            <h3>关于闭包的问题一</h3>
+            <pre><code class="javascript">
+function Foo(){
+    var i=0;
+    return function(){
+        document.write(i++);
+    }
+}
+var f1=Foo(),f2=Foo();
+f1();   //output: 0
+f1();   //output: 1
+f2();   //output: 0
+            </code></pre>
+            <h3>真值和假值</h3>
+<pre><code class="javascript">
+var a="undefined";
+var b="false";
+var c="";
+var d=[];
+var e={};
+var f=NaN;
+function assert(aVar){
+    if(aVar)
+        alert(true);
+    else
+        alert(false);
+}
+assert(a);  //output: true
+assert(b);  //output: true
+assert(c);  //output: false
+assert(d);  //output: true
+assert(e);  //output: true
+assert(f);  //output: false
+</code></pre>
+            <h3>真值和假值</h3>
+        </div>
+    </article>
+</div>
