@@ -9,13 +9,13 @@
     <article class="article-content">
         <div>
             <h2>同源策略</h2>
-            <p>每个浏览器都有一个URL，比如www.yaochuansong.com/index.html。其中的www.yaochuansong.com就决定了当前页面的域，Javascript只能访问同一域名下的内容，从而避免了一些错误，也提高了安全性。同源策略就是将页面请求限制在自身页面所在的域内。</p>
+            <p>每个浏览器的页面都有一个URL，比如www.yaochuansong.com/index.html。其中的www.yaochuansong.com就决定了当前页面的域，浏览器发出的请求只能访问同一域名下的内容，从而避免了一些错误，也提高了安全性。同源策略就是将页面请求限制在自身页面所在的域内。</p>
             <h2>跨域访问</h2>
-            <p>在实际开发中，会有一些需求，需要我们去请求另一个域，比如在在线支付过程中，我们需要使用银行的支付接口，也就要向银行的服务器发送请求。这个过程就是跨域访问。</p>
+            <p>在实际开发中，会有一些需求，需要我们去请求另一个域，比如在在线支付过程中，我们需要使用银行的支付接口，也就要向银行的服务器发送请求 (这个例子不好 ???)。这个过程就是跨域访问。</p>
             <h4>JSONP</h4>
-            <p>跨域访问的最简单的实现方法是让客户端发送请求给自身域的服务器，让服务器进作为代理转发请求给第三方服务器，这样就绕开了浏览器的同源策略的限制。另一种方法是插入动态脚本，利用<span class="key-word">同源策略不阻止script标签加载动态脚本</span>这一特性，通过script标签的src属性去加载跨域服务器上的数据，这种技术就是<span class="key-word">JSONP</span>。下面是一个例子：</p>
+            <p>跨域访问的最简单的实现方法是让客户端发送请求给自身域的服务器，让服务器进作为代理转发请求给第三方服务器，这样就绕开了浏览器的同源策略的限制。另一种方法是插入动态脚本，利用<span class="key-word">同源策略不阻止script标签加载动态脚本</span>这一特性，通过script标签的src属性去加载跨域服务器上的数据，这种技术就是<span class="key-word">JSONP(JSON with Padding)</span>。下面是一个例子：</p>
              <pre>
-                 <code class="html">
+<code class="html">
 &lt;html&gt;
 &lt;head&gt;
     &lt;script type="text/javascript"&gt;
@@ -26,26 +26,17 @@
     &lt;script type="text/javascript" src="http://crossdomain.com/services.php?callback=jsonpCallback"&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;/html&gt;
-                 </code>
-             </pre>
+</code></pre>
             <div class="warning">
                 <span>Warning: 由于是解释性语言，要注意回调函数的定义要在远程脚本加载之前。</span>
             </div>
-            <p>服务器端代码如下：</p>
+            <p>由于是从HTML标签中进行的跨域访问, 为了前台能够获得数据, 需要将请求的数据组成Javascript代码, 从而让前台执行. node服务器端代码如下：</p>
             <pre>
-                <code class="php">
-<?php
-//服务端返回JSON数据
-$arr=array('a'=>1,'b'=>2,'c'=>3,'d'=>4,'e'=>5);
-//将数据组装成JSON格式
-$result=json_encode($arr);
-//获得回调函数名
-$callback=$_GET['callback'];
-//组装Javascript代码段
-echo $callback."($result)";
-?>
-                </code>
-            </pre>
+<code class="javascript">
+var jsonpData = [1,2];                                  //真正要请求的数据
+var callback = url.parse(request.url).query.callback;   //获取前台用来处理数据的函数名
+res.end(callback + '(' + jsonpData.toString() + ')');   //组装Javascript代码段
+</code></pre>
             <p>JSONP使得跨域访问成为可能，能够实现在一个页面中使用多种服务，比如旅游网站的地图显示等。当今互联网新出现的<span class="key-word">Mashup</span>,JSONP就是构建Mashup的主要技术。</p>
             <p>JSONP涉及到两个方面，一个是如何将请求发送出去，这一点是利用了同源策略不阻止script标签加载动态脚本这一特性；另一个是如何从script标签中获得跨域请求返回的数据，这一点是通过让跨域服务器返回js文档，该文档会执行回调函数并将请求的数据作为参数，这样就可以在客户端定义的回调函数中处理请求的数据了。下面是JSONP工作的流程：</p>
             <ol>
@@ -57,7 +48,31 @@ echo $callback."($result)";
                 <li>客户端定义的回调函数被执行，其中参数就是要请求的跨域服务器数据</li>
             </ol>
             <p>但是JSONP不是一种标准的技术，在使用过程中我们仍然需要注意一些问题。JSONP的请求不会返回服务器状态，远程只是返回一段Javascript执行代码。同时JSONP还存在着一些安全问题，由于执行的是跨域服务器返回的Javascript代码段，如何被一些非信任的跨域服务器返回一些攻击性代码，客户端也只能默默的执行，Web应用程序的安全受到了威胁。</p>
-            <h2>利用XHR发送请求的详细过程</h2>
+            <h2>用jQuery进行跨域访问</h2>
+            <p>最常用的还是用jQuery提供的接口进行跨域访问. jQuery已经提供了实现JSONP请求的接口, 下面是一个例子: </p>
+<pre><code class="javascript">
+var success_jsonpCallback = function(data){
+    console.log('I get a JSONP data: ', data);
+};
+
+$.ajax({
+    type: 'GET',
+    url: 'http://www.testjson.com/jsonptest',
+    async: false,
+    dataType: 'jsonp',                          //该ajax请求为跨域请求
+    jsonp: 'jsonphandler',                      //后端用来获取前台处理函数的函数名的参数名
+    jsonpCallback: 'success_jsonpCallback',     //前台用来处理跨域请求的数据的函数名
+    success: function(response){
+        console.log(response);
+    }
+});
+</code></pre>
+            <p>该代码发送的请求的内容如下: </p>
+            <div class="content-img-container">
+                <img src="../assets/image-resources/blogs/cross-origin-and-jsonp/1.png"></img>
+            </div>
+            <p>最后, URL中加入了参数<span class="key-word">jsonphandler=success_jsonpCallback</span>. 用以帮助跨域服务器端组装成前台需要的Javascript执行代码. jQuery这个接口的底层实现可能就是用的HTML的script标签.</p>
+            <p><strong>Reference: <a onclick="window.open('http://www.sitepoint.com/jsonp-examples/');">jQuery’s JSONP Explained with Examples</a></strong></p>
         </div>
     </article>
 </div>

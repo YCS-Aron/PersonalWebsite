@@ -1,0 +1,52 @@
+<div class="blog-body">
+    <header class="header">
+        <div class="title">
+            <h1>浏览器的Javascript相关的差异</h1>
+            <p class="subline">对浏览器之间的Javascript部分的差异进行介绍,并分析解决方法</p>
+            <p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/7/9</strong></p>
+        </div>
+    </header>
+    <article class="article-content">
+        <div>
+            <p>浏览器之间在Javascript部分的差异主要是由于不同浏览器在某一个功能上提供的接口和实现方法不一样. 在解决兼容性问题时, 我们只需要了解功能的实现方式, 并在代码中判断所要兼容的浏览器的接口是否存在, 从而调用合适的接口.</p>
+            <h2>事件绑定</h2>
+            <p>W3C标准的浏览器采用<span class="key-word">addEventListener</span>方法, 该方法可以绑定多个事件, 并且方法中的this执行绑定的元素, 并可以通过函数的第一个参数获取事件对象. IE则使用<span class="key-word">attachEvent</span>, 该方法中的this是window对象, 并且事件对象要从<span class="key-word">window.event</span>中获取. 还有一种方式是通过元素的<span class="key-word">onclick(on + type)</span>属性, 这种方式兼容性很好, 但是只能绑定一个事件处理函数, 函数中的this指向的是绑定元素. 下面给一个兼容性较好的例子: </p>
+<pre><code class="javascript">
+var eventHandler = function(e){
+    var event = e || window.event;      //e是W3C标准的事件, window.event是IE标准的事件
+    var keycode = e.keyCode;            //IE和W3C都是采用keyCode指明按键码
+    var target = e.target || window.event.srcElement //获取产生事件的元素
+};
+
+if(window.addEventListener) {       //判断是不是W3C浏览器
+    element.addEventListener('keydown', eventHandler);
+} else {                            //否则就是非W3C标准的浏览器,如IE
+    element.attachEvent('keydown', eventHandler);
+}
+</code></pre>
+            <p>事实上, jQuery为我们提供了很好的事件绑定机制, 并屏蔽了底层的兼容性.</p>
+            <h2>HTML5的dataset</h2>
+            <p>dataset是H5添加的新特性, 用来在元素上保存数据, 而保存的方式是通过添加attribute的方式. IE 10一下是部分支持. 见如下链接: </p>
+            <p><strong>Reference: <a onclick="window.open('http://caniuse.com/#search=dataset');">dataset在不同浏览器的兼容性</a></strong></p>
+            <p> 下面是一个兼容性较好的dataset的例子: </p>
+<pre><code class="javascript">
+//保存
+if(element.dataset) {
+    element.dataset.name = 'ycs';           //会修改DOM, 添加属性data-name="ycs"
+} else {
+    element.setAttribute('data-name', 'ycs');
+}
+//读数据
+var data;
+if(element.dataset) {
+    data = element.dataset.name;
+} else {
+    data = element.getAttribute('data-name');
+}
+</code></pre>
+            <p>jQuery提供了element.data接口来实现相同的功能, jQuery.data方法是将数据绑定在DOM对象上的, 但是, 在读取数据之前, 会检查是否还有类似<span class="key-word">data-*</span>的属性, 如果有, 则会优先读取属性中的值. </p>
+            <p><strong>Reference: <a onclick="window.open('caniuse.com');">caniuse(用于查css属性,html标签,JSapi等各方面在不同浏览器兼容版本的网站)</a></strong></p>
+
+        </div>
+    </article>
+</div>

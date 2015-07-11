@@ -5,7 +5,7 @@
 module.exports = [
     {
         category: 'Job',
-        description: '内推阿里巴巴,阿里巴巴秋招网申截止',
+        description: '内推阿里巴巴,阿里巴巴秋招网申截止7月28日,拿到阿里巴巴-蚂蚁金服的Web开发职位Offer',
         deadline: '2015-7-25',
         state: '未完成'
     },

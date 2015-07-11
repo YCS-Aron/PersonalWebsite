@@ -24,7 +24,12 @@ $(function(){
         'grunt-overview': 'blog/tech/grunt-overview.html',
         'timeline': 'blog/private/timeline.html',
         'todo': 'blog/private/todo.html',
-        'nodejs-exp': 'blog/tech/nodejs-exp.html'
+        'nodejs-exp': 'blog/tech/nodejs-exp.html',
+        'compiler-copy-and-collection': 'blog/tech/compiler-copy-and-collection.html',
+        'compiler-gc': 'blog/tech/compiler-gc.html',
+        'rest-overview': 'blog/tech/rest-overview.html',
+        'js-qs': 'blog/tech/javascript-questions.html',
+        'compatibility-js': 'blog/tech/compatibility-js.html'
     };
 
     //verify user input password

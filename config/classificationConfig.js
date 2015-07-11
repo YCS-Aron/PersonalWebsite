@@ -16,6 +16,12 @@ var config = [
         path: '../blog/tech/javascript-object-orientied.html',
         classified: false
     },
+    {
+        name: 'js-qs',
+        regexp: /^(\/js-qs)$/,
+        path: '../blog/tech/javascript-questions.html',
+        classified: false
+    },
     //ajax
     {
         name: 'ajax',
@@ -27,6 +33,13 @@ var config = [
         name: 'jsonp',
         regexp: /^(\/jsonp)$/,
         path: '../blog/tech/cross-origin-and-jsonp.html',
+        classified: false
+    },
+    //compatibility
+    {
+        name: 'compatibility-js',
+        regexp: /^(\/compatibility-js)$/,
+        path: '../blog/tech/compatibility-js.html',
         classified: false
     },
     //jQuery
@@ -68,11 +81,31 @@ var config = [
         path: '../blog/tech/backbone-view.html',
         classified: false
     },
+    //compiler
+    {
+        name: 'compiler-gc',
+        regexp: /^(\/compiler-gc)$/,
+        path: '../blog/tech/compiler-gc.html',
+        classified: false
+    },
+    {
+        name: 'compiler-copy-and-collection',
+        regexp: /^(\/compiler-copy-and-collection)$/,
+        path: '../blog/tech/compiler-copy-and-collection.html',
+        classified: false
+    },
     //grunt
     {
         name: 'grunt-overview',
         regexp: /^(\/grunt-overview)$/,
         path: '../blog/tech/grunt-overview.html',
+        classified: false
+    },
+    //rest
+    {
+        name: 'rest-overview',
+        regexp: /^(\/rest-overview)$/,
+        path: '../blog/tech/rest-overview.html',
         classified: false
     },
     //private
