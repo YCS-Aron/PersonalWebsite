@@ -68,6 +68,13 @@ var config = [
         path: '../blog/tech/nodejs-exp.html',
         classified: false
     },
+    //HTML
+    {
+        name: 'browser-kernel',
+        regexp: /^(\/browser-kernel)$/,
+        path: '../blog/tech/browser.html',
+        classified: false
+    },
     //backbone
     {
         name: 'backbone-model',
@@ -94,11 +101,24 @@ var config = [
         path: '../blog/tech/compiler-copy-and-collection.html',
         classified: false
     },
+    //browser
+    {
+        name: 'what-will-happen-when-enter-url',
+        regexp: /^(\/what-will-happen-when-enter-url)$/,
+        path: '../blog/tech/what-will-happen-when-enter-url.html',
+        classified: false
+    },
     //grunt
     {
         name: 'grunt-overview',
         regexp: /^(\/grunt-overview)$/,
         path: '../blog/tech/grunt-overview.html',
+        classified: false
+    },
+    {
+        name: 'grunt-components',
+        regexp: /^(\/grunt-components)$/,
+        path: '../blog/tech/grunt-components.html',
         classified: false
     },
     //rest
@@ -120,7 +140,21 @@ var config = [
         regexp: /^(\/todo)$/,
         path: '../blog/private/todo.html',
         classified: true
-    }
+    },
+    //performance
+    {
+        name: 'performance-load',
+        regexp: /^(\/performance-load)$/,
+        path: '../blog/tech/performance-load.html',
+        classified: false
+    },
+    //other
+    {
+        name: 'alibaba-first-interview',
+        regexp: /^(\/alibaba-first-interview)$/,
+        path: '../blog/other/alibaba-first-interview.html',
+        classified: false
+    },
 ];
 
 module.exports = config;

@@ -1,0 +1,28 @@
+<div class="blog-body">
+    <header class="header">
+        <div class="title">
+            <h1>浏览器的底层实现</h1>
+            <p class="subline">浏览器的底层</p>
+            <p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/7/12</strong></p>
+        </div>
+    </header>
+    <article class="article-content">
+        <div>
+            <h2>DOM树</h2>
+            <p>DOM树, DOM的数据结构中保存了DOM相关的信息, 包括class, attributes等, 比如: </p>
+<pre><code class="c">
+struct Node {
+    // data common to all nodes:
+    children: Vec<Node>,
+
+    // data specific to each node type:
+    node_type: NodeType,
+}
+</code></pre>
+            <p>生成DOM树. </p>
+            <p>在解析HTML文本的过程中, 如果遇到script标签去加载远程JS文件或者style标签加载远程css文件, 那么会被阻塞, 即script的加载是同步的, 也就是为什么用jQuery实现JSONP的时候会使用同步请求.</p>
+            <h2>CSS渲染</h2>
+            <p><strong>Reference: <a onclick="window.open('http://limpet.net/mbrubeck/2014/08/08/toy-layout-engine-1.html');">toy HTML rendering engine(教你如何写一个HTML渲染引擎)</a></strong></p>
+        </div>
+    </article>
+</div>

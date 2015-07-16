@@ -6,12 +6,10 @@ $(function(){
     var passwordButton = $('#password-panel button');
     var content = $('#page-content');
     var pwdNotification = $('#pwd-notification');
+    var lastPath = '';
 
     //this data should put in server
     var targetUrlMap = {
-        'ycs': 'content.html',
-        'timeline': 'timeline.html',
-        'blocks': 'blocks.html',
         'js-oo': 'blog/tech/javascript-object-orientied.html',
         'js-overview': 'blog/tech/javascript-overview.html',
         'jsonp': 'blog/tech/cross-origin-and-jsonp.html',
@@ -22,6 +20,7 @@ $(function(){
         'backbone-model': 'blog/tech/backbone-model.html',
         'backbone-view': 'blog/tech/backbone-view.html',
         'grunt-overview': 'blog/tech/grunt-overview.html',
+        'grunt-components': 'blog/tech/grunt-components.html',
         'timeline': 'blog/private/timeline.html',
         'todo': 'blog/private/todo.html',
         'nodejs-exp': 'blog/tech/nodejs-exp.html',
@@ -29,7 +28,11 @@ $(function(){
         'compiler-gc': 'blog/tech/compiler-gc.html',
         'rest-overview': 'blog/tech/rest-overview.html',
         'js-qs': 'blog/tech/javascript-questions.html',
-        'compatibility-js': 'blog/tech/compatibility-js.html'
+        'compatibility-js': 'blog/tech/compatibility-js.html',
+        'browser-kernel': 'blog/tech/browser.html',
+        'performance-load': 'blog/tech/performance-load.html',
+        'alibaba-first-interview': 'blog/other/alibaba-first-interview.html',
+        'what-will-happen-when-enter-url': 'blog/tech/what-will-happen-when-enter-url.html',
     };
 
     //verify user input password
@@ -62,15 +65,32 @@ $(function(){
         return classificationPromise;
     };
 
+    var bindYcsLinkHandler = function($el){
+        //add click listener to blog link
+        $el.find('a.ycs-link').bind('click', function(e) {
+            var elem = $(e.target).closest('a');      //HACK:  why e.target will become span element.
+            var targetName = elem.attr('linktarget');
+
+            if(targetName && getPathWithIndex(targetName)){
+                if(targetName) {
+                    flow(targetName);
+                }
+            }
+        });
+    };
+
     //verify classification and verify pwd and load content
     var flow = function(targetName){
         var passPwdPromise = new $.Deferred();
         var url = getPathWithIndex(targetName);
+        lastPath = '/' + targetName;
+
+        loadingbar.show();
+        content.empty();
 
         checkClassification(targetName).then(function(){
             //if this blog is classified , show the password panel
             loadingbar.hide();
-            content.empty();
             passwordPanel.show();
             passwordInput.focus();
             passwordButton.bind('click', function(){
@@ -98,7 +118,7 @@ $(function(){
             passPwdPromise.resolve();
         }).done();
 
-        passPwdPromise.then(function(){
+        return passPwdPromise.then(function(){
             //if this blog is not classified , load the html content
             passwordButton.unbind('click');
             passwordInput.unbind('keydown');
@@ -114,10 +134,11 @@ $(function(){
                 setTimeout(function(){
                     history.pushState(null, null, targetName);
                     content.empty();
-                    content.append($(response))
+                    content.append($(response));
                     content.find('pre code').each(function(index, codeblock){
                         hljs.highlightBlock(codeblock);			//COOL !
                     });
+                    bindYcsLinkHandler(content);
                 }, 200);
             });
         });
@@ -128,19 +149,7 @@ $(function(){
         return targetUrlMap[targetName];
     };
 
-    //add click listener to blog link
-    $('a.ycs-link').bind('click', function(e){
-        var elem = $(e.target).closest('a');      //HACK:  why e.target will become span element.
-        var targetName = elem.attr('linktarget');
-
-        if(targetName && getPathWithIndex(targetName)){
-            if(targetName) {
-                loadingbar.show();
-                content.empty();
-                flow(targetName);
-            }
-        }
-    });
+    bindYcsLinkHandler($('body'));
 
     if(window.location.pathname) {
         var initTargetName = window.location.pathname.slice(1);
@@ -148,4 +157,11 @@ $(function(){
             flow(window.location.pathname.slice(1));
         }
     }
+
+    $(window).on('popstate', function() {
+        var newpath = window.location.pathname;console.log(window.history.length, newpath, lastPath);
+        if(newpath && getPathWithIndex(newpath.slice(1)) && newpath !== lastPath) {
+            flow(newpath.slice(1));
+        }
+    });
 });
