@@ -32,6 +32,10 @@
                                 <li class="border-azure <%= item.state %> ">
                                     <label><%= item.description %></label>
                                     <span class="bs-label bg-azure">
+                            <% } else if(item.category === 'Life') {%>
+                                <li class="border-green <%= item.state %> ">
+                                    <label><%= item.description %></label>
+                                    <span class="bs-label bg-green">
                             <% } %>
 
                                 <%= item.category%>
