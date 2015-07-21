@@ -45,7 +45,7 @@ module.exports = [
     },
     {
         category: 'Blog',
-        description: 'Backbone怎么实现属性的监听, Events模块',
+        description: '浏览器CSS差异',
         state: ''
     },
     {

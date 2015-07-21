@@ -1,0 +1,47 @@
+<div class="blog-body">
+    <header class="header">
+        <div class="title">
+            <h1>关于CSS的一些总结</h1>
+            <p class="subline">总结CSS属性值的差异, 各浏览器下的差异</p>
+            <p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/7/16</strong></p>
+        </div>
+    </header>
+    <article class="article-content">
+        <div>
+            <p>几个策略: 利用<span class="key-word">!important</span>, Firefox会对该属性优先解析, 而IE则会忽略(<span class="key-word">IE6和IE6以下的版本会忽略,IE7开始支持!important,这不是一件好事</span>). 而且要将!important控制的样式放在上面.</p>
+            <h3>display:none和visibility:hidden的区别</h3>
+            <p><span class="key-word">display:none</span>会让元素不占用页面上的任何空间, 即从DOM树中移除了.</p>
+            <p><span class="key-word">visibility:hidden</span>只会让元素隐藏, 元素依旧占用着之前的页面空间, 影响着页面的布局.</p>
+            <h3>display:inline block inline-block的区别</h3>
+            <p><span class="key-word">display:inline</span>设置元素为<span class="key-word">内联元素</span>, 即没有高宽的属性, 在内联元素上设置高宽是不起作用的. 内联元素的高宽是根据内容的大小的决定的. 而且, 内联元素会逐个排列, 只有当一行显示不下的时候, 才会换行显示. </p>
+            <p><span class="key-word">display:block</span>设置元素为<span class="key-word">块级元素</span>, 块级元素有高宽的属性, 而且每个块级元素会独占一行. 该行中多余的部分会成为该块级元素的margin. </p>
+            <p><span class="key-word">display:inline-block</span>. 此时, 元素即拥有块级元素高宽的属性, 同时, 也能像内联元素那样逐个排列. </p>
+            <h3>如何clear float</h3>
+            <p>使用了float样式之后, 定义了float的元素的高度将不再影响其父元素的高度(专业术语怎么说的?), 从而使得父元素的高度可能小于子元素的高度. 有多种方法用于清楚浮动.</p>
+            <p> 第一种是在父元素中添加含有<span class="key-word">clear</span>样式的div元素(为什么 ???). clear值的含义如下:</p>
+            <ul>
+                <li>clear: none;  不清除浮动,默认值</li>
+                <li>clear: left;  清除左侧浮动, 此时父元素的高度为子元素中含有float: left的元素的高度的最大值. 即保证父元素能够包裹住含有float: left的子元素.</li>
+                <li>clear: right;  清除右侧浮动, 此时父元素的高度为子元素中含有float: right的元素的高度的最大值. 即保证父元素能够包裹住含有float: right的子元素.</li>
+                <li>clear: both;  清除两侧浮动, 此时父元素的高度为子元素中定义了float的元素的高度的最大值. 即保证父元素能够包裹住所有定义了float的子元素.</li>
+            </ul>
+            <p>第二种方式是通过给父元素设置<span class="key-word">overflow:hidden</span>, 即可清除浮动. 清除浮动的效果等价于为父元素添加一个含有clear: both的子元素.</p>
+            <p>第三种方式也是最不灵活的方法, 即给父元素设置固定的高度即可, 使得高度大于子元素的高度.</p>
+            <h3>position: relative absolute fixed的区别</h3>
+            <h3>在IE和Firefox中水平居中的方式</h3>
+            <p>在Firefox中, 让div居中的方式是设置<span class="key-word">margin-left: auto; margin-right: auto;</span>即可. 而且这种方法必须为div指定宽度.</p>
+            <p>而在IE中, 这样是不可行的(我的测试结果是可以FF的方法 ????), 需要为夫元素设置<span class="key-word">text-align: center;</span>. </p>
+            <p>对于没有宽度内联元素, 用第一种方法是不行的. 第一种方法只适用于有宽度属性的元素. 当要居中的元素是内联元素时, 可以采用第二种方法, 或者将其设置为块级元素.</p>
+            <h3>ul,form元素的padding问题</h3>
+            <p>这是一个不同浏览器对相同元素的默认值不同而导致的兼容问题</p>
+            <p>在Firefox中, ul元素的padding默认不为0, margin默认为0. 而在IE中, ul元素的padding默认为0, margin默认不为0. 该问题可以提前设置<span class="key-word">margin: 0px;padding: 0px;</span>解决. 考虑到浏览器会应用后定义的样式, 该样式可以放在CSS文件的顶部.</p>
+            <p>form元素的问题类似.</p>
+            <h3>BOX模型解释不一致问题(有待验证)</h3>
+            <h3>设为float的div在ie下margin加倍(有待验证)</h3>
+            <h3>给a标签内的内容加上样式(有待验证)</h3>
+            <p>需要设置 display: block;(常见于导航标签)</p>
+            <p><span class="key-word">div{margin:30px !important;margin: 28px;} </span></p>
+            <p><strong>Reference: <a onclick="window.open('http://www.douban.com/group/topic/4629864/');">豆瓣: CSS浏览器兼容问题</a></strong></p>
+        </div>
+    </article>
+</div>

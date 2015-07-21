@@ -29,10 +29,11 @@ $(function(){
         'rest-overview': 'blog/tech/rest-overview.html',
         'js-qs': 'blog/tech/javascript-questions.html',
         'compatibility-js': 'blog/tech/compatibility-js.html',
-        'browser-kernel': 'blog/tech/browser.html',
+        'browser-html-render': 'blog/tech/browser-html-render.html',
         'performance-load': 'blog/tech/performance-load.html',
         'alibaba-first-interview': 'blog/other/alibaba-first-interview.html',
         'what-will-happen-when-enter-url': 'blog/tech/what-will-happen-when-enter-url.html',
+        'css-problems': 'blog/tech/css-problems.html'
     };
 
     //verify user input password

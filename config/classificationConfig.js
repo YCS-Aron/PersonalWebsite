@@ -70,9 +70,15 @@ var config = [
     },
     //HTML
     {
-        name: 'browser-kernel',
-        regexp: /^(\/browser-kernel)$/,
-        path: '../blog/tech/browser.html',
+        name: 'browser-html-render',
+        regexp: /^(\/browser-html-render)$/,
+        path: '../blog/tech/browser-html-render.html',
+        classified: false
+    },
+    {
+        name: 'css-problems',
+        regexp: /^(\/css-problems)$/,
+        path: '../blog/tech/css-problems.html',
         classified: false
     },
     //backbone

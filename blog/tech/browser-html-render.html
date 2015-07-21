@@ -1,0 +1,34 @@
+<div class="blog-body">
+    <header class="header">
+        <div class="title">
+            <h1>浏览器解析和渲染的过程</h1>
+            <p class="subline">浏览器解析HTML文档, 渲染css的过程</p>
+            <p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/7/16</strong></p>
+        </div>
+    </header>
+    <article class="article-content">
+        <div>
+            <p>这个帖子要说明的是浏览器是如何将HTML文档通过渲染引擎绘制到屏幕上的.</p>
+            <h3>浏览器内核</h3>
+            <p>我们经常使用的浏览的内核主要分为三种. IE用的是Trident, Chrome, Safari用的是Webkit, 而Mozila Firefox用的是自家的引擎Gecko. css的差异就是因为浏览器内核对同一个样式解析出的含义有差异.</p>
+            <p>从HTML文档到最终显示在浏览器上的页面内容, 浏览器一般都会经历四个步骤: 生成DOM树, 生成渲染树, 渲染树布局, 绘制渲染树.</p>
+            <h3>生成DOM树</h3>
+            <p>逐个扫描HTML文档中的标签, 生成DOM, 以树结构存储DOM. DOM树用来描述页面的内容. DOM树中包含了header这样的元素.</p>
+            <h3>生成CSSOM树</h3>
+            <p>HTML文档中的style属性和CSS文件中的样式信息都会被用于生成CSSOM树. <span class="key-word">CSSOM对应的树结构是根据css文件中定义的选择关系决定的, 它的结构和DOM树是不一样的.</span>都会被挂在body根节点下面. 这是和DOM树一起被创建的吗???</p>
+            <h3>生成渲染树</h3>
+            <p>根据DOM树和CSSOM树构建渲染树. 从DOM树的根节点开始, 遍历DOM树, 对于需要渲染的元素, 在CSSOM树中找到对应的样式信息, 并应用这些样式. 对于那些不需要渲染的节点, 比如meta, script已经设置了display: none样式的节点, 都不会进入渲染树.</p>
+            <div class="content-img-container">
+                <img src="../assets/image-resources/blogs/browser-html-render/1.png"></img>
+            </div>
+            <p><strong>Reference: <a onclick="window.open('https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model?hl=zh-cn');">CSS的渲染过程</a></strong></p>
+            <h3>渲染树布局</h3>
+            <p>根据渲染树对页面元素进行布局, 即计算每个节点在屏幕中的位置和元素的大小</p>
+            <h3>绘制渲染树</h3>
+            <p></p>
+            <p>HTML和CSS会阻塞渲染, 为什么css文件的引入要在HTML文件的首部</p>
+            <p><strong>Reference: <a onclick="window.open('http://limpet.net/mbrubeck/2014/08/08/toy-layout-engine-1.html');">toy HTML rendering engine(教你如何写一个HTML渲染引擎)</a></strong></p>
+            <p><strong>Reference: <a onclick="window.open('http://taligarsiel.com/Projects/howbrowserswork1.htm#Render_tree_construction');">How browser work</a></strong></p>
+        </div>
+    </article>
+</div>
