@@ -1,0 +1,18 @@
+<div class="blog-body">
+    <header class="header">
+        <div class="title">
+            <h1>Javascript的正则表达式</h1>
+            <p class="subline">详细讲述Regexp的使用</p>
+            <p class="blog-time"><strong>姚川松</strong> 写于 <strong>2015/7/22</strong></p>
+        </div>
+    </header>
+    <article class="article-content">
+        <div>
+            <h3>一些例子:</h3>
+            <p>匹配URL中的参数.</p>
+<pre><code class="javascript">var urlParamsRegexp = /[?|&]{1}[0-9a-zA-Z]*=[0-9a-zA-Z]*/g;
+var url = 'www.ycs.com/?a34=999&ere=000';
+var params = url.match(urlParamsRegexp);  //["?a34=999", "&ere=000"]</code></pre>
+        </div>
+    </article>
+</div>

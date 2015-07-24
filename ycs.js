@@ -12,6 +12,8 @@ $(function(){
     var targetUrlMap = {
         'js-oo': 'blog/tech/javascript-object-orientied.html',
         'js-overview': 'blog/tech/javascript-overview.html',
+        'js-reg': 'blog/tech/javascript-regexp.html',
+        'js-qs': 'blog/tech/javascript-questions.html',
         'jsonp': 'blog/tech/cross-origin-and-jsonp.html',
         'ajax': 'blog/tech/ajax.html',
         'jq-overview': 'blog/tech/jq-overview.html',
@@ -27,13 +29,14 @@ $(function(){
         'compiler-copy-and-collection': 'blog/tech/compiler-copy-and-collection.html',
         'compiler-gc': 'blog/tech/compiler-gc.html',
         'rest-overview': 'blog/tech/rest-overview.html',
-        'js-qs': 'blog/tech/javascript-questions.html',
         'compatibility-js': 'blog/tech/compatibility-js.html',
         'browser-html-render': 'blog/tech/browser-html-render.html',
         'performance-load': 'blog/tech/performance-load.html',
         'alibaba-first-interview': 'blog/other/alibaba-first-interview.html',
         'what-will-happen-when-enter-url': 'blog/tech/what-will-happen-when-enter-url.html',
-        'css-problems': 'blog/tech/css-problems.html'
+        'css-problems': 'blog/tech/css-problems.html',
+        'alibaba-second-interview': 'blog/other/alibaba-second-interview.html',
+
     };
 
     //verify user input password

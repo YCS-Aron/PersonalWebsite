@@ -31,12 +31,12 @@ module.exports = [
     {
         category: 'Blog',
         description: '浏览器CSS差异的几个例子: padding, float',
-        state: ''
+        state: 'todo-done'
     },
     {
         category: 'Blog',
         description: '浏览器JS方面的差异: 事件绑定, ajax',
-        state: ''
+        state: 'todo-done'
     },
     {
         category: 'Blog',
@@ -45,8 +45,18 @@ module.exports = [
     },
     {
         category: 'Blog',
-        description: '浏览器CSS差异',
+        description: 'HTTP协议是怎么处理Cache的:Cache-Control, ETag, Expires, Last-Modified',
         state: ''
+    },
+    {
+        category: 'Blog',
+        description: 'H5和CSS3新特性',
+        state: ''
+    },
+    {
+        category: 'Blog',
+        description: '浏览器CSS差异(差异的类型,产生差异的原因,解决差异的方法,几种典型的差异)',
+        state: 'todo-done'
     },
     {
         category: 'Thesis',

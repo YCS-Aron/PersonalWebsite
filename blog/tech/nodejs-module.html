@@ -12,8 +12,7 @@
             <p>Node环境实际上就是Javascript环境, 所以, 我们可以从前端Javascript的模块管理中摸索出一些相似的地方.在Javascript前端的模块管理方式中, 模块往往是一个js文件, js文件为代码创造了一个独立的数据域, 从而避免污染上层数据域, 该模块的内容是module变量上的exports属性对应的内容. 而在Node环境下, 模块可以是一个js文件, 也可以是一个文件夹. Node还可以引入npm(Node Package Manager)中已经发布的模块. 在加载顺序上, Node下的模块和前端Javascript模块也有不同.</p>
             <h2>module.exports</h2>
             <p>Node的模块系统利用<span class="key-word">闭包</span>的特性, 将每个模块对应的文件都放在一个独立的数据域中执行, 从而保证了模块中不污染全局数据域(若不放在闭包中, Javascript引擎会将其放在全局数据域中执行), 而且会从闭包中返回module.exports数据. 所以, 当你想自己写一个比如字符串处理的模块时, 可以创建一个js文件, 代码如下:</p>
-<pre><code class="javascript">
-var commonPrefix = 'String: ';
+<pre><code class="javascript">var commonPrefix = 'String: ';
 module.exports = {
     addPrefix: function(str){
         return str + commonPrefix;
@@ -24,8 +23,7 @@ module.exports = {
     },
 
     //..
-}
-</code></pre>
+}</code></pre>
             <p>通过指定module.exports的值可以将模块定义为一个包含数据的对象, 静态JSON数据, 或者仅仅一个简单的函数. </p>
             <p>Node中的模块还可以是一个文件夹, 当模块是文件夹时, 系统会从文件夹的根目录中查找<span class="key-word">index.js</span>文件, 将该文件作为入口从中获取module.exports的值. 我们可以将只和该模块有关的子模块或者数据放在该文件夹中指定目录中, 从而方便文件的管理. 比如, 定义一个简单是文件夹模块:</p>
             <p>目录结构如下:</p>
@@ -33,8 +31,7 @@ module.exports = {
                 <img src="../../assets/image-resources/blogs/nodejs-module/1.png"></img>
             </div>
             <p>staticdata.js文件内容如下:</p>
-            <pre><code class="javascript">
-module.exports = {
+<pre><code class="javascript">module.exports = {
     data: 'this is data'
 };
             </code></pre>
@@ -46,8 +43,7 @@ module.exports = {
     fun: function(){
         console.log(staticdata.data);
     }
-};
-            </code></pre>
+};</code></pre>
             <p>解释module.exports到底是个什么样的数据, 是怎么传入闭包并返回的 ??</p>
             <h2>node_modules</h2>
             <p>node_modules是Node工程用来保存第三方模块的文件夹. 通过npm安装的第三方模块都会出现在这个文件夹中. Node工程中有一个package.json的文件, 用来定义该工程依赖的所有第三方模块, 然后只需要通过命令npm install就可以安装所有package.json中指定的第三方模块到node_modules文件夹内.</p>
@@ -71,8 +67,7 @@ module.exports = {
             <h2>package.json文件</h2>
             <p>package.json是模块的配置文件, 包括模块的名字, 版本号, 入口文件, 依赖模块等. 这些属性决定了模块的内容. 每个模块都应该有这样一个文件.</p>
             <p>package.json中的属性定义了模块的不同内容, 下面是一个定义比较完整的模块的package.json文件的内容:</p>
-<pre><code class="javascript">
-{
+<pre><code class="javascript">{
     "name": "apps-server",
     "version": "1.0.0",
     "main": "Gruntfile.js",
@@ -109,8 +104,7 @@ module.exports = {
         "wget": "0.0.1",
         "yauzl": "^2.2.1"
     }
-}
-</code></pre>
+}</code></pre>
             <p>对其中的一些字段进行简单的描述:</p>
             <h3>name, version</h3>
             <p>定义了当前模块的名称和版本号, 这两个属性唯一标示了一个模块. </p>

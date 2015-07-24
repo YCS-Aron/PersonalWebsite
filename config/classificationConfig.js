@@ -22,6 +22,12 @@ var config = [
         path: '../blog/tech/javascript-questions.html',
         classified: false
     },
+    {
+        name: 'js-reg',
+        regexp: /^(\/js-reg)$/,
+        path: '../blog/tech/javascript-regexp.html',
+        classified: false
+    },
     //ajax
     {
         name: 'ajax',
@@ -159,6 +165,12 @@ var config = [
         name: 'alibaba-first-interview',
         regexp: /^(\/alibaba-first-interview)$/,
         path: '../blog/other/alibaba-first-interview.html',
+        classified: false
+    },
+    {
+        name: 'alibaba-second-interview',
+        regexp: /^(\/alibaba-second-interview)$/,
+        path: '../blog/other/alibaba-second-interview.html',
         classified: false
     },
 ];

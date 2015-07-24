@@ -10,27 +10,47 @@
         <div>
             <p>浏览器之间在Javascript部分的差异主要是由于不同浏览器在某一个功能上提供的接口和实现方法不一样. 在解决兼容性问题时, 我们只需要了解功能的实现方式, 并在代码中判断所要兼容的浏览器的接口是否存在, 从而调用合适的接口.</p>
             <h2>事件绑定</h2>
-            <p>W3C标准的浏览器采用<span class="key-word">addEventListener</span>方法, 该方法可以绑定多个事件, 并且方法中的this执行绑定的元素, 并可以通过函数的第一个参数获取事件对象. IE则使用<span class="key-word">attachEvent</span>, 该方法中的this是window对象, 并且事件对象要从<span class="key-word">window.event</span>中获取. 还有一种方式是通过元素的<span class="key-word">onclick(on + type)</span>属性, 这种方式兼容性很好, 但是只能绑定一个事件处理函数, 函数中的this指向的是绑定元素. 下面给一个兼容性较好的例子: </p>
-<pre><code class="javascript">
-var eventHandler = function(e){
-    var event = e || window.event;      //e是W3C标准的事件, window.event是IE标准的事件
+            <p>首先, 应该说说事件流的两种机制: <span class="key-word">事件捕获</span>和<span class="key-word">事件冒泡</span>.</p>
+            <p>事件捕获是指, 当有一个事件产生时, 寻找触发事件的元素的方法是:从DOM树的最顶层元素开始, 不断锁定子元素, 缩小范围, 直到定位到目标元素. 因此, 事件捕获的触发顺序是<span class="key-word">从上至下</span>的. W3C标准的浏览器都支持事件捕获, 在通过<span class="key-word">addEventListener</span>方法绑定事件时, 设置第三个参数为true即代表该事件为捕获事件. <span class="key-word">支持事件捕获的浏览器有W3C标准的和IE9及以上版本的浏览器</span>.</p>
+            <p>事件冒泡是最常用的事件流, 也就是我们最熟悉的从特定元素向顶层元素冒泡, 从而触发路径上的所有冒泡事件, 因此冒泡事件的触发顺序是<span class="key-word">从下到上</span>的. <span class="key-word">IE9以下版本</span>的IE绑定事件的方法是<span class="key-word">attachEvent</span>, 该方法只有两个参数, 即事件名和处理函数, 并且事件名需要on的前缀, 比如onclick. <span class="key-word">从IE9开始, IE引入了addEventListener方法, 同时开始支持捕获事件</span>. 所有浏览器都支持冒泡事件, 并且由于IE9以下的浏览器不支持捕获事件, 所以, <span class="key-word">为了兼容IE9以下的浏览器, 一般默认采用冒泡事件</span>.</p>
+            <p>下面介绍使用差异</p>
+            <p>W3C标准的浏览器采用<span class="key-word">addEventListener</span>方法, 该方法可以绑定多个事件, 并且方法中的this指向绑定的元素, 并可以通过函数的第一个参数获取事件对象. <span class="key-word">IE9以下的版本</span>则使用<span class="key-word">attachEvent</span>, 该方法中的this是window对象, 并且事件对象要从<span class="key-word">window.event</span>中获取, 从IE9开始, IE中开始引入addEventListener方法. 还有一种方式是通过元素的<span class="key-word">onclick(on + type)</span>属性, 这种方式兼容性很好, 但是只能绑定一个事件处理函数, 函数中的this指向的是绑定元素. 下面给一个兼容性较好的例子: </p>
+<pre><code class="javascript">var eventHandler = function(e){
+    var event = e || window.event;      //e是W3C标准的事件对象, window.event是IE的事件对象
     var keycode = e.keyCode;            //IE和W3C都是采用keyCode指明按键码
     var target = e.target || window.event.srcElement //获取产生事件的元素
 };
 
-if(window.addEventListener) {       //判断是不是W3C浏览器
+if(window.addEventListener) {       //判断是不是W3C浏览器或者IE9以上版本
     element.addEventListener('keydown', eventHandler);
-} else {                            //否则就是非W3C标准的浏览器,如IE
+} else {                            //否则就是IE9以下版本
     element.attachEvent('keydown', eventHandler);
-}
-</code></pre>
+}</code></pre>
             <p>事实上, jQuery为我们提供了很好的事件绑定机制, 并屏蔽了底层的兼容性.</p>
+            <h2>DOM树渲染完成事件</h2>
+            <p>在IE和FF下, DOM树渲染完成的事件名不一样, 在标准浏览器下是<span class="key-word">DOMContentLoaded</span>, 在<span class="key-word">IE9以下版本</span>是<span class="key-word">onreadystatechange</span>. 从IE9开始, IE中引入了DOMContentLoaded事件, 同时引入了addEventListener方法, 因此, 我们需要对IE9以下版本的IE进行兼容处理. 代码如下:</p>
+<pre><code class="javascript">//兼容W3C
+if (document.addEventListener) {
+    document.addEventListener('DOMContentLoaded', function () {
+        document.removeEventListener('DOMContentLoaded', arguments.callee, false);
+        callback();
+    }, false);
+}
+//兼容IE9以下版本
+else if (document.attachEvent) {
+    document.attachEvent('onreadystatechange', function () {
+        if (document.readyState == "complete") {
+            document.detachEvent("onreadystatechange", arguments.callee);
+            callback();
+        }
+    });
+}</code></pre>
+            <p>jQuery也提供了接口用来处理该事件, 并提供了很好的兼容性.</p>
             <h2>HTML5的dataset</h2>
-            <p>dataset是H5添加的新特性, 用来在元素上保存数据, 而保存的方式是通过添加attribute的方式. IE 10一下是部分支持. 见如下链接: </p>
+            <p>dataset是H5添加的新特性, 用来在元素上保存数据, 而保存的方式是通过添加attribute的方式. IE 10以下是部分支持. 见如下链接: </p>
             <p><strong>Reference: <a onclick="window.open('http://caniuse.com/#search=dataset');">dataset在不同浏览器的兼容性</a></strong></p>
             <p> 下面是一个兼容性较好的dataset的例子: </p>
-<pre><code class="javascript">
-//保存
+<pre><code class="javascript">//保存
 if(element.dataset) {
     element.dataset.name = 'ycs';           //会修改DOM, 添加属性data-name="ycs"
 } else {
@@ -42,8 +62,7 @@ if(element.dataset) {
     data = element.dataset.name;
 } else {
     data = element.getAttribute('data-name');
-}
-</code></pre>
+}</code></pre>
             <p>jQuery提供了element.data接口来实现相同的功能, jQuery.data方法是将数据绑定在DOM对象上的, 但是, 在读取数据之前, 会检查是否还有类似<span class="key-word">data-*</span>的属性, 如果有, 则会优先读取属性中的值. </p>
             <p><strong>Reference: <a onclick="window.open('caniuse.com');">caniuse(用于查css属性,html标签,JSapi等各方面在不同浏览器兼容版本的网站)</a></strong></p>
 
