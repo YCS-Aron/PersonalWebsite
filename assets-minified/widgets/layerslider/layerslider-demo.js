@@ -1,1 +1,0 @@
-$(function(){"use strict";jQuery("#layerslider").layerSlider({responsive:!0,responsiveUnder:960,layersContainer:1270,skin:"fullwidth",hoverPrevNext:!0,skinsPath:"../assets/widgets/layerslider/skins/"})});
